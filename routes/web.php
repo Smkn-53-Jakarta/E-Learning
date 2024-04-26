@@ -17,7 +17,9 @@ Route::get('/dashboard', function () {
 
 Route::get('/dataguru', function () {
     return view('adminmaster.dataguru');
-});
+})->name('dataguru.index');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

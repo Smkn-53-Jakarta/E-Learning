@@ -50,6 +50,7 @@
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </div>
+                {{-- ADMIN MASTER --}}
                 <div class="menu-item">
                     <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                         <span class="menu-link">
@@ -91,7 +92,7 @@
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
-                            <i class="bi bi-people-fill" style="font-size: 20px;"></i>
+                            <i class="bi bi-clipboard-check-fill" style="font-size: 20px;"></i>
                         </span>
                         <span class="menu-title">Rekap Absensi</span>
                         <span class="menu-arrow"></span>
@@ -115,6 +116,68 @@
                         </div>
                     </div>
                 </div>
+                {{-- KELAS --}}
+                <div class="menu-item">
+                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <span class="menu-link">
+                            <span class="menu-icon">
+                                <i class="bi bi-door-open-fill" style="font-size: 20px;"></i>
+                            </span>
+                            <span class="menu-title">KELAS</span>
+                            <span class="menu-arrow"></span>
+                        </span>
+                        <div class="menu-sub menu-sub-accordion">
+                            <div class="menu-item">
+                                <a class="menu-link" href="/dashboard">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Kelas 1</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link" href="/dashboard">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Kelas 2</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link" href="/dashboard">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Kelas 3</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link" href="/dashboard">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Kelas 4</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link" href="/dashboard">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Kelas 5</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link" href="/dashboard">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Kelas 6</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {{-- MATERI --}}
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
@@ -128,11 +191,18 @@
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
-                            <i class="bi bi-file-pdf-fill" style="font-size: 20px;"></i>
+                            <i class="bi bi-file-earmark-pdf-fill" style="font-size: 20px;"></i>
                         </span>
                         <span class="menu-title">Bank Soal</span>
                     </span>
                 </div>
+
+
+
+
+
+
+
             </div>
         </div>
     </div>
