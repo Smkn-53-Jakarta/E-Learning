@@ -171,14 +171,16 @@
                     <div class="cursor-pointer symbol symbol-30px symbol-md-40px"
                         data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
                         data-kt-menu-placement="bottom-end">
-                        <img src="" alt="user" />
+                        <img src="{{ FileHelper::getImage('users/images/' . auth()->user()->image) }}"
+                            alt="user" />
                     </div>
                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
                         data-kt-menu="true">
                         <div class="menu-item px-3">
                             <div class="menu-content d-flex align-items-center px-3">
                                 <div class="symbol symbol-50px me-5">
-                                    <img alt="Logo" src="" />
+                                    <img alt="Logo"
+                                        src="{{ FileHelper::getImage('users/images/' . auth()->user()->image) }}" />
                                 </div>
                                 <div class="d-flex flex-column">
                                     <div class="fw-bold d-flex align-items-center fs-5">{{ auth()->user()->name }}
@@ -189,12 +191,9 @@
                             </div>
                         </div>
                         <div class="separator my-2"></div>
-                        {{-- <div class="menu-item px-5">
+                        <div class="menu-item px-5">
                             <a href="{{ route('profile.index') }}" class="menu-link px-5">My Profile</a>
                         </div>
-                        <div class="menu-item px-5">
-                            <a href="{{ route('profile.edit') }}" class="menu-link px-5">Settings</a>
-                        </div> --}}
                         <div class="menu-item px-5">
                             <a href="{{ route('logout') }}" class="menu-link px-5">Logout</a>
                         </div>

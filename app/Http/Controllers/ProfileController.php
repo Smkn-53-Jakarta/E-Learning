@@ -2,39 +2,61 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
+use App\Helpers\GlobalHelper;
+use App\Helpers\RoutingHelper;
+use App\Http\Requests\Profile\UpdateProfileRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
-    public function edit(Request $request): View
+    public function index(): View
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        $user = User::with('roles')->findOrFail(auth()->user()->id);
+
+        return view('profile.index', compact('user'));
     }
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function edit(): View
     {
-        $request->user()->fill($request->validated());
+        $user = User::findOrFail(auth()->user()->id);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        return view('profile.edit', compact('user'));
+    }
+
+    public function update(UpdateProfileRequest $request, User $user): RedirectResponse
+    {
+        $data = $request->validated();
+
+        if (isset($data['email']) && $data['email'] !== $user->email) {
+            $data['email_verified_at'] = null;
         }
 
-        $request->user()->save();
+        try {
+            DB::beginTransaction();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+            $user->update($data);
+
+            DB::commit();
+
+            return redirect(RoutingHelper::updateToIndexRoute())->with([
+                'message' => 'Profile berhasil diubah',
+                'status' => 'success',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            dd($th->getMessage());
+            return redirect()->route('profile.edit')->withInput()->with([
+                'message' => 'Something went wrong, please try again',
+                'status' => 'danger',
+            ]);
+        }
     }
 
     /**
