@@ -25,9 +25,6 @@ class GlobalHelper
                 'name' => 'restore'
             ],
             (object)[
-                'name' => 'copy'
-            ],
-            (object)[
                 'name' => 'export'
             ],
         ];

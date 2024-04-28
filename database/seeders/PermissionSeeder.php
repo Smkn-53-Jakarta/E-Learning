@@ -37,7 +37,23 @@ class PermissionSeeder extends Seeder
             [
                 'name' => 'roles.delete',
                 'guard_name' => 'web'
-            ]
+            ],
+            [
+                'name' => 'permissions.read',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'permissions.create',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'permissions.update',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'permissions.delete',
+                'guard_name' => 'web'
+            ],
         ];
 
         Permission::insert($permissions);

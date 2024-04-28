@@ -12,4 +12,13 @@ class StoreRoleRequest extends FormRequest
             'name' => ['required', 'string', 'unique:roles,name']
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nama role wajib diisi',
+            'name.string' => 'Nama role wajib string',
+            'name.unique' => 'Nama role sudah digunakan',
+        ];
+    }
 }

@@ -16,7 +16,7 @@ class RoleController extends Controller
 {
     public function index(): View
     {
-        $roles = Role::latest()->paginate(10);
+        $roles = Role::latest()->filter(request(['search']))->paginate(10);
 
         return view('roles.index', compact('roles'));
     }
@@ -106,7 +106,7 @@ class RoleController extends Controller
             ]);
         } catch (\Throwable $th) {
             DB::rollback();
-            dd($th->getMessage());
+
             return redirect()->back()->withInput()->with([
                 'message' => trans('message.error'),
                 'status' => 'danger',

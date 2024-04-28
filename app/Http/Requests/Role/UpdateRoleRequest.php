@@ -19,4 +19,13 @@ class UpdateRoleRequest extends FormRequest
             ],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nama role wajib diisi',
+            'name.string' => 'Nama role wajib string',
+            'name.unique' => 'Nama role sudah digunakan',
+        ];
+    }
 }

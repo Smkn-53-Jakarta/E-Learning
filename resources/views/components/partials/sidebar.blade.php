@@ -51,7 +51,7 @@
                     </a>
                 </div>
                 <div data-kt-menu-trigger="click"
-                    class="menu-item menu-accordion  {{ Request::is('roles*') ? 'show' : '' }}">
+                    class="menu-item menu-accordion  {{ Request::is('roles*', 'permissions*') ? 'show' : '' }}">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -80,7 +80,8 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/pages/user-profile/projects.html">
+                            <a class="menu-link  {{ Request::is('permissions*') ? 'active' : '' }}"
+                                href="{{ route('permissions.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>

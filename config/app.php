@@ -127,5 +127,6 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'FileHelper' => \App\Helpers\FileHelper::class,
         'RoutingHelper' => \App\Helpers\RoutingHelper::class,
+        'GlobalHelper' => \App\Helpers\GlobalHelper::class,
     ])->toArray(),
 ];
