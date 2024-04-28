@@ -14,7 +14,9 @@ Route::get('/dashboard', function () {
 
 Route::get('/dataguru', function () {
     return view('adminmaster.dataguru');
-});
+})->name('dataguru.index');
+
+
 
 Route::middleware('auth', 'permissions')->group(function () {
     //* Route Profile
