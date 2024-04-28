@@ -45,15 +45,15 @@ class ProfileController extends Controller
 
             DB::commit();
 
-            return redirect(RoutingHelper::updateToIndexRoute())->with([
+            return redirect()->route(RoutingHelper::updateToIndexRoute())->with([
                 'message' => 'Profile berhasil diubah',
                 'status' => 'success',
             ]);
         } catch (\Throwable $th) {
             DB::rollBack();
-            dd($th->getMessage());
-            return redirect()->route('profile.edit')->withInput()->with([
-                'message' => 'Something went wrong, please try again',
+
+            return redirect()->back()->withInput()->with([
+                'message' => trans('message.error'),
                 'status' => 'danger',
             ]);
         }

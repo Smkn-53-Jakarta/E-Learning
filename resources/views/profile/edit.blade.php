@@ -42,7 +42,7 @@
                         <div class="card-body border-top p-9">
                             <div class="col-lg-6">
                                 <div class="row mb-5">
-                                    <label class="form-label required">Name</label>
+                                    <label class="form-label required">Nama</label>
                                     <input id="name" type="text"
                                         class="form-control mb-2 @error('name') is-invalid @enderror"
                                         placeholder="Masukan Nama" name="name" value="{{ old('name', $user->name) }}"
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                         <div class="card-footer py-6 px-9">
-                            <x-SaveButton>Save</x-SaveButton>
+                            <x-SaveButton>Simpan</x-SaveButton>
                         </div>
                     </form>
                 </div>
@@ -97,7 +97,7 @@
                             </div>
                         </div>
                         <div class="card-footer py-6 px-9">
-                            <x-SaveButton id="savePassword">Save</x-SaveButton>
+                            <x-SaveButton id="savePassword">Simpan</x-SaveButton>
                         </div>
                     </form>
                 </div>

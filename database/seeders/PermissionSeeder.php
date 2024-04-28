@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Permission;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
-use Spatie\Permission\Models\Permission;
 
 class PermissionSeeder extends Seeder
 {
@@ -23,6 +22,22 @@ class PermissionSeeder extends Seeder
                 'name' => 'profile.update',
                 'guard_name' => 'web'
             ],
+            [
+                'name' => 'roles.read',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'roles.create',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'roles.update',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'roles.delete',
+                'guard_name' => 'web'
+            ]
         ];
 
         Permission::insert($permissions);

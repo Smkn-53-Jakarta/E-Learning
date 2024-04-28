@@ -24,17 +24,23 @@ class UserSeeder extends Seeder
             'password' => bcrypt('admin')
         ]);
 
+        $admin->assignRole('Admin');
+
         $student = User::create([
             'name' => 'Student',
             'email' => 'student@gmail.com',
             'password' => bcrypt('student')
         ]);
 
+        $student->assignRole('Student');
+
         $teacher = User::create([
             'name' => 'Teacher',
             'email' => 'teacher@gmail.com',
             'password' => bcrypt('teacher')
         ]);
+
+        $teacher->assignRole('Teacher');
 
         $classroomIds = Classroom::pluck('id')->toArray();
         $schoolYearids = SchoolYear::pluck('id')->toArray();

@@ -65,6 +65,28 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        function confirmPopup(button, text) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Apa kamu yakin?',
+                text,
+                icon: "warning",
+                buttonsStyling: false,
+                showCancelButton: true,
+                confirmButtonText: "Yes!",
+                cancelButtonText: 'No',
+                customClass: {
+                    confirmButton: "btn btn-primary",
+                    cancelButton: 'btn btn-danger'
+                },
+                reverseButtons: true
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    $(button).closest("form").submit();
+                }
+            });
+        }
     </script>
     @stack('scripts')
 </body>
