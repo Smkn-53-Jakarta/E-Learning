@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -29,6 +30,20 @@ Route::middleware('auth', 'permissions')->group(function () {
 
     //* Route Permissions
     Route::resource('permissions', PermissionController::class)->except('show');
+
+    //* Route Courses
+    Route::get('/mata-pelajaran/trashed', [CourseController::class, 'trashed'])->name('courses.trashed');
+    Route::post('/mata-pelajaran/{course}/restore', [CourseController::class, 'restore'])->name('courses.restore');
+    Route::post('/mata-pelajaran/{course}/force-delete', [CourseController::class, 'forceDelete'])->name('courses.force-delete');
+    Route::resource('mata-pelajaran', CourseController::class)->parameters(['mata-pelajaran' => 'courses'])->names([
+        'index' => 'courses.index',
+        'create' => 'courses.create',
+        'store' => 'courses.store',
+        'show' => 'courses.show',
+        'edit' => 'courses.edit',
+        'update' => 'courses.update',
+        'destroy' => 'courses.destroy',
+    ]);
 });
 
 require __DIR__ . '/auth.php';
