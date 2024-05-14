@@ -11,6 +11,8 @@ class Course extends Model
 {
     use HasFactory, HasUuids, SoftDeletes;
 
+    protected $guarded = ['id'];
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, function ($query, $search) {

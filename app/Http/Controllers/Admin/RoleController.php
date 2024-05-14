@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Helpers\GlobalHelper;
 use App\Helpers\RoutingHelper;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Role\StoreRoleRequest;
 use App\Http\Requests\Role\UpdateRoleRequest;
 use App\Models\Permission;
@@ -18,7 +19,7 @@ class RoleController extends Controller
     {
         $roles = Role::latest()->filter(request(['search']))->paginate(10);
 
-        return view('roles.index', compact('roles'));
+        return view('admin.roles.index', compact('roles'));
     }
 
     public function create(): View
@@ -26,7 +27,7 @@ class RoleController extends Controller
         $permissions = Permission::all();
         $features = GlobalHelper::getFeatures($permissions);
 
-        return view('roles.create', compact('permissions', 'features'));
+        return view('admin.roles.create', compact('permissions', 'features'));
     }
 
     public function store(StoreRoleRequest $request): RedirectResponse
@@ -73,7 +74,7 @@ class RoleController extends Controller
     {
         $features = GlobalHelper::getFeatures(Permission::all());
 
-        return view('roles.edit', compact('role', 'features'));
+        return view('admin.roles.edit', compact('role', 'features'));
     }
 
     public function update(UpdateRoleRequest $request, Role $role)

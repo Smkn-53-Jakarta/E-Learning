@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Helpers\RoutingHelper;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Permission\StorePermissionRequest;
 use App\Http\Requests\Permission\UpdatePermissionRequest;
 use App\Models\Permission;
@@ -16,12 +17,12 @@ class PermissionController extends Controller
     {
         $permissions = Permission::latest()->filter(request(['search']))->paginate(10);
 
-        return view('permissions.index', compact('permissions'));
+        return view('admin.permissions.index', compact('permissions'));
     }
 
     public function create(): View
     {
-        return view('permissions.create');
+        return view('admin.permissions.create');
     }
 
     public function store(StorePermissionRequest $request): RedirectResponse
@@ -55,7 +56,7 @@ class PermissionController extends Controller
 
     public function edit(Permission $permission): View
     {
-        return view('permissions.edit', compact('permission'));
+        return view('admin.permissions.edit', compact('permission'));
     }
 
     public function update(UpdatePermissionRequest $request, Permission $permission): RedirectResponse

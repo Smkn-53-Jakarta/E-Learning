@@ -15,6 +15,10 @@ class PermissionSeeder extends Seeder
     {
         $permissions = [
             [
+                'name' => 'dashboard',
+                'guard_name' => 'web'
+            ],
+            [
                 'name' => 'profile.read',
                 'guard_name' => 'web'
             ],

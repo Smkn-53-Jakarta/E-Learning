@@ -2,27 +2,28 @@
 
 namespace App\Http\Requests\Course;
 
+use App\Models\Course;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreCourseRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return false;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
+        $tableName = (new Course())->getTable();
+
         return [
-            //
+            'name' => ['required', 'string', 'max:64', Rule::unique($tableName, 'name')],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nama mata pelajaran wajib diisi',
+            'name.string' => 'Nama mata pelajaran wajib string',
+            'name.max' => 'Nama mata pelajaran maksimal 64 karakter',
+            'name.unique' => 'Nama mata pelajaran sudah tersedia',
         ];
     }
 }

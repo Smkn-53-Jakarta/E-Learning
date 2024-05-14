@@ -1,26 +1,20 @@
 <?php
 
-use App\Http\Controllers\CourseController;
-use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-Route::get('/dataguru', function () {
-    return view('adminmaster.dataguru');
-})->name('dataguru.index');
-
-
-
 Route::middleware('auth', 'permissions')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('dashboard');
+
     //* Route Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.index');
     Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
@@ -35,7 +29,7 @@ Route::middleware('auth', 'permissions')->group(function () {
     Route::get('/mata-pelajaran/trashed', [CourseController::class, 'trashed'])->name('courses.trashed');
     Route::post('/mata-pelajaran/{course}/restore', [CourseController::class, 'restore'])->name('courses.restore');
     Route::post('/mata-pelajaran/{course}/force-delete', [CourseController::class, 'forceDelete'])->name('courses.force-delete');
-    Route::resource('mata-pelajaran', CourseController::class)->parameters(['mata-pelajaran' => 'courses'])->names([
+    Route::resource('mata-pelajaran', CourseController::class)->parameters(['mata-pelajaran' => 'course'])->names([
         'index' => 'courses.index',
         'create' => 'courses.create',
         'store' => 'courses.store',
