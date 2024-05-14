@@ -42,7 +42,7 @@ class CourseController extends Controller
             ]);
         } catch (\Throwable $th) {
             DB::rollBack();
-            dd($th->getMessage());
+
             return redirect()->back()->withInput()->with([
                 'message' => trans('message.error'),
                 'status' => 'danger',
@@ -50,27 +50,35 @@ class CourseController extends Controller
         }
     }
 
-    public function show(Course $course)
+    public function edit(Course $course): View
     {
-        //
+        return view('admin.courses.edit', compact('course'));
     }
 
-    public function edit(Course $course)
+    public function update(UpdateCourseRequest $request, Course $course): RedirectResponse
     {
-        //
+        $data = $request->validated();
+
+        try {
+            DB::beginTransaction();
+
+            $course->update($data);
+
+            DB::commit();
+            return redirect(RoutingHelper::updateToIndexRoute())->with([
+                'message' => 'Mata pelajaran berhasil diubah',
+                'status' => 'success',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return redirect()->back()->withInput()->with([
+                'message' => trans('message.error'),
+                'status' => 'danger',
+            ]);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateCourseRequest $request, Course $course)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Course $course)
     {
         //

@@ -29,11 +29,10 @@ Route::middleware('auth', 'permissions')->group(function () {
     Route::get('/mata-pelajaran/trashed', [CourseController::class, 'trashed'])->name('courses.trashed');
     Route::post('/mata-pelajaran/{course}/restore', [CourseController::class, 'restore'])->name('courses.restore');
     Route::post('/mata-pelajaran/{course}/force-delete', [CourseController::class, 'forceDelete'])->name('courses.force-delete');
-    Route::resource('mata-pelajaran', CourseController::class)->parameters(['mata-pelajaran' => 'course'])->names([
+    Route::resource('mata-pelajaran', CourseController::class)->except(['show'])->parameters(['mata-pelajaran' => 'course'])->names([
         'index' => 'courses.index',
         'create' => 'courses.create',
         'store' => 'courses.store',
-        'show' => 'courses.show',
         'edit' => 'courses.edit',
         'update' => 'courses.update',
         'destroy' => 'courses.destroy',
