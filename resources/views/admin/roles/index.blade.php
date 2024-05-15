@@ -50,7 +50,7 @@
                                         <th class="text-center">No</th>
                                         <th class="min-w-250px">Nama</th>
                                         <th class="min-w-125px">Nama Guard</th>
-                                        <th class="min-w-100px">Actions</th>
+                                        <th class="min-w-100px">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="fw-semibold text-gray-600">

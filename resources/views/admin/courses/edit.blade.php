@@ -41,7 +41,7 @@
                         <div class="d-flex flex-column me-n7 pe-7">
                             <div class="fv-row mb-10">
                                 <label class="fs-5 fw-bold form-label mb-2">
-                                    <span class="required">Nama</span>
+                                    <span class="required">Nama Mata Pelajaran</span>
                                 </label>
                                 <input id="name" class="form-control mb-2 @error('name') is-invalid @enderror"
                                     placeholder="Masukan nama mata pelajaran" name="name"

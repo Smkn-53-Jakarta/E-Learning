@@ -88,4 +88,21 @@ class CourseController extends Controller
             'status' => 'success',
         ]);
     }
+
+    public function trashed(): View
+    {
+        $courses = Course::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
+
+        return view('admin.courses.trashed', compact('courses'));
+    }
+
+    public function restore($id): RedirectResponse
+    {
+        Course::withTrashed()->findOrFail($id)->restore();
+
+        return redirect(RoutingHelper::restoreToIndex())->with([
+            'message' => 'Mata pelajaran berhasil dipulihkan',
+            'status' => 'success',
+        ]);
+    }
 }
