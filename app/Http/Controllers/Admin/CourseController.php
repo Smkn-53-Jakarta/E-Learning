@@ -105,4 +105,14 @@ class CourseController extends Controller
             'status' => 'success',
         ]);
     }
+
+    public function forceDelete($id): RedirectResponse
+    {
+        Course::withTrashed()->findOrFail($id)->forceDelete();
+
+        return redirect(RoutingHelper::forceDeleteToIndex())->with([
+            'message' => 'Mata pelajaran berhasil dihapus',
+            'status' => 'success',
+        ]);
+    }
 }
