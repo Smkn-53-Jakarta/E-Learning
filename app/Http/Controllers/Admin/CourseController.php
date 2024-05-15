@@ -79,8 +79,13 @@ class CourseController extends Controller
         }
     }
 
-    public function destroy(Course $course)
+    public function destroy(Course $course): RedirectResponse
     {
-        //
+        $course->delete();
+
+        return back()->with([
+            'message' => 'Mata pelajaran berhasil dihapus',
+            'status' => 'success',
+        ]);
     }
 }
