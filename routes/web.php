@@ -3,9 +3,11 @@
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\ClassroomController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Classroom;
 use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +68,19 @@ Route::middleware('auth', 'permissions')->group(function () {
         'edit' => 'student.edit',
         'update' => 'student.update',
         'destroy' => 'student.destroy',
+    ]);
+
+    //* Route Classroom
+    Route::get('/kelas/trashed', [ClassroomController::class, 'trashed'])->name('classroom.trashed');
+    Route::post('/kelas/{classroom}/restore', [ClassroomController::class, 'restore'])->name('classroom.restore');
+    Route::post('/kelas/{classroom}/force-delete', [ClassroomController::class, 'forceDelete'])->name('classroom.force-delete');
+    Route::resource('kelas', ClassroomController::class)->except(['show'])->parameters(['kelas' => 'classroom'])->names([
+        'index' => 'classroom.index',
+        'create' => 'classroom.create',
+        'store' => 'classroom.store',
+        'edit' => 'classroom.edit',
+        'update' => 'classroom.update',
+        'destroy' => 'classroom.destroy',
     ]);
 
     
