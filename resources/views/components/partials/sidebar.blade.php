@@ -121,7 +121,7 @@
                         </span>
                         <div class="menu-sub menu-sub-accordion">
                             <div class="menu-item">
-                                <a class="menu-link" href="/dataguru">
+                                <a class="menu-link" href="{{ route('teacher.index') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
