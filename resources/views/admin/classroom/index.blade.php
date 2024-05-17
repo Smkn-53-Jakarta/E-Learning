@@ -48,22 +48,22 @@
                             @endcan
                         </div>
                     </div>
-                    {{-- <div class="card-body">
-                        @if (count($students))
+                    <div class="card-body">
+                        @if (count($classrooms))
                             <div class="table-responsive fixed-actions-table">
                                 <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
                                     <thead>
                                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                             <th class="text-center">No</th>
-                                            <th class="min-w-250px">Nama Siswa</th>
+                                            <th class="min-w-250px">Nama Kelas</th>
                                             <th class="min-w-100px">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody class="fw-semibold text-gray-600">
-                                        @foreach ($students as $student)
+                                        @foreach ($classrooms as $classroom)
                                             <tr>
                                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                                <td>{{ $student->name }}</td>
+                                                <td>{{ $classroom->name }}</td>
                                                 <td>
                                                     <a href="#"
                                                         class="btn btn-sm btn-icon btn-active-light-primary"
@@ -72,20 +72,21 @@
                                                     </a>
                                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
                                                         data-kt-menu="true">
-                                                        @can('student.update')
+                                                        @can('classroom.update')
                                                             <div class="menu-item px-3">
-                                                                <a href="{{ route('student.edit', $student->id) }}"
+                                                                <a href="{{ route('classroom.edit', $classroom->id) }}"
                                                                     class="menu-link px-3">Ubah</a>
                                                             </div>
                                                         @endcan
-                                                        @can('student.delete')
+                                                        @can('classroom.delete')
                                                             <div class="menu-item px-3">
-                                                                <form action="{{ route('student.destroy', $student->id) }}"
+                                                                <form
+                                                                    action="{{ route('classroom.destroy', $classroom->id) }}"
                                                                     method="post" class="me-3">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <a href="#" class="menu-link px-3"
-                                                                        onclick="confirmPopup(this, 'Akan menghapus siswa ini')">Hapus</a>
+                                                                        onclick="confirmPopup(this, 'Akan menghapus kelas ini')">Hapus</a>
                                                                 </form>
                                                             </div>
                                                         @endcan
@@ -99,7 +100,7 @@
                         @else
                             <x-DataNotFound />
                         @endif
-                    </div> --}}
+                    </div>
                 </div>
                 <div class="d-flex p-5 justify-content-end">
                     {!! $classrooms->links() !!}
