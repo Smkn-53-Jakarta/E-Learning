@@ -98,6 +98,26 @@ class PermissionSeeder extends Seeder
                 'name' => 'teacher.restore',
                 'guard_name' => 'web'
             ],
+            [
+                'name' => 'student.read',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'student.create',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'student.update',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'student.delete',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'student.restore',
+                'guard_name' => 'web'
+            ],
         ];
 
         Permission::insert($permissions);

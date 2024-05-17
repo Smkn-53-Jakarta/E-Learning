@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\TeacherController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +53,19 @@ Route::middleware('auth', 'permissions')->group(function () {
         'edit' => 'teacher.edit',
         'update' => 'teacher.update',
         'destroy' => 'teacher.destroy',
+    ]);
+
+    //* Route Student
+    Route::get('/siswa/trashed', [StudentController::class, 'trashed'])->name('student.trashed');
+    Route::post('/siswa/{student}/restore', [StudentController::class, 'restore'])->name('student.restore');
+    Route::post('/siswa/{student}/force-delete', [StudentController::class, 'forceDelete'])->name('student.force-delete');
+    Route::resource('siswa', StudentController::class)->except(['show'])->parameters(['siswa' => 'student'])->names([
+        'index' => 'student.index',
+        'create' => 'student.create',
+        'store' => 'student.store',
+        'edit' => 'student.edit',
+        'update' => 'student.update',
+        'destroy' => 'student.destroy',
     ]);
 
     

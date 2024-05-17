@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreign('school_year_id')->references('id')->on('school_years')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('identification_number');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
