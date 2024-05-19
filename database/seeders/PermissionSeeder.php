@@ -158,6 +158,26 @@ class PermissionSeeder extends Seeder
                 'name' => 'schoolYears.restore',
                 'guard_name' => 'web'
             ],
+            [
+                'name' => 'extracurriculars.read',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'extracurriculars.create',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'extracurriculars.update',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'extracurriculars.delete',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'extracurriculars.restore',
+                'guard_name' => 'web'
+            ],
         ];
 
         Permission::insert($permissions);

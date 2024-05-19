@@ -4,13 +4,11 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\ClassroomController;
+use App\Http\Controllers\Admin\ExtracurricularController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SchoolYearController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Classroom;
-use App\Models\Student;
-use App\Models\Teacher;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -95,6 +93,19 @@ Route::middleware('auth', 'permissions')->group(function () {
         'edit' => 'schoolYears.edit',
         'update' => 'schoolYears.update',
         'destroy' => 'schoolYears.destroy',
+    ]);
+
+    //* Route Ekstracurriculars
+    Route::get('/ekstrakurikuler/trashed', [ExtracurricularController::class, 'trashed'])->name('extracurriculars.trashed');
+    Route::post('/ekstrakurikuler/{extracurricular}/restore', [ExtracurricularController::class, 'restore'])->name('extracurriculars.restore');
+    Route::post('/ekstrakurikuler/{extracurricular}/force-delete', [ExtracurricularController::class, 'forceDelete'])->name('extracurriculars.force-delete');
+    Route::resource('ekstrakurikuler', ExtracurricularController::class)->except(['show'])->parameters(['ekstrakurikuler' => 'extracurricular'])->names([
+        'index' => 'extracurriculars.index',
+        'create' => 'extracurriculars.create',
+        'store' => 'extracurriculars.store',
+        'edit' => 'extracurriculars.edit',
+        'update' => 'extracurriculars.update',
+        'destroy' => 'extracurriculars.destroy',
     ]);
 });
 
