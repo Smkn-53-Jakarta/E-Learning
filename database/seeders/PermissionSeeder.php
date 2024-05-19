@@ -79,63 +79,83 @@ class PermissionSeeder extends Seeder
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'teacher.read',
+                'name' => 'teachers.read',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'teacher.create',
+                'name' => 'teachers.create',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'teacher.update',
+                'name' => 'teachers.update',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'teacher.delete',
+                'name' => 'teachers.delete',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'teacher.restore',
+                'name' => 'teachers.restore',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'student.read',
+                'name' => 'students.read',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'student.create',
+                'name' => 'students.create',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'student.update',
+                'name' => 'students.update',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'student.delete',
+                'name' => 'students.delete',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'student.restore',
+                'name' => 'students.restore',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'classroom.read',
+                'name' => 'classrooms.read',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'classroom.create',
+                'name' => 'classrooms.create',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'classroom.update',
+                'name' => 'classrooms.update',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'classroom.delete',
+                'name' => 'classrooms.delete',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'classroom.restore',
+                'name' => 'classrooms.restore',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'schoolYears.read',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'schoolYears.create',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'schoolYears.update',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'schoolYears.delete',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'schoolYears.restore',
                 'guard_name' => 'web'
             ],
         ];

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\ClassroomController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SchoolYearController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Classroom;
 use App\Models\Student;
@@ -44,46 +45,57 @@ Route::middleware('auth', 'permissions')->group(function () {
         'destroy' => 'courses.destroy',
     ]);
 
-    //* Route Teacher
-    Route::get('/guru/trashed', [TeacherController::class, 'trashed'])->name('teacher.trashed');
-    Route::post('/guru/{teacher}/restore', [TeacherController::class, 'restore'])->name('teacher.restore');
-    Route::post('/guru/{teacher}/force-delete', [TeacherController::class, 'forceDelete'])->name('teacher.force-delete');
+    //* Route Teachers
+    Route::get('/guru/trashed', [TeacherController::class, 'trashed'])->name('teachers.trashed');
+    Route::post('/guru/{teacher}/restore', [TeacherController::class, 'restore'])->name('teachers.restore');
+    Route::post('/guru/{teacher}/force-delete', [TeacherController::class, 'forceDelete'])->name('teachers.force-delete');
     Route::resource('guru', TeacherController::class)->except(['show'])->parameters(['guru' => 'teacher'])->names([
-        'index' => 'teacher.index',
-        'create' => 'teacher.create',
-        'store' => 'teacher.store',
-        'edit' => 'teacher.edit',
-        'update' => 'teacher.update',
-        'destroy' => 'teacher.destroy',
+        'index' => 'teachers.index',
+        'create' => 'teachers.create',
+        'store' => 'teachers.store',
+        'edit' => 'teachers.edit',
+        'update' => 'teachers.update',
+        'destroy' => 'teachers.destroy',
     ]);
 
-    //* Route Student
-    Route::get('/siswa/trashed', [StudentController::class, 'trashed'])->name('student.trashed');
-    Route::post('/siswa/{student}/restore', [StudentController::class, 'restore'])->name('student.restore');
-    Route::post('/siswa/{student}/force-delete', [StudentController::class, 'forceDelete'])->name('student.force-delete');
-    Route::resource('siswa', StudentController::class)->except(['show'])->parameters(['siswa' => 'student'])->names([
-        'index' => 'student.index',
-        'create' => 'student.create',
-        'store' => 'student.store',
-        'edit' => 'student.edit',
-        'update' => 'student.update',
-        'destroy' => 'student.destroy',
+    //* Route Students
+    Route::get('/murid/trashed', [StudentController::class, 'trashed'])->name('students.trashed');
+    Route::post('/murid/{student}/restore', [StudentController::class, 'restore'])->name('students.restore');
+    Route::post('/murid/{student}/force-delete', [StudentController::class, 'forceDelete'])->name('students.force-delete');
+    Route::resource('murid', StudentController::class)->except(['show'])->parameters(['murid' => 'student'])->names([
+        'index' => 'students.index',
+        'create' => 'students.create',
+        'store' => 'students.store',
+        'edit' => 'students.edit',
+        'update' => 'students.update',
+        'destroy' => 'students.destroy',
     ]);
 
-    //* Route Classroom
-    Route::get('/kelas/trashed', [ClassroomController::class, 'trashed'])->name('classroom.trashed');
-    Route::post('/kelas/{classroom}/restore', [ClassroomController::class, 'restore'])->name('classroom.restore');
-    Route::post('/kelas/{classroom}/force-delete', [ClassroomController::class, 'forceDelete'])->name('classroom.force-delete');
+    //* Route Classrooms
+    Route::get('/kelas/trashed', [ClassroomController::class, 'trashed'])->name('classrooms.trashed');
+    Route::post('/kelas/{classroom}/restore', [ClassroomController::class, 'restore'])->name('classrooms.restore');
+    Route::post('/kelas/{classroom}/force-delete', [ClassroomController::class, 'forceDelete'])->name('classrooms.force-delete');
     Route::resource('kelas', ClassroomController::class)->except(['show'])->parameters(['kelas' => 'classroom'])->names([
-        'index' => 'classroom.index',
-        'create' => 'classroom.create',
-        'store' => 'classroom.store',
-        'edit' => 'classroom.edit',
-        'update' => 'classroom.update',
-        'destroy' => 'classroom.destroy',
+        'index' => 'classrooms.index',
+        'create' => 'classrooms.create',
+        'store' => 'classrooms.store',
+        'edit' => 'classrooms.edit',
+        'update' => 'classrooms.update',
+        'destroy' => 'classrooms.destroy',
     ]);
 
-    
+    //* Route SchoolYears
+    Route::get('/tahun-pelajaran/trashed', [SchoolYearController::class, 'trashed'])->name('schoolYears.trashed');
+    Route::post('/tahun-pelajaran/{schoolYear}/restore', [SchoolYearController::class, 'restore'])->name('schoolYears.restore');
+    Route::post('/tahun-pelajaran/{schoolYear}/force-delete', [SchoolYearController::class, 'forceDelete'])->name('schoolYears.force-delete');
+    Route::resource('tahun-pelajaran', SchoolYearController::class)->except(['show'])->parameters(['tahun-pelajaran' => 'schoolYear'])->names([
+        'index' => 'schoolYears.index',
+        'create' => 'schoolYears.create',
+        'store' => 'schoolYears.store',
+        'edit' => 'schoolYears.edit',
+        'update' => 'schoolYears.update',
+        'destroy' => 'schoolYears.destroy',
+    ]);
 });
 
 require __DIR__ . '/auth.php';

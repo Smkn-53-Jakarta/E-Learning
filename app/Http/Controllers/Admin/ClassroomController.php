@@ -15,15 +15,15 @@ class ClassroomController extends Controller
 {
     public function index(): View
     {
-        $classroomTrashed = Classroom::onlyTrashed()->count();
+        $classroomsTrashed = Classroom::onlyTrashed()->count();
         $classrooms = Classroom::latest()->filter(request(['search']))->paginate(10);
 
-        return view('admin.classroom.index', compact('classroomTrashed', 'classrooms'));
+        return view('admin.classrooms.index', compact('classroomsTrashed', 'classrooms'));
     }
 
     public function create(): View
     {
-        return view('admin.classroom.create');
+        return view('admin.classrooms.create');
     }
 
     public function store(StoreClassroomRequest $request): RedirectResponse
@@ -52,7 +52,7 @@ class ClassroomController extends Controller
 
     public function edit(Classroom $classroom): View
     {
-        return view('admin.classroom.edit', compact('classroom'));
+        return view('admin.classrooms.edit', compact('classroom'));
     }
 
     public function update(UpdateClassroomRequest $request, Classroom $classroom): RedirectResponse
@@ -91,9 +91,9 @@ class ClassroomController extends Controller
 
     public function trashed(): View
     {
-        $classroom = Classroom::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
+        $classrooms = Classroom::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
 
-        return view('admin.classroom.trashed', compact('classroom'));
+        return view('admin.classrooms.trashed', compact('classrooms'));
     }
 
     public function restore($id): RedirectResponse

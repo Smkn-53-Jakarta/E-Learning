@@ -101,7 +101,7 @@
                 {{-- ADMIN MASTER --}}
                 <div class="menu-item">
                     <div data-kt-menu-trigger="click"
-                        class="menu-item menu-accordion {{ Request::is('mata-pelajaran*') ? 'show' : '' }}">
+                        class="menu-item menu-accordion {{ Request::is('mata-pelajaran*', 'guru*', 'murid*', 'kelas*', 'tahun-pelajaran*') ? 'show' : '' }}">
                         <span class="menu-link">
                             <span class="menu-icon">
                                 <span class="svg-icon svg-icon-2">
@@ -121,7 +121,8 @@
                         </span>
                         <div class="menu-sub menu-sub-accordion">
                             <div class="menu-item">
-                                <a class="menu-link" href="{{ route('teacher.index') }}">
+                                <a class="menu-link {{ Request::is('guru*') ? 'active' : '' }}"
+                                    href="{{ route('teachers.index') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
@@ -129,15 +130,17 @@
                                 </a>
                             </div>
                             <div class="menu-item">
-                                <a class="menu-link" href="{{ route('student.index') }}">
+                                <a class="menu-link {{ Request::is('murid*') ? 'active' : '' }}"
+                                    href="{{ route('students.index') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
-                                    <span class="menu-title">Siswa</span>
+                                    <span class="menu-title">Murid</span>
                                 </a>
                             </div>
                             <div class="menu-item">
-                                <a class="menu-link" href="{{ route('classroom.index') }}">
+                                <a class="menu-link {{ Request::is('kelas*') ? 'active' : '' }}"
+                                    href="{{ route('classrooms.index') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
@@ -151,6 +154,15 @@
                                         <span class="bullet bullet-dot"></span>
                                     </span>
                                     <span class="menu-title">Mata Pelajaran</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link {{ Request::is('tahun-pelajaran*') ? 'active' : '' }}"
+                                    href="{{ route('schoolYears.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Tahun Pelajaran</span>
                                 </a>
                             </div>
                         </div>

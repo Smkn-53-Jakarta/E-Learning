@@ -15,15 +15,15 @@ class TeacherController extends Controller
 {
     public function index(): View
     {
-        $teacherTrashed = Teacher::onlyTrashed()->count();
+        $teachersTrashed = Teacher::onlyTrashed()->count();
         $teachers = Teacher::latest()->filter(request(['search']))->paginate(10);
 
-        return view('admin.teacher.index', compact('teacherTrashed', 'teachers'));
+        return view('admin.teachers.index', compact('teachersTrashed', 'teachers'));
     }
 
     public function create(): View
     {
-        return view('admin.teacher.create');
+        return view('admin.teachers.create');
     }
 
     public function store(StoreTeacherRequest $request): RedirectResponse
@@ -52,7 +52,7 @@ class TeacherController extends Controller
 
     public function edit(Teacher $teacher): View
     {
-        return view('admin.teacher.edit', compact('teacher'));
+        return view('admin.teachers.edit', compact('teacher'));
     }
 
     public function update(UpdateTeacherRequest $request, Teacher $teacher): RedirectResponse
@@ -91,9 +91,9 @@ class TeacherController extends Controller
 
     public function trashed(): View
     {
-        $teacher = Teacher::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
+        $teachers = Teacher::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
 
-        return view('admin.teacher.trashed', compact('teacher'));
+        return view('admin.teachers.trashed', compact('teachers'));
     }
 
     public function restore($id): RedirectResponse

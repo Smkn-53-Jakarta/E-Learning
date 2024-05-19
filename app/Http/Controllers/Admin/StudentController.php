@@ -15,15 +15,15 @@ class StudentController extends Controller
 {
     public function index(): View
     {
-        $studentTrashed = Student::onlyTrashed()->count();
+        $studentsTrashed = Student::onlyTrashed()->count();
         $students = Student::latest()->filter(request(['search']))->paginate(10);
 
-        return view('admin.student.index', compact('studentTrashed', 'students'));
+        return view('admin.students.index', compact('studentsTrashed', 'students'));
     }
 
     public function create(): View
     {
-        return view('admin.student.create');
+        return view('admin.students.create');
     }
 
     public function store(StoreStudentRequest $request): RedirectResponse
@@ -52,7 +52,7 @@ class StudentController extends Controller
 
     public function edit(Student $student): View
     {
-        return view('admin.student.edit', compact('student'));
+        return view('admin.students.edit', compact('student'));
     }
 
     public function update(UpdateStudentRequest $request, Student $student): RedirectResponse
@@ -91,9 +91,9 @@ class StudentController extends Controller
 
     public function trashed(): View
     {
-        $student = Student::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
+        $students = Student::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
 
-        return view('admin.student.trashed', compact('student'));
+        return view('admin.students.trashed', compact('student'));
     }
 
     public function restore($id): RedirectResponse

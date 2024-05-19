@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('year', 64);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

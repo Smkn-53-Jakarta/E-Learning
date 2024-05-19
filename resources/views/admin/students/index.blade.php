@@ -5,7 +5,7 @@
                 <div class="d-flex align-items-center">
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                            Guru
+                            Murid
                         </h1>
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <li class="breadcrumb-item text-muted">
@@ -15,7 +15,7 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('teacher.index') }}" class="text-muted text-hover-primary">Guru</a>
+                                <a href="{{ route('students.index') }}" class="text-muted text-hover-primary">Murid</a>
                             </li>
                         </ul>
                     </div>
@@ -33,37 +33,51 @@
                     <div class="card-header mt-6">
                         <div class="card-title">
                             <div class="d-flex align-items-center position-relative my-1 me-5">
-                                <x-SearchInput placeholder="Cari Guru" />
+                                <x-SearchInput placeholder="Cari Murid" />
                             </div>
                         </div>
                         <div class="card-toolbar">
-                            @if ($teacherTrashed)
-                                <a href="{{ route('teacher.trashed') }}" class="btn btn-light-primary me-3">
+                            @if ($studentsTrashed)
+                                <a href="{{ route('students.trashed') }}" class="btn btn-light-primary me-3">
                                     <i class="fa-solid fa-trash-can"></i>
                                     Sampah
                                 </a>
                             @endif
-                            @can('teacher.create')
-                                <x-AddButton :url="route('teacher.create')">Tambah Guru</x-AddButton>
+                            @can('students.create')
+                                <x-AddButton :url="route('students.create')">Tambah Murid</x-AddButton>
                             @endcan
                         </div>
                     </div>
                     <div class="card-body">
-                        @if (count($teachers))
+                        @if (count($students))
                             <div class="table-responsive fixed-actions-table">
                                 <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
                                     <thead>
                                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                             <th class="text-center">No</th>
-                                            <th class="min-w-250px">Nama Guru</th>
+                                            <th class="min-w-250px">Nama Murid</th>
+                                            <th class="min-w-250px">Status</th>
+                                            <th class="min-w-250px">Email</th>
+                                            <th class="min-w-250px">Kelas</th>
+                                            <th class="min-w-250px">Tahun Pelajaran</th>
+                                            <th class="min-w-250px">Nis</th>
+                                            <th class="min-w-250px">Dibuat Pada</th>
+                                            <th class="min-w-250px">Diubah Pada</th>
                                             <th class="min-w-100px">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody class="fw-semibold text-gray-600">
-                                        @foreach ($teachers as $teacher)
+                                        @foreach ($students as $student)
                                             <tr>
                                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                                <td>{{ $teacher->name }}</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
                                                 <td>
                                                     <a href="#"
                                                         class="btn btn-sm btn-icon btn-active-light-primary"
@@ -72,20 +86,20 @@
                                                     </a>
                                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
                                                         data-kt-menu="true">
-                                                        @can('teacher.update')
+                                                        @can('students.update')
                                                             <div class="menu-item px-3">
-                                                                <a href="{{ route('teacher.edit', $teacher->id) }}"
+                                                                <a href="{{ route('students.edit', $student->id) }}"
                                                                     class="menu-link px-3">Ubah</a>
                                                             </div>
                                                         @endcan
-                                                        @can('teacher.delete')
+                                                        @can('students.delete')
                                                             <div class="menu-item px-3">
-                                                                <form action="{{ route('teacher.destroy', $teacher->id) }}"
+                                                                <form action="{{ route('students.destroy', $student->id) }}"
                                                                     method="post" class="me-3">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <a href="#" class="menu-link px-3"
-                                                                        onclick="confirmPopup(this, 'Akan menghapus mata pelajaran ini')">Hapus</a>
+                                                                        onclick="confirmPopup(this, 'Akan menghapus murid ini')">Hapus</a>
                                                                 </form>
                                                             </div>
                                                         @endcan
@@ -102,7 +116,7 @@
                     </div>
                 </div>
                 <div class="d-flex p-5 justify-content-end">
-                    {!! $teachers->links() !!}
+                    {!! $students->links() !!}
                 </div>
             </div>
         </div>
