@@ -56,6 +56,11 @@
                                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                             <th class="text-center">No</th>
                                             <th class="min-w-250px">Nama Guru</th>
+                                            <th class="min-w-150px">Status</th>
+                                            <th class="min-w-250px">Email</th>
+                                            <th class="min-w-150px">NIP</th>
+                                            <th class="min-w-200px">Dibuat</th>
+                                            <th class="min-w-200px">Diubah</th>
                                             <th class="min-w-100px">Aksi</th>
                                         </tr>
                                     </thead>
@@ -63,6 +68,11 @@
                                         @foreach ($teachers as $teacher)
                                             <tr>
                                                 <td class="text-center">{{ $loop->iteration }}</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
                                                 <td>-</td>
                                                 <td>
                                                     <a href="#"
