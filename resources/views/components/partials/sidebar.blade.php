@@ -2,7 +2,7 @@
     data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="225px"
     data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
-        <a href="{{ route('dashboard') }}">
+        <a href="{{ route('dashboard.index') }}">
             <img alt="Logo" src="{{ asset('images/logo/3.png') }}" class="app-sidebar-logo-default"
                 height="170" />
         </a>
@@ -31,7 +31,8 @@
             <div class="menu menu-column menu-rounded menu-sub-indention px-3" id="#kt_app_sidebar_menu"
                 data-kt-menu="true" data-kt-menu-expand="false">
                 <div class="menu-item">
-                    <a class="menu-link" href="{{ route('dashboard') }}">
+                    <a class="menu-link {{ Request::is('dashboard*') ? 'active' : '' }}"
+                        href="{{ route('dashboard.index') }}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"

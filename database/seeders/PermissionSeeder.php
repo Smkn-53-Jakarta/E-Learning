@@ -15,7 +15,7 @@ class PermissionSeeder extends Seeder
     {
         $permissions = [
             [
-                'name' => 'dashboard',
+                'name' => 'dashboard.index',
                 'guard_name' => 'web'
             ],
             [
