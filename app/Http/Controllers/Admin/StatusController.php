@@ -79,8 +79,13 @@ class StatusController extends Controller
         }
     }
 
-    public function destroy(Status $status)
+    public function destroy(Status $status): RedirectResponse
     {
-        //
+        $status->delete();
+
+        return back()->with([
+            'message' => 'Status berhasil dihapus',
+            'status' => 'success',
+        ]);
     }
 }
