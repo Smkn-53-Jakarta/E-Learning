@@ -50,19 +50,33 @@ class StatusController extends Controller
         }
     }
 
-    public function show(Status $status)
+    public function edit(Status $status): View
     {
-        //
+        return view('admin.statuses.edit', compact('status'));
     }
 
-    public function edit(Status $status)
+    public function update(UpdateStatusRequest $request, Status $status): RedirectResponse
     {
-        //
-    }
+        $data = $request->validated();
 
-    public function update(UpdateStatusRequest $request, Status $status)
-    {
-        //
+        try {
+            DB::beginTransaction();
+
+            $status->update($data);
+
+            DB::commit();
+            return redirect(RoutingHelper::updateToIndexRoute())->with([
+                'message' => 'Status berhasil diubah',
+                'status' => 'success',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return redirect()->back()->withInput()->with([
+                'message' => trans('message.error'),
+                'status' => 'danger',
+            ]);
+        }
     }
 
     public function destroy(Status $status)

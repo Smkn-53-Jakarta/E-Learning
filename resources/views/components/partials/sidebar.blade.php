@@ -102,7 +102,7 @@
                 {{-- ADMIN MASTER --}}
                 <div class="menu-item">
                     <div data-kt-menu-trigger="click"
-                        class="menu-item menu-accordion {{ Request::is('status', 'mata-pelajaran*', 'guru*', 'murid*', 'kelas*', 'tahun-pelajaran*', 'ekstrakurikuler*') ? 'show' : '' }}">
+                        class="menu-item menu-accordion {{ Request::is('status*', 'mata-pelajaran*', 'guru*', 'murid*', 'kelas*', 'tahun-pelajaran*', 'ekstrakurikuler*') ? 'show' : '' }}">
                         <span class="menu-link">
                             <span class="menu-icon">
                                 <span class="svg-icon svg-icon-2">
