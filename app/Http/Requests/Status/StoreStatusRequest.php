@@ -2,27 +2,28 @@
 
 namespace App\Http\Requests\Status;
 
+use App\Models\Status;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreStatusRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return false;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
+        $tableName = (new Status())->getTable();
+
         return [
-            //
+            'name' => ['required', 'string', 'max:64', Rule::unique($tableName, 'name')],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Nama status wajib diisi',
+            'name.string' => 'Nama status wajib string',
+            'name.max' => 'Nama status maksimal 64 karakter',
+            'name.unique' => 'Nama status sudah tersedia',
         ];
     }
 }

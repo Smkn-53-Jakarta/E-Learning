@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\RoutingHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Status\StoreStatusRequest;
 use App\Http\Requests\Status\UpdateStatusRequest;
 use App\Models\Status;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 
 class StatusController extends Controller
 {
@@ -18,14 +21,33 @@ class StatusController extends Controller
         return view('admin.statuses.index', compact('statusesTrashed', 'statuses'));
     }
 
-    public function create()
+    public function create(): View
     {
-        //
+        return view('admin.statuses.create');
     }
 
-    public function store(StoreStatusRequest $request)
+    public function store(StoreStatusRequest $request): RedirectResponse
     {
-        //
+        $data = $request->validated();
+
+        try {
+            DB::beginTransaction();
+
+            Status::create($data);
+
+            DB::commit();
+            return redirect(RoutingHelper::storeToIndexRoute())->with([
+                'message' => 'Status berhasil ditambahkan',
+                'status' => 'success',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return redirect()->back()->withInput()->with([
+                'message' => trans('message.error'),
+                'status' => 'danger',
+            ]);
+        }
     }
 
     public function show(Status $status)
