@@ -88,4 +88,21 @@ class StatusController extends Controller
             'status' => 'success',
         ]);
     }
+
+    public function trashed(): View
+    {
+        $statuses = Status::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
+
+        return view('admin.statuses.trashed', compact('statuses'));
+    }
+
+    public function restore($id): RedirectResponse
+    {
+        Status::withTrashed()->findOrFail($id)->restore();
+
+        return redirect(RoutingHelper::restoreToIndex())->with([
+            'message' => 'Status berhasil dipulihkan',
+            'status' => 'success',
+        ]);
+    }
 }
