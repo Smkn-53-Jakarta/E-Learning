@@ -5,7 +5,7 @@
                 <div class="d-flex align-items-center">
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                            Mata Pelajaran
+                            Status
                         </h1>
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <li class="breadcrumb-item text-muted">
@@ -16,8 +16,7 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('courses.index') }}" class="text-muted text-hover-primary">Mata
-                                    Pelajaran</a>
+                                <a href="{{ route('statuses.index') }}" class="text-muted text-hover-primary">Status</a>
                             </li>
                         </ul>
                     </div>
@@ -35,39 +34,39 @@
                     <div class="card-header mt-6">
                         <div class="card-title">
                             <div class="d-flex align-items-center position-relative my-1 me-5">
-                                <x-SearchInput placeholder="Cari Mata Pelajaran" />
+                                <x-SearchInput placeholder="Cari Status" />
                             </div>
                         </div>
                         <div class="card-toolbar">
-                            @if ($coursesTrashed)
-                                <a href="{{ route('courses.trashed') }}" class="btn btn-light-primary me-3">
+                            @if ($statusesTrashed)
+                                <a href="{{ route('statuses.trashed') }}" class="btn btn-light-primary me-3">
                                     <i class="fa-solid fa-trash-can"></i>
                                     Sampah
                                 </a>
                             @endif
-                            @can('courses.create')
-                                <x-AddButton :url="route('courses.create')">Tambah Mata Pelajaran</x-AddButton>
+                            @can('statuses.create')
+                                <x-AddButton :url="route('statuses.create')">Tambah Status</x-AddButton>
                             @endcan
                         </div>
                     </div>
                     <div class="card-body">
-                        @if (count($courses))
+                        @if (count($statuses))
                             <div class="table-responsive fixed-actions-table">
                                 <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
                                     <thead>
                                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                             <th class="text-center">No</th>
-                                            <th class="min-w-250px">Nama Mata Pelajaran</th>
+                                            <th class="min-w-250px">Nama Status</th>
                                             <th class="min-w-200px">Dibuat Pada</th>
                                             <th class="min-w-200px">Diubah Pada</th>
                                             <th class="min-w-100px">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody class="fw-semibold text-gray-600">
-                                        @foreach ($courses as $course)
+                                        @foreach ($statuses as $status)
                                             <tr>
                                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                                <td>{{ $course->name }}</td>
+                                                <td>{{ $status->name }}</td>
                                                 <td>-</td>
                                                 <td>-</td>
                                                 <td>
@@ -78,20 +77,20 @@
                                                     </a>
                                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
                                                         data-kt-menu="true">
-                                                        @can('courses.update')
+                                                        @can('statuses.update')
                                                             <div class="menu-item px-3">
-                                                                <a href="{{ route('courses.edit', $course->id) }}"
+                                                                <a href="{{ route('statuses.edit', $status->id) }}"
                                                                     class="menu-link px-3">Ubah</a>
                                                             </div>
                                                         @endcan
-                                                        @can('courses.delete')
+                                                        @can('statuses.delete')
                                                             <div class="menu-item px-3">
-                                                                <form action="{{ route('courses.destroy', $course->id) }}"
+                                                                <form action="{{ route('statuses.destroy', $status->id) }}"
                                                                     method="post" class="me-3">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <a href="#" class="menu-link px-3"
-                                                                        onclick="confirmPopup(this, 'Akan menghapus mata pelajaran ini')">Hapus</a>
+                                                                        onclick="confirmPopup(this, 'Akan menghapus status ini')">Hapus</a>
                                                                 </form>
                                                             </div>
                                                         @endcan
@@ -108,7 +107,7 @@
                     </div>
                 </div>
                 <div class="d-flex p-5 justify-content-end">
-                    {!! $courses->links() !!}
+                    {!! $statuses->links() !!}
                 </div>
             </div>
         </div>

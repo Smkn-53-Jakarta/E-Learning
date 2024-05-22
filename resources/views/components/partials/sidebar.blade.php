@@ -102,7 +102,7 @@
                 {{-- ADMIN MASTER --}}
                 <div class="menu-item">
                     <div data-kt-menu-trigger="click"
-                        class="menu-item menu-accordion {{ Request::is('mata-pelajaran*', 'guru*', 'murid*', 'kelas*', 'tahun-pelajaran*', 'ekstrakurikuler*') ? 'show' : '' }}">
+                        class="menu-item menu-accordion {{ Request::is('status', 'mata-pelajaran*', 'guru*', 'murid*', 'kelas*', 'tahun-pelajaran*', 'ekstrakurikuler*') ? 'show' : '' }}">
                         <span class="menu-link">
                             <span class="menu-icon">
                                 <span class="svg-icon svg-icon-2">
@@ -121,6 +121,15 @@
                             <span class="menu-arrow"></span>
                         </span>
                         <div class="menu-sub menu-sub-accordion">
+                            <div class="menu-item">
+                                <a class="menu-link {{ Request::is('status*') ? 'active' : '' }}"
+                                    href="{{ route('statuses.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Status</span>
+                                </a>
+                            </div>
                             <div class="menu-item">
                                 <a class="menu-link {{ Request::is('guru*') ? 'active' : '' }}"
                                     href="{{ route('teachers.index') }}">

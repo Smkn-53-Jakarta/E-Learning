@@ -59,6 +59,26 @@ class PermissionSeeder extends Seeder
                 'guard_name' => 'web'
             ],
             [
+                'name' => 'statuses.read',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'statuses.create',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'statuses.update',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'statuses.delete',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'statuses.restore',
+                'guard_name' => 'web'
+            ],
+            [
                 'name' => 'courses.read',
                 'guard_name' => 'web'
             ],

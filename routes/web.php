@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ExtracurricularController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\SchoolYearController;
+use App\Http\Controllers\Admin\StatusController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,19 @@ Route::middleware('auth', 'permissions')->group(function () {
 
     //* Route Permissions
     Route::resource('permissions', PermissionController::class)->except('show');
+
+    //* Route Statuses
+    Route::get('/status/trashed', [StatusController::class, 'trashed'])->name('statuses.trashed');
+    Route::post('/status/{status}/restore', [StatusController::class, 'restore'])->name('statuses.restore');
+    Route::post('/status/{status}/force-delete', [StatusController::class, 'forceDelete'])->name('statuses.force-delete');
+    Route::resource('status', StatusController::class)->except(['show'])->names([
+        'index' => 'statuses.index',
+        'create' => 'statuses.create',
+        'store' => 'statuses.store',
+        'edit' => 'statuses.edit',
+        'update' => 'statuses.update',
+        'destroy' => 'statuses.destroy',
+    ]);
 
     //* Route Courses
     Route::get('/mata-pelajaran/trashed', [CourseController::class, 'trashed'])->name('courses.trashed');
