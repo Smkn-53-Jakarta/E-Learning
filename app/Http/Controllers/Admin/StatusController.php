@@ -105,4 +105,14 @@ class StatusController extends Controller
             'status' => 'success',
         ]);
     }
+
+    public function forceDelete($id): RedirectResponse
+    {
+        Status::withTrashed()->findOrFail($id)->forceDelete();
+
+        return redirect(RoutingHelper::forceDeleteToIndex())->with([
+            'message' => 'Status berhasil dihapus',
+            'status' => 'success',
+        ]);
+    }
 }
