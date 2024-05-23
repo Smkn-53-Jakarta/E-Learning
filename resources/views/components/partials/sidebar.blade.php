@@ -3,8 +3,8 @@
     data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
         <a href="{{ route('dashboard.index') }}">
-            <img alt="Logo" src="{{ asset('images/logo/3.png') }}" class="app-sidebar-logo-default"
-                height="170" />
+            <img alt="Logo" src="{{ asset('images/logo/LogoReverse.png') }}" class="app-sidebar-logo-default"
+                height="61" />
         </a>
         <div id="kt_app_sidebar_toggle"
             class="app-sidebar-toggle btn btn-icon btn-shadow btn-sm btn-color-muted btn-active-color-primary body-bg h-30px w-30px position-absolute top-50 start-100 translate-middle rotate"
