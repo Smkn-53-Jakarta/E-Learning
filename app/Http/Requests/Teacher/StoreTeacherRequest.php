@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Teacher;
 
 use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -10,12 +11,15 @@ class StoreTeacherRequest extends FormRequest
 {
     public function rules(): array
     {
+        $teacherTable = (new Teacher())->getTable();
+        $userTable = (new User())->getTable();
+
         return [
             'profile_picture' => ['nullable', 'image', 'mimes:jpg,png,jpeg', 'max:10240'],
             'name' => ['required', 'string', 'max:64'],
             'status_id' => ['required', 'string'],
-            'email' => ['required', 'string', 'email', 'max:64', Rule::unique('users', 'email')],
-            'identification_number' => ['required', 'string', Rule::unique('teachers', 'identification_number')],
+            'email' => ['required', 'string', 'email', 'max:64', Rule::unique($userTable, 'email')],
+            'identification_number' => ['required', 'string', Rule::unique($teacherTable, 'identification_number')],
         ];
     }
 

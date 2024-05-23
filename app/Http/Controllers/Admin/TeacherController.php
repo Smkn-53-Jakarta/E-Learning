@@ -34,7 +34,7 @@ class TeacherController extends Controller
 
     public function store(StoreTeacherRequest $request): RedirectResponse
     {
-        $data = Arr::except($request->validated(), ['image']);
+        $data = Arr::except($request->validated(), ['profile_picture']);
         $data['password'] = bcrypt($data['name']);
 
         if ($request->hasFile('profile_picture')) {
@@ -71,19 +71,37 @@ class TeacherController extends Controller
 
     public function edit(Teacher $teacher): View
     {
-        return view('admin.teachers.edit', compact('teacher'));
+        $statuses = Status::latest()->get();
+
+        return view('admin.teachers.edit', compact('teacher', 'statuses'));
     }
 
     public function update(UpdateTeacherRequest $request, Teacher $teacher): RedirectResponse
     {
-        $data = $request->validated();
+        $data = Arr::except($request->validated(), ['profile_picture']);
+
+        if ($request->hasFile('profile_picture')) {
+            $data['profile_picture'] = FileHelper::optimizeAndUploadPicture($request->file('profile_picture'), 'users/images');
+            $oldImage = $teacher->user->profile_picture;
+        }
 
         try {
             DB::beginTransaction();
 
             $teacher->update($data);
+            $teacher->user()->update([
+                'name' => $data['name'],
+                'status_id' => $data['status_id'],
+                'email' => $data['email'],
+                'profile_picture' => $data['profile_picture'],
+            ]);
 
             DB::commit();
+
+            if (isset($oldImage)) {
+                FileHelper::deleteImage('users/images', $oldImage);
+            }
+
             return redirect(RoutingHelper::updateToIndexRoute())->with([
                 'message' => 'Guru berhasil diubah',
                 'status' => 'success',
@@ -91,6 +109,10 @@ class TeacherController extends Controller
         } catch (\Throwable $th) {
             DB::rollBack();
 
+            if (isset($data['profile_picture'])) {
+                FileHelper::deleteImage('users/images', $data['profile_picture']);
+            }
+            dd($th->getMessage());
             return redirect()->back()->withInput()->with([
                 'message' => trans('message.error'),
                 'status' => 'danger',
