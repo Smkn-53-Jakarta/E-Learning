@@ -52,12 +52,20 @@
                                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                             <th class="text-center">No</th>
                                             <th class="min-w-250px">Nama Guru</th>
-                                            <th class="min-w-150px">Status</th>
-                                            <th class="min-w-250px">Email</th>
-                                            <th class="min-w-150px">NIP</th>
-                                            <th class="min-w-200px">Dibuat</th>
-                                            <th class="min-w-200px">Diubah</th>
-                                            <th class="min-w-100px">Aksi</th>
+                                            <<<<<<< HEAD <th class="min-w-150px">Status</th>
+                                                <th class="min-w-250px">Email</th>
+                                                <th class="min-w-150px">NIP</th>
+                                                <th class="min-w-200px">Dibuat</th>
+                                                <th class="min-w-200px">Diubah</th>
+                                                =======
+                                                <th class="min-w-200px">Status</th>
+                                                <th class="min-w-200px">Email</th>
+                                                <th class="min-w-200px">NIP</th>
+                                                <th class="min-w-200px">Dibuat Pada</th>
+                                                <th class="min-w-200px">Diubah Pada</th>
+                                                <th class="min-w-200px">Dihapus Pada</th>
+                                                >>>>>>> 0debcf03c484ad96e4353c840773561cdc77ec6c
+                                                <th class="min-w-100px">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody class="fw-semibold text-gray-600">
@@ -114,7 +122,7 @@
                     </div>
                 </div>
                 <div class="d-flex p-5 justify-content-end">
-                    {!! $teachers->links() !!}
+                    {!! $teachers->appends($_GET)->links() !!}
                 </div>
             </div>
         </div>

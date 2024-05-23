@@ -124,3 +124,11 @@ Route::middleware('auth', 'permissions')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+route::get('/admin/absensi', function(){
+    return view('attendances.dashboard');
+})->name('attendances.index');
+
+route::get('/admin/jadwalmatapelajaran', function(){
+    return view('admin.scheduleofsubjects.index');
+})->name('scheduleofsubjects.index');

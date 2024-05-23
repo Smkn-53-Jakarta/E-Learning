@@ -93,7 +93,7 @@ class StudentController extends Controller
     {
         $students = Student::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
 
-        return view('admin.students.trashed', compact('student'));
+        return view('admin.students.trashed', compact('students'));
     }
 
     public function restore($id): RedirectResponse
