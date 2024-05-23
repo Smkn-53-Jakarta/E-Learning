@@ -122,6 +122,7 @@ class TeacherController extends Controller
 
     public function destroy(Teacher $teacher): RedirectResponse
     {
+        $teacher->user()->delete();
         $teacher->delete();
 
         return back()->with([
