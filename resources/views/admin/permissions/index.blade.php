@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <div class="d-flex p-5 justify-content-end">
-                    {!! $permissions->links() !!}
+                    {!! $permissions->appends($_GET)->links() !!}
                 </div>
             </div>
         </div>

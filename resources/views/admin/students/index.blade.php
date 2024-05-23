@@ -117,7 +117,7 @@
                     </div>
                 </div>
                 <div class="d-flex p-5 justify-content-end">
-                    {!! $students->links() !!}
+                    {!! $students->appends($_GET)->links() !!}
                 </div>
             </div>
         </div>
