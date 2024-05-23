@@ -37,16 +37,8 @@ class FileHelper
 
     public static function deleteImage($url, $fileName)
     {
-        $path16x9 = "$url/16x9/$fileName";
-        $path4x3 = "$url/4x3/$fileName";
         if (Storage::disk('public')->exists("$url/$fileName")) {
             Storage::disk('public')->delete("$url/$fileName");
-        }
-        if (Storage::disk('public')->exists($path16x9)) {
-            Storage::disk('public')->delete($path16x9);
-        }
-        if (Storage::disk('public')->exists($path4x3)) {
-            Storage::disk('public')->delete($path4x3);
         }
     }
 

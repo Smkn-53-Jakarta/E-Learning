@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Classroom;
 use App\Models\SchoolYear;
+use App\Models\Status;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\User;
@@ -18,7 +19,10 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        $statusIds = Status::pluck('id')->toArray();
+
         $admin = User::create([
+            'status_id' => $statusIds[0],
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin')
@@ -27,6 +31,7 @@ class UserSeeder extends Seeder
         $admin->assignRole('Admin');
 
         $student = User::create([
+            'status_id' => $statusIds[0],
             'name' => 'Student',
             'email' => 'student@gmail.com',
             'password' => bcrypt('student')
@@ -35,6 +40,7 @@ class UserSeeder extends Seeder
         $student->assignRole('Student');
 
         $teacher = User::create([
+            'status_id' => $statusIds[0],
             'name' => 'Teacher',
             'email' => 'teacher@gmail.com',
             'password' => bcrypt('teacher')

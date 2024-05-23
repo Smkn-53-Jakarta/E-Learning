@@ -35,58 +35,80 @@
                 @if (session('message'))
                     <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
                 @endif
-                <div class="card">
-                    <form class="form card-body" action="{{ route('teachers.store') }}" method="post">
-                        @csrf
-                        <div class="d-flex flex-column me-n7 pe-7">
-                            <div class="fv-row mb-10">
-                                <label class="fs-5 fw-bold form-label mb-2">
-                                    <span class="required">Nama Guru</span>
-                                </label>
-                                <input id="name" class="form-control mb-2 @error('name') is-invalid @enderror"
-                                    placeholder="Masukan nama guru" name="name" value="{{ old('name') }}"
-                                    maxlength="64" required />
-                                <x-Form.InputError name="name" />
-                            </div>
-                            <div class="fv-row mb-10">
-                                <label class="fs-5 fw-bold form-label mb-2">
-                                    <span class="required">Status</span>
-                                </label>
-                                <select class="form-select" data-control="select2" data-placeholder="Pilih Status"
-                                    data-hide-search="true">
-                                    <option></option>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                </select>
-                            </div>
-                            <div class="fv-row mb-10">
-                                <label class="fs-5 fw-bold form-label mb-2">
-                                    <span class="required">Email</span>
-                                </label>
-                                <input id="email" class="form-control mb-2 @error('email') is-invalid @enderror"
-                                    placeholder="Masukan email guru" name="email" value="{{ old('email') }}"
-                                    maxlength="64" required />
-                                <x-Form.InputError name="email" />
-                            </div>
-                            <div class="fv-row mb-10">
-                                <label class="fs-5 fw-bold form-label mb-2">
-                                    <span class="required">NIP</span>
-                                </label>
-                                <input id="identification_number"
-                                    class="form-control mb-2 @error('identification_number') is-invalid @enderror"
-                                    placeholder="Masukan NIP Guru" name="identification_number"
-                                    value="{{ old('identification_number') }}" maxlength="64" required />
-                                <x-Form.InputError name="identification_number" />
-                            </div>
-                            <div class="d-flex gap-3">
-                                <a href="{{ RoutingHelper::createToIndexRoute() }}" class="btn btn-danger">
-                                    Cancel
-                                </a>
-                                <x-SaveButton>Simpan</x-SaveButton>
+                <form action="{{ route('teachers.store') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="d-flex flex-column flex-lg-row align-items-start mb-10">
+                        <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
+                            <div class="card card-flush">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2>Foto</h2>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center pt-0">
+                                    <x-Form.InputImage name="profile_picture" />
+                                    <x-Form.InputError name="profile_picture" />
+                                </div>
                             </div>
                         </div>
-                    </form>
-                </div>
+                        <div class="d-flex flex-column gap-7 gap-lg-10 w-100">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex flex-column me-n7 pe-7">
+                                        <div class="fv-row mb-10">
+                                            <label class="fs-5 fw-bold form-label mb-2">
+                                                <span class="required">Nama Guru</span>
+                                            </label>
+                                            <input id="name"
+                                                class="form-control mb-2 @error('name') is-invalid @enderror"
+                                                placeholder="Masukan nama guru" name="name"
+                                                value="{{ old('name') }}" maxlength="64" required />
+                                            <x-Form.InputError name="name" />
+                                        </div>
+                                        <div class="fv-row mb-10">
+                                            <label class="fs-5 fw-bold form-label mb-2">
+                                                <span class="required">Status</span>
+                                            </label>
+                                            <select class="form-select" data-control="select2"
+                                                data-placeholder="Pilih Status" data-hide-search="true"
+                                                name="status_id">
+                                                @foreach ($statuses as $status)
+                                                    <option value="{{ $status->id }}">{{ $status->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="fv-row mb-10">
+                                            <label class="fs-5 fw-bold form-label mb-2">
+                                                <span class="required">Email</span>
+                                            </label>
+                                            <input type="email" id="email"
+                                                class="form-control mb-2 @error('email') is-invalid @enderror"
+                                                placeholder="Masukan email guru" name="email"
+                                                value="{{ old('email') }}" maxlength="64" required />
+                                            <x-Form.InputError name="email" />
+                                        </div>
+                                        <div class="fv-row mb-10">
+                                            <label class="fs-5 fw-bold form-label mb-2">
+                                                <span class="required">NIP</span>
+                                            </label>
+                                            <input type="number" id="identification_number"
+                                                class="form-control mb-2 @error('identification_number') is-invalid @enderror"
+                                                placeholder="Masukan NIP Guru" name="identification_number"
+                                                value="{{ old('identification_number') }}" required />
+                                            <x-Form.InputError name="identification_number" />
+                                        </div>
+                                        <div class="d-flex gap-3">
+                                            <a href="{{ RoutingHelper::createToIndexRoute() }}" class="btn btn-danger">
+                                                Cancel
+                                            </a>
+                                            <x-SaveButton>Simpan</x-SaveButton>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -94,6 +116,11 @@
     @push('scripts')
         <script>
             $('#name').maxlength({
+                warningClass: "badge badge-success",
+                limitReachedClass: "badge badge-danger"
+            });
+
+            $('#email').maxlength({
                 warningClass: "badge badge-success",
                 limitReachedClass: "badge badge-danger"
             });

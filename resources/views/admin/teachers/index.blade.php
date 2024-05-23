@@ -69,12 +69,12 @@
                                         @foreach ($teachers as $teacher)
                                             <tr>
                                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
+                                                <td>{{ $teacher->user->name }}</td>
+                                                <td>{{ $teacher->user->status->name }}</td>
+                                                <td>{{ $teacher->user->email }}</td>
+                                                <td>{{ $teacher->identification_number }}</td>
+                                                <td>{{ $teacher->created_at->diffForHumans() }}</td>
+                                                <td>{{ $teacher->updated_at->diffForHumans() }}</td>
                                                 <td>
                                                     <a href="#"
                                                         class="btn btn-sm btn-icon btn-active-light-primary"
@@ -91,7 +91,8 @@
                                                         @endcan
                                                         @can('teachers.delete')
                                                             <div class="menu-item px-3">
-                                                                <form action="{{ route('teachers.destroy', $teacher->id) }}"
+                                                                <form
+                                                                    action="{{ route('teachers.destroy', $teacher->id) }}"
                                                                     method="post" class="me-3">
                                                                     @csrf
                                                                     @method('DELETE')

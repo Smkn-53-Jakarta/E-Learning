@@ -26,5 +26,5 @@
     </span>
 </div>
 <div class="text-muted fs-7">
-    can only upload images in the format *.png, *.jpg and *.jpeg (Maks 10 Mb)
+    hanya dapat mengupload gambar dengan format *.png, *.jpg dan *.jpeg (Maks 10 Mb)
 </div>
