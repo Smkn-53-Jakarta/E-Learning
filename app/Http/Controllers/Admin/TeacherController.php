@@ -133,14 +133,24 @@ class TeacherController extends Controller
 
     public function trashed(): View
     {
-        $teachers = Teacher::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
+        $teachers = Teacher::with(['user' => function ($query) {
+            $query->withTrashed();
+        }, 'user.status' => function ($query) {
+            $query->withTrashed();
+        }])->latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
 
         return view('admin.teachers.trashed', compact('teachers'));
     }
 
     public function restore($id): RedirectResponse
     {
-        Teacher::withTrashed()->findOrFail($id)->restore();
+        $teacher = Teacher::withTrashed()->findOrFail($id);
+
+        if ($teacher->user()->withTrashed()->exists()) {
+            $teacher->user()->restore();
+        }
+
+        $teacher->restore();
 
         return redirect(RoutingHelper::restoreToIndex())->with([
             'message' => 'Guru berhasil dipulihkan',
