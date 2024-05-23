@@ -160,7 +160,13 @@ class TeacherController extends Controller
 
     public function forceDelete($id): RedirectResponse
     {
-        Teacher::withTrashed()->findOrFail($id)->forceDelete();
+        $teacher = Teacher::withTrashed()->findOrFail($id);
+        $user = $teacher->user()->withTrashed()->first();
+        $profilePicture = $user->profile_picture;
+
+        $teacher->user()->forceDelete();
+
+        FileHelper::deleteImage('users/images', $profilePicture);
 
         return redirect(RoutingHelper::forceDeleteToIndex())->with([
             'message' => 'Guru berhasil dihapus',
