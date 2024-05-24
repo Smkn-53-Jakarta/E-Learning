@@ -39,7 +39,11 @@
                             </div>
                         </div>
                         <div class="card-toolbar">
-                            <div class="btn btn-primary me-3">Filter.bulanan</div>
+                            <div class="d-grid gap-2 d-md-block">
+                                <a href="#" class="btn btn-light-primary me-3">Generate</a>
+                                <a href="#" class="btn btn-light-primary me-3"><i
+                                        class="bi bi-filter"></i>Filter</a>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -61,25 +65,25 @@
                                         <td class="text-center">1</td>
                                         <td>Atikah</td>
                                         <td>-</td>
-                                        <td><button class="btn btn-primary btn-sm type="button" ">Detail</button></td>
-                                        <td><button class="btn btn-primary btn-sm type="button" ">Detail</button></td>
-                                        <td><button class="btn btn-primary btn-sm type="button" ">Detail</button></td>
+                                        <td><a href="#" class="btn btn-light-primary btn-sm">Detail</a></td>
+                                        <td><a href="#" class="btn btn-light-primary btn-sm">Detail</a></td>
+                                        <td><a href="#" class="btn btn-light-primary btn-sm">Detail</a></td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">2</td>
                                         <td>Rahmat</td>
                                         <td>-</td>
-                                        <td><button class="btn btn-primary btn-sm type="button" ">Detail</button></td>
-                                        <td><button class="btn btn-primary btn-sm type="button" ">Detail</button></td>
-                                        <td><button class="btn btn-primary btn-sm type="button" ">Detail</button></td>
+                                        <td><a href="#" class="btn btn-light-primary btn-sm">Detail</a></td>
+                                        <td><a href="#" class="btn btn-light-primary btn-sm">Detail</a></td>
+                                        <td><a href="#" class="btn btn-light-primary btn-sm">Detail</a></td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">3</td>
                                         <td>Ridwan</td>
                                         <td>-</td>
-                                        <td><button class="btn btn-primary btn-sm type="button" ">Detail</button></td>
-                                        <td><button class="btn btn-primary btn-sm type="button" ">Detail</button></td>
-                                        <td><button class="btn btn-primary btn-sm type="button" ">Detail</button></td>
+                                        <td><a href="#" class="btn btn-light-primary btn-sm">Detail</a></td>
+                                        <td><a href="#" class="btn btn-light-primary btn-sm">Detail</a></td>
+                                        <td><a href="#" class="btn btn-light-primary btn-sm">Detail</a></td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -38,12 +38,8 @@
                                 <x-SearchInput placeholder="Cari Rekap Absensi Siswa" />
                             </div>
                         </div>
-                        <div class="card-toolbar">
-                            <div class="btn btn-primary me-3">Filter.bulanan</div>
-                        </div>
                     </div>
                     <div class="card-body">
-                        <h3 class="pb-1">Periode Juni</h3>
                         <div class="table-responsive fixed-actions-table">
                             <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
                                 <thead>
@@ -58,21 +54,21 @@
                                         <td class="text-center">1</td>
                                         <td class="text-center">Kelas 10</td>
                                         <td class="text-center">
-                                            <button class="btn btn-primary btn-sm type="button">Detail</button>
+                                            <a href="#" class="btn btn-light-primary btn-sm">Detail</a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">2</td>
                                         <td class="text-center">Kelas 11</td>
                                         <td class="text-center">
-                                            <button class="btn btn-primary btn-sm type="button">Detail</button>
+                                            <a href="#" class="btn btn-light-primary btn-sm">Detail</a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">3</td>
                                         <td class="text-center">Kelas 12</td>
                                         <td class="text-center">
-                                            <button class="btn btn-primary btn-sm type="button">Detail</button>
+                                            <a href="#" class="btn btn-light-primary btn-sm">Detail</a>
                                         </td>
                                     </tr>
                                 </tbody>
