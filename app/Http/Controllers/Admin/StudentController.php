@@ -78,25 +78,44 @@ class StudentController extends Controller
 
     public function edit(Student $student): View
     {
-        return view('admin.students.edit', compact('student'));
+        $statuses = Status::latest()->get();
+        $classrooms = Classroom::latest()->get();
+        $schoolYears = SchoolYear::latest()->get();
+
+        return view('admin.students.edit', compact('student', 'statuses', 'classrooms', 'schoolYears'));
     }
 
     public function update(UpdateStudentRequest $request, Student $student): RedirectResponse
     {
-        $data = $request->validated();
+        $data = Arr::except($request->validated(), ['profile_picture']);
+
+        if ($request->hasFile('profile_picture')) {
+            $data['profile_picture'] = FileHelper::optimizeAndUploadPicture($request->file('profile_picture'), 'users/images');
+            $oldImage = $student->user->profile_picture;
+        }
 
         try {
             DB::beginTransaction();
 
             $student->update($data);
+            $student->user->update($data);
 
             DB::commit();
+
+            if (isset($oldImage)) {
+                FileHelper::deleteImage('users/images', $oldImage);
+            }
+
             return redirect(RoutingHelper::updateToIndexRoute())->with([
-                'message' => 'Siswa berhasil diubah',
+                'message' => 'Murid berhasil diubah',
                 'status' => 'success',
             ]);
         } catch (\Throwable $th) {
             DB::rollBack();
+
+            if (isset($data['profile_picture'])) {
+                FileHelper::deleteImage('users/images', $data['profile_picture']);
+            }
 
             return redirect()->back()->withInput()->with([
                 'message' => trans('message.error'),
@@ -110,7 +129,7 @@ class StudentController extends Controller
         $student->delete();
 
         return back()->with([
-            'message' => 'Siswa berhasil dihapus',
+            'message' => 'Murid berhasil dihapus',
             'status' => 'success',
         ]);
     }

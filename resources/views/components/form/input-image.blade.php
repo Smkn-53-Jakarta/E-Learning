@@ -11,7 +11,7 @@
     <div class="image-input-wrapper w-125px h-125px" style="background-image: url({{ FileHelper::getImage($image) }})">
     </div>
     <label class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-        data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Change avatar">
+        data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Ganti Foto">
         <i class="bi bi-pencil-fill fs-7"><span class="path1"></span><span class="path2"></span></i>
         <input type="file" name="{{ $name }}" accept=".png, .jpg, .jpeg .webp" />
         <input type="hidden" hidden name="{{ $name }}" />
@@ -21,7 +21,7 @@
         <i class="bi bi-x fs-2"></i>
     </span>
     <span class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-        data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Remove Image">
+        data-kt-image-input-action="remove" data-bs-toggle="tooltip" data-bs-dismiss="click" title="Hapus Foto">
         <i class="bi bi-x fs-2"></i>
     </span>
 </div>

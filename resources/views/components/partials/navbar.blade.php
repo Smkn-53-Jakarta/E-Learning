@@ -180,7 +180,7 @@
                             <div class="menu-content d-flex align-items-center px-3">
                                 <div class="symbol symbol-50px me-5">
                                     <img alt="Logo"
-                                        src="{{ FileHelper::getImage('users/images/' . auth()->user()->image) }}" />
+                                        src="{{ FileHelper::getImage('users/images/' . auth()->user()->profile_picture) }}" />
                                 </div>
                                 <div class="d-flex flex-column">
                                     <div class="fw-bold d-flex align-items-center fs-5">{{ auth()->user()->name }}
