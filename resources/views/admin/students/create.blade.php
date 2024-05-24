@@ -35,82 +35,110 @@
                 @if (session('message'))
                     <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
                 @endif
-                <div class="card">
-                    <form class="form card-body" action="{{ route('students.store') }}" method="post">
-                        @csrf
-                        <div class="d-flex flex-column me-n7 pe-7">
-                            <div class="fv-row mb-10">
-                                <label class="fs-5 fw-bold form-label mb-2">
-                                    <span class="required">Nama Siswa</span>
-                                </label>
-                                <input id="name" class="form-control mb-2 @error('name') is-invalid @enderror"
-                                    placeholder="Masukan nama siswa" name="name" value="{{ old('name') }}"
-                                    maxlength="64" required />
-                                <x-Form.InputError name="name" />
-                            </div>
-                            <div class="fv-row mb-10">
-                                <label class="fs-5 fw-bold form-label mb-2">
-                                    <span class="required">Status</span>
-                                </label>
-                                <select class="form-select" data-control="select2" data-placeholder="Pilih Status"
-                                    data-hide-search="true">
-                                    <option></option>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                </select>
-                            </div>
-                            <div class="fv-row mb-10">
-                                <label class="fs-5 fw-bold form-label mb-2">
-                                    <span class="required">Email</span>
-                                </label>
-                                <input id="email" class="form-control mb-2 @error('email') is-invalid @enderror"
-                                    placeholder="Masukan email siswa" name="email" value="{{ old('email') }}"
-                                    maxlength="64" required />
-                                <x-Form.InputError name="email" />
-                            </div>
-                            <div class="fv-row mb-10">
-                                <label class="fs-5 fw-bold form-label mb-2">
-                                    <span class="required">Kelas</span>
-                                </label>
-                                <select class="form-select" data-control="select2" data-placeholder="Pilih Kelas"
-                                    data-hide-search="true">
-                                    <option></option>
-                                    <option value="1">Kelas 10</option>
-                                    <option value="2">Kelas 11</option>
-                                    <option value="2">Kelas 12</option>
-                                </select>
-                            </div>
-                            <div class="fv-row mb-10">
-                                <label class="fs-5 fw-bold form-label mb-2">
-                                    <span class="required">Tahun Pelajaran</span>
-                                </label>
-                                <select class="form-select" data-control="select2"
-                                    data-placeholder="Pilih Tahun Pelajaran" data-hide-search="true">
-                                    <option></option>
-                                    <option value="1">2023</option>
-                                    <option value="2">2024</option>
-                                    <option value="2">2025</option>
-                                </select>
-                            </div>
-                            <div class="fv-row mb-10">
-                                <label class="fs-5 fw-bold form-label mb-2">
-                                    <span class="required">NIS</span>
-                                </label>
-                                <input id="identification_number"
-                                    class="form-control mb-2 @error('identification_number') is-invalid @enderror"
-                                    placeholder="Masukan NIS siswa" name="identification_number"
-                                    value="{{ old('identification_number') }}" maxlength="64" required />
-                                <x-Form.InputError name="identification_number" />
-                            </div>
-                            <div class="d-flex gap-3">
-                                <a href="{{ RoutingHelper::createToIndexRoute() }}" class="btn btn-danger">
-                                    Cancel
-                                </a>
-                                <x-SaveButton>Simpan</x-SaveButton>
+                <form action="{{ route('students.store') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="d-flex flex-column flex-lg-row align-items-start mb-10">
+                        <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
+                            <div class="card card-flush">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <h2>Foto</h2>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center pt-0">
+                                    <x-Form.InputImage name="profile_picture" />
+                                    <x-Form.InputError name="profile_picture" />
+                                </div>
                             </div>
                         </div>
-                    </form>
-                </div>
+                        <div class="d-flex flex-column gap-7 gap-lg-10 w-100">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="d-flex flex-column me-n7 pe-7">
+                                        <div class="fv-row mb-10">
+                                            <label class="fs-5 fw-bold form-label mb-2">
+                                                <span class="required">Nama Siswa</span>
+                                            </label>
+                                            <input id="name"
+                                                class="form-control mb-2 @error('name') is-invalid @enderror"
+                                                placeholder="Masukan nama siswa" name="name"
+                                                value="{{ old('name') }}" maxlength="64" required />
+                                            <x-Form.InputError name="name" />
+                                        </div>
+                                        <div class="fv-row mb-10">
+                                            <label class="fs-5 fw-bold form-label mb-2">
+                                                <span class="required">Status</span>
+                                            </label>
+                                            <select class="form-select" data-control="select2"
+                                                data-placeholder="Pilih Status" data-hide-search="true" name="status_id"
+                                                required>
+                                                @foreach ($statuses as $status)
+                                                    <option value="{{ $status->id }}" @selected(old('status_id') == $status->id)>
+                                                        {{ $status->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <x-Form.InputError name="status_id" />
+                                        </div>
+                                        <div class="fv-row mb-10">
+                                            <label class="fs-5 fw-bold form-label mb-2">
+                                                <span class="required">Email</span>
+                                            </label>
+                                            <input type="email" id="email"
+                                                class="form-control mb-2 @error('email') is-invalid @enderror"
+                                                placeholder="Masukan email siswa" name="email"
+                                                value="{{ old('email') }}" maxlength="64" required />
+                                            <x-Form.InputError name="email" />
+                                        </div>
+                                        <div class="fv-row mb-10">
+                                            <label class="fs-5 fw-bold form-label mb-2">
+                                                <span class="required">Kelas</span>
+                                            </label>
+                                            <select class="form-select" data-control="select2"
+                                                data-placeholder="Pilih Kelas" name="classroom_id" required>
+                                                @foreach ($classrooms as $classroom)
+                                                    <option value="{{ $classroom->id }}" @selected(old('classroom_id') == $classroom->id)>
+                                                        {{ $classroom->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <x-Form.InputError name="classroom_id" />
+                                        </div>
+                                        <div class="fv-row mb-10">
+                                            <label class="fs-5 fw-bold form-label mb-2">
+                                                <span class="required">Tahun Pelajaran</span>
+                                            </label>
+                                            <select class="form-select" data-control="select2"
+                                                data-placeholder="Pilih Tahun Pelajaran" data-hide-search="true"
+                                                name="school_year_id" required>
+                                                @foreach ($schoolYears as $schoolYear)
+                                                    <option value="{{ $schoolYear->id }}" @selected(old('school_year_id') == $schoolYear->id)>
+                                                        {{ $schoolYear->year }}</option>
+                                                @endforeach
+                                            </select>
+                                            <x-Form.InputError name="school_year_id" />
+                                        </div>
+                                        <div class="fv-row mb-10">
+                                            <label class="fs-5 fw-bold form-label mb-2">
+                                                <span class="required">NIS</span>
+                                            </label>
+                                            <input type="number" id="identification_number"
+                                                class="form-control mb-2 @error('identification_number') is-invalid @enderror"
+                                                placeholder="Masukan NIS murid" name="identification_number"
+                                                value="{{ old('identification_number') }}" required />
+                                            <x-Form.InputError name="identification_number" />
+                                        </div>
+                                        <div class="d-flex gap-3">
+                                            <a href="{{ RoutingHelper::createToIndexRoute() }}"
+                                                class="btn btn-danger">
+                                                Cancel
+                                            </a>
+                                            <x-SaveButton>Simpan</x-SaveButton>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -118,6 +146,11 @@
     @push('scripts')
         <script>
             $('#name').maxlength({
+                warningClass: "badge badge-success",
+                limitReachedClass: "badge badge-danger"
+            });
+
+            $('#email').maxlength({
                 warningClass: "badge badge-success",
                 limitReachedClass: "badge badge-danger"
             });

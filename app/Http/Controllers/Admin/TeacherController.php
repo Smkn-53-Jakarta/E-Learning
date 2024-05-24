@@ -89,12 +89,7 @@ class TeacherController extends Controller
             DB::beginTransaction();
 
             $teacher->update($data);
-            $teacher->user()->update([
-                'name' => $data['name'],
-                'status_id' => $data['status_id'],
-                'email' => $data['email'],
-                'profile_picture' => $data['profile_picture'],
-            ]);
+            $teacher->user->update($data);
 
             DB::commit();
 
@@ -112,7 +107,7 @@ class TeacherController extends Controller
             if (isset($data['profile_picture'])) {
                 FileHelper::deleteImage('users/images', $data['profile_picture']);
             }
-            dd($th->getMessage());
+
             return redirect()->back()->withInput()->with([
                 'message' => trans('message.error'),
                 'status' => 'danger',

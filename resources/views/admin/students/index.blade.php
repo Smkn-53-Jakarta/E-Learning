@@ -71,14 +71,14 @@
                                         @foreach ($students as $student)
                                             <tr>
                                                 <td class="text-center">{{ $loop->iteration }}</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
+                                                <td>{{ $student->user->name }}</td>
+                                                <td>{{ $student->user->status->name }}</td>
+                                                <td>{{ $student->user->email }}</td>
+                                                <td>{{ $student->classroom->name }}</td>
+                                                <td>{{ $student->schoolYear->year }}</td>
+                                                <td>{{ $student->identification_number }}</td>
+                                                <td>{{ $student->created_at->diffForHumans() }}</td>
+                                                <td>{{ $student->updated_at->diffForHumans() }}</td>
                                                 <td>
                                                     <a href="#"
                                                         class="btn btn-sm btn-icon btn-active-light-primary"
@@ -95,7 +95,8 @@
                                                         @endcan
                                                         @can('students.delete')
                                                             <div class="menu-item px-3">
-                                                                <form action="{{ route('students.destroy', $student->id) }}"
+                                                                <form
+                                                                    action="{{ route('students.destroy', $student->id) }}"
                                                                     method="post" class="me-3">
                                                                     @csrf
                                                                     @method('DELETE')
