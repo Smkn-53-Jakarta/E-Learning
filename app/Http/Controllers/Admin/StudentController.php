@@ -157,17 +157,23 @@ class StudentController extends Controller
         $student->restore();
 
         return redirect(RoutingHelper::restoreToIndex())->with([
-            'message' => 'Siswa berhasil dipulihkan',
+            'message' => 'Murid berhasil dipulihkan',
             'status' => 'success',
         ]);
     }
 
     public function forceDelete($id): RedirectResponse
     {
-        Student::withTrashed()->findOrFail($id)->forceDelete();
+        $student = Student::withTrashed()->findOrFail($id);
+        $user = $student->user()->withTrashed()->first();
+        $profilePicture = $user->profile_picture;
+
+        $student->user()->forceDelete();
+
+        FileHelper::deleteImage('users/images', $profilePicture);
 
         return redirect(RoutingHelper::forceDeleteToIndex())->with([
-            'message' => 'Siswa berhasil dihapus',
+            'message' => 'Murid berhasil dihapus',
             'status' => 'success',
         ]);
     }
