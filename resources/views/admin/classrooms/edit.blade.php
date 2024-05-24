@@ -1,1 +1,87 @@
+<x-AppLayout>
+    <div class="d-flex flex-column flex-column-fluid">
+        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+            <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
+                <div class="d-flex align-items-center">
+                    <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                        <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
+                            Ubah Kelas
+                        </h1>
+                        <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
+                            <li class="breadcrumb-item text-muted">
+                                <a href="{{ route('dashboard.index') }}"
+                                    class="text-muted text-hover-primary">Dashboard</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <span class="bullet bg-gray-400 w-5px h-2px"></span>
+                            </li>
+                            <li class="breadcrumb-item text-muted">
+                                <a href="{{ route('classrooms.index') }}"
+                                    class="text-muted text-hover-primary">Kelas</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <span class="bullet bg-gray-400 w-5px h-2px"></span>
+                            </li>
+                            <li class="breadcrumb-item text-muted">
+                                <a href="{{ url()->current() }}" class="text-muted text-hover-primary">Ubah</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="kt_app_content" class="app-content flex-column-fluid">
+            <div id="kt_app_content_container" class="app-container container-xxl">
+                @if (session('message'))
+                    <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
+                @endif
+                <div class="card">
+                    <form class="form card-body" action="{{ route('classrooms.update', $classroom->id) }}"
+                        method="post">
+                        @csrf
+                        @method('PUT')
+                        <div class="d-flex flex-column me-n7 pe-7">
+                            <div class="fv-row mb-10">
+                                <label class="fs-5 fw-bold form-label mb-2">
+                                    <span class="required">Nama Kelas</span>
+                                </label>
+                                <input id="name" class="form-control mb-2 @error('name') is-invalid @enderror"
+                                    placeholder="Masukan nama kelas" name="name"
+                                    value="{{ old('name', $classroom->name) }}" maxlength="64" required />
+                                <x-Form.InputError name="name" />
+                            </div>
+                            <div class="fv-row mb-10">
+                                <label class="fs-5 fw-bold form-label mb-2">
+                                    <span class="required">Wali Kelas</span>
+                                </label>
+                                <select class="form-select" data-control="select2" data-placeholder="Pilih Wali Kelas"
+                                    name="homeroom_teacher" required>
+                                    @foreach ($teachers as $teacher)
+                                        <option value="{{ $teacher->id }}" @selected(old('homeroom_teacher', $classroom->homrroom_teacher) == $teacher->id)>
+                                            {{ $teacher->user->name }}</option>
+                                    @endforeach
+                                </select>
+                                <x-Form.InputError name="homeroom_teacher" />
+                            </div>
+                            <div class="d-flex gap-3">
+                                <a href="{{ RoutingHelper::editToIndexRoute() }}" class="btn btn-danger">
+                                    Cancel
+                                </a>
+                                <x-SaveButton>Simpan</x-SaveButton>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    @push('scripts')
+        <script>
+            $('#name').maxlength({
+                warningClass: "badge badge-success",
+                limitReachedClass: "badge badge-danger"
+            });
+        </script>
+    @endpush
+</x-AppLayout>

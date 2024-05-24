@@ -55,7 +55,9 @@ class ClassroomController extends Controller
 
     public function edit(Classroom $classroom): View
     {
-        return view('admin.classrooms.edit', compact('classroom'));
+        $teachers = Teacher::with('user')->latest()->get();
+
+        return view('admin.classrooms.edit', compact('classroom', 'teachers'));
     }
 
     public function update(UpdateClassroomRequest $request, Classroom $classroom): RedirectResponse

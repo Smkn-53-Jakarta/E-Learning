@@ -16,13 +16,14 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('teachers.index') }}" class="text-muted text-hover-primary">Kelas</a>
+                                <a href="{{ route('classrooms.index') }}"
+                                    class="text-muted text-hover-primary">Kelas</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('teachers.create') }}"
+                                <a href="{{ route('classrooms.create') }}"
                                     class="text-muted text-hover-primary">Tambah</a>
                             </li>
                         </ul>
