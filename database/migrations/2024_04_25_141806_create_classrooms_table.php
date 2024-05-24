@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('classrooms', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name', 64);
+            $table->string('homeroom_teacher');
+            $table->foreign('homeroom_teacher')->references('id')->on('teachers')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('name', 64)->unique();
             $table->timestamps();
             $table->softDeletes();
         });

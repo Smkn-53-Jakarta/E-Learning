@@ -17,15 +17,21 @@ class ExtracurricularSeeder extends Seeder
         $extracurriculars = [
             [
                 'id' => Str::uuid(),
-                'name' => 'Futsal'
+                'name' => 'Futsal',
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'id' => Str::uuid(),
-                'name' => 'Paskibra'
+                'name' => 'Paskibra',
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'id' => Str::uuid(),
-                'name' => 'Marawis'
+                'name' => 'Marawis',
+                'created_at' => now(),
+                'updated_at' => now()
             ],
         ];
 

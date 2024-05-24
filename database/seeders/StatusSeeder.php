@@ -14,11 +14,15 @@ class StatusSeeder extends Seeder
         $statuses = [
             [
                 'id' => Str::uuid(),
-                'name' => 'Aktif'
+                'name' => 'Aktif',
+                'created_at' => now(),
+                'updated_at' => now()
             ],
             [
                 'id' => Str::uuid(),
-                'name' => 'Tidak Aktif'
+                'name' => 'Tidak Aktif',
+                'created_at' => now(),
+                'updated_at' => now()
             ],
         ];
 

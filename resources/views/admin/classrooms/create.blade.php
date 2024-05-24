@@ -36,30 +36,30 @@
                     <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
                 @endif
                 <div class="card">
-                    <form class="form card-body" action="{{ route('teachers.store') }}" method="post">
+                    <form class="form card-body" action="{{ route('classrooms.store') }}" method="post">
                         @csrf
                         <div class="d-flex flex-column me-n7 pe-7">
                             <div class="fv-row mb-10">
                                 <label class="fs-5 fw-bold form-label mb-2">
                                     <span class="required">Nama Kelas</span>
                                 </label>
-                                <input id="classrooms"
-                                    class="form-control mb-2 @error('classrooms') is-invalid @enderror"
-                                    placeholder="Masukan nama kelas" name="classrooms" value="{{ old('classrooms') }}"
+                                <input id="name" class="form-control mb-2 @error('name') is-invalid @enderror"
+                                    placeholder="Masukan nama kelas" name="name" value="{{ old('name') }}"
                                     maxlength="64" required />
-                                <x-Form.InputError name="classrooms" />
+                                <x-Form.InputError name="name" />
                             </div>
                             <div class="fv-row mb-10">
                                 <label class="fs-5 fw-bold form-label mb-2">
                                     <span class="required">Wali Kelas</span>
                                 </label>
                                 <select class="form-select" data-control="select2" data-placeholder="Pilih Wali Kelas"
-                                    data-hide-search="true">
-                                    <option></option>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
-                                    <option value="3">Option 3</option>
+                                    name="homeroom_teacher" required>
+                                    @foreach ($teachers as $teacher)
+                                        <option value="{{ $teacher->id }}" @selected(old('homeroom_teacher') == $teacher->id)>
+                                            {{ $teacher->user->name }}</option>
+                                    @endforeach
                                 </select>
+                                <x-Form.InputError name="homeroom_teacher" />
                             </div>
                             <div class="d-flex gap-3">
                                 <a href="{{ RoutingHelper::createToIndexRoute() }}" class="btn btn-danger">

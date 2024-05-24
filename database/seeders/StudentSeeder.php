@@ -6,13 +6,11 @@ use App\Models\Classroom;
 use App\Models\SchoolYear;
 use App\Models\Status;
 use App\Models\Student;
-use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
-class UserSeeder extends Seeder
+class StudentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -20,15 +18,6 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $statusIds = Status::pluck('id')->toArray();
-
-        $admin = User::create([
-            'status_id' => $statusIds[0],
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('admin')
-        ]);
-
-        $admin->assignRole('Admin');
 
         $student = User::create([
             'status_id' => $statusIds[0],
@@ -38,16 +27,6 @@ class UserSeeder extends Seeder
         ]);
 
         $student->assignRole('Student');
-
-        $teacher = User::create([
-            'status_id' => $statusIds[0],
-            'name' => 'Teacher',
-            'email' => 'teacher@gmail.com',
-            'password' => bcrypt('teacher')
-        ]);
-
-        $teacher->assignRole('Teacher');
-
         $classroomIds = Classroom::pluck('id')->toArray();
         $schoolYearids = SchoolYear::pluck('id')->toArray();
 
@@ -56,11 +35,6 @@ class UserSeeder extends Seeder
             'classroom_id' => $classroomIds[0],
             'school_year_id' => $schoolYearids[0],
             'identification_number' => '19200850'
-        ]);
-
-        Teacher::create([
-            'user_id' => $teacher->id,
-            'identification_number' => '19200750'
         ]);
     }
 }

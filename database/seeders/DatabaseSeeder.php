@@ -16,11 +16,13 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             RoleSeeder::class,
             RolePermissionSeeder::class,
-            ClassroomSeeder::class,
             SchoolYearSeeder::class,
             ExtracurricularSeeder::class,
             StatusSeeder::class,
-            UserSeeder::class
+            AdminSeeder::class,
+            TeacherSeeder::class,
+            ClassroomSeeder::class,
+            StudentSeeder::class,
         ]);
     }
 }

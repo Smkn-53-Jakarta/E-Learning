@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Classroom\StoreClassroomRequest;
 use App\Http\Requests\Classroom\UpdateClassroomRequest;
 use App\Models\Classroom;
+use App\Models\Teacher;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
@@ -16,14 +17,16 @@ class ClassroomController extends Controller
     public function index(): View
     {
         $classroomsTrashed = Classroom::onlyTrashed()->count();
-        $classrooms = Classroom::latest()->filter(request(['search']))->paginate(10);
+        $classrooms = Classroom::with('homeroomTeacher.user')->latest()->filter(request(['search']))->paginate(10);
 
         return view('admin.classrooms.index', compact('classroomsTrashed', 'classrooms'));
     }
 
     public function create(): View
     {
-        return view('admin.classrooms.create');
+        $teachers = Teacher::with('user')->latest()->get();
+
+        return view('admin.classrooms.create', compact('teachers'));
     }
 
     public function store(StoreClassroomRequest $request): RedirectResponse

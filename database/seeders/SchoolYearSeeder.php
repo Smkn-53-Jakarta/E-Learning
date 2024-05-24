@@ -17,7 +17,9 @@ class SchoolYearSeeder extends Seeder
         $schoolYears = [
             [
                 'id' => Str::uuid(),
-                'year' => '2023/2024'
+                'year' => '2023/2024',
+                'created_at' => now(),
+                'updated_at' => now()
             ],
         ];
 

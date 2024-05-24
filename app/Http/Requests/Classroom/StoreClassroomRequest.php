@@ -14,6 +14,7 @@ class StoreClassroomRequest extends FormRequest
 
         return [
             'name' => ['required', 'string', 'max:64', Rule::unique($tableName, 'name')],
+            'homeroom_teacher' => ['required', 'string'],
         ];
     }
 
@@ -24,6 +25,8 @@ class StoreClassroomRequest extends FormRequest
             'name.string' => 'Nama kelas wajib string',
             'name.max' => 'Nama kelas maksimal 64 karakter',
             'name.unique' => 'Nama kelas sudah tersedia',
+            'homeroom_teacher.required' => 'Wali kelas wajib diisi',
+            'homeroom_teacher.string' => 'Wali kelas wajib string',
         ];
     }
 }

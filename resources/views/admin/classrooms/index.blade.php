@@ -69,9 +69,9 @@
                                             <tr>
                                                 <td class="text-center">{{ $loop->iteration }}</td>
                                                 <td>{{ $classroom->name }}</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
+                                                <td>{{ $classroom->homeroomTeacher->user->name }}</td>
+                                                <td>{{ $classroom->created_at->diffForHumans() }}</td>
+                                                <td>{{ $classroom->updated_at->diffForHumans() }}</td>
                                                 <td>
                                                     <a href="#"
                                                         class="btn btn-sm btn-icon btn-active-light-primary"
