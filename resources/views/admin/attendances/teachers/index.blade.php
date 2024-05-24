@@ -60,7 +60,7 @@
                                     <tr>
                                         <td class="text-center">1</td>
                                         <td>Atikah</td>
-                                        <td>Sastra Indonesia</td>
+                                        <td>-</td>
                                         <td><button class="btn btn-primary btn-sm type="button" ">Detail</button></td>
                                         <td><button class="btn btn-primary btn-sm type="button" ">Detail</button></td>
                                         <td><button class="btn btn-primary btn-sm type="button" ">Detail</button></td>
@@ -68,7 +68,7 @@
                                     <tr>
                                         <td class="text-center">2</td>
                                         <td>Rahmat</td>
-                                        <td>Web Programing</td>
+                                        <td>-</td>
                                         <td><button class="btn btn-primary btn-sm type="button" ">Detail</button></td>
                                         <td><button class="btn btn-primary btn-sm type="button" ">Detail</button></td>
                                         <td><button class="btn btn-primary btn-sm type="button" ">Detail</button></td>
@@ -76,7 +76,7 @@
                                     <tr>
                                         <td class="text-center">3</td>
                                         <td>Ridwan</td>
-                                        <td>Desain Komunikasi Visual</td>
+                                        <td>-</td>
                                         <td><button class="btn btn-primary btn-sm type="button" ">Detail</button></td>
                                         <td><button class="btn btn-primary btn-sm type="button" ">Detail</button></td>
                                         <td><button class="btn btn-primary btn-sm type="button" ">Detail</button></td>
