@@ -52,20 +52,11 @@
                                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                             <th class="text-center">No</th>
                                             <th class="min-w-250px">Nama Guru</th>
-                                            <<<<<<< HEAD <th class="min-w-150px">Status</th>
-                                                <th class="min-w-250px">Email</th>
-                                                <th class="min-w-150px">NIP</th>
-                                                <th class="min-w-200px">Dibuat</th>
-                                                <th class="min-w-200px">Diubah</th>
-                                                =======
-                                                <th class="min-w-200px">Status</th>
-                                                <th class="min-w-200px">Email</th>
-                                                <th class="min-w-200px">NIP</th>
-                                                <th class="min-w-200px">Dibuat Pada</th>
-                                                <th class="min-w-200px">Diubah Pada</th>
-                                                <th class="min-w-200px">Dihapus Pada</th>
-                                                >>>>>>> 0debcf03c484ad96e4353c840773561cdc77ec6c
-                                                <th class="min-w-100px">Aksi</th>
+                                            <th class="min-w-200px">Status</th>
+                                            <th class="min-w-200px">Email</th>
+                                            <th class="min-w-200px">NIP</th>
+                                            <th class="min-w-200px">Dihapus Pada</th>
+                                            <th class="min-w-100px">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody class="fw-semibold text-gray-600">
@@ -76,8 +67,7 @@
                                                 <td>{{ $teacher->user->status->name }}</td>
                                                 <td>{{ $teacher->user->email }}</td>
                                                 <td>{{ $teacher->identification_number }}</td>
-                                                <td>{{ $teacher->created_at->diffForHumans() }}</td>
-                                                <td>{{ $teacher->updated_at->diffForHumans() }}</td>
+                                                <td>{{ $teacher->deleted_at->diffForHumans() }}</td>
                                                 <td>
                                                     <a href="#"
                                                         class="btn btn-sm btn-icon btn-active-light-primary"

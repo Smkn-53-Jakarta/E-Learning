@@ -49,8 +49,6 @@
                                             <th class="text-center">No</th>
                                             <th class="min-w-250px">Nama Kelas</th>
                                             <th class="min-w-250px">Wali Kelas</th>
-                                            <th class="min-w-200px">Dibuat Pada</th>
-                                            <th class="min-w-200px">Diubah Pada</th>
                                             <th class="min-w-200px">Dihapus Pada</th>
                                             <th class="min-w-100px">Aksi</th>
                                         </tr>
@@ -60,9 +58,7 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $classroom->name }}</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
+                                                <td>{{ $classroom->homeroomTeacher->user->name }}</td>
                                                 <td>{{ $classroom->deleted_at->diffForHumans() }}</td>
                                                 <td>
                                                     <a href="#"

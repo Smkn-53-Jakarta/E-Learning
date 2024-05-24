@@ -96,7 +96,11 @@ class ClassroomController extends Controller
 
     public function trashed(): View
     {
-        $classrooms = Classroom::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
+        $classrooms = Classroom::with(['homeroomTeacher' => function ($query) {
+            $query->withTrashed();
+        }, 'homeroomTeacher.user' => function ($query) {
+            $query->withTrashed();
+        }])->latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
 
         return view('admin.classrooms.trashed', compact('classrooms'));
     }
