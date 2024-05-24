@@ -46,7 +46,7 @@
                                 </a>
                             @endif --}}
                             @can('scheduleofsubjects.create')
-                                <x-AddButton :url="route('scheduleofsubjects.create')">Tambah Guru</x-AddButton>
+                                <x-AddButton :url="route('scheduleofsubjects.create')">Tambah Mata Pelajaran</x-AddButton>
                             @endcan
                         </div>
                     </div>
