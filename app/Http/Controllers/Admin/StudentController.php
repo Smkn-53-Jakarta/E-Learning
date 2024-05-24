@@ -22,7 +22,7 @@ class StudentController extends Controller
     public function index(): View
     {
         $studentsTrashed = Student::onlyTrashed()->count();
-        $students = Student::with('user.status', 'classroom')->latest()->filter(request(['search']))->paginate(10);
+        $students = Student::with('user.status', 'classroom', 'schoolYear')->latest()->filter(request(['search']))->paginate(10);
 
         return view('admin.students.index', compact('studentsTrashed', 'students'));
     }
@@ -126,6 +126,7 @@ class StudentController extends Controller
 
     public function destroy(Student $student): RedirectResponse
     {
+        $student->user()->delete();
         $student->delete();
 
         return back()->with([
@@ -136,14 +137,24 @@ class StudentController extends Controller
 
     public function trashed(): View
     {
-        $students = Student::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
+        $students = Student::with(['user' => function ($query) {
+            $query->withTrashed();
+        }, 'user.status' => function ($query) {
+            $query->withTrashed();
+        }, 'classroom', 'schoolYear'])->latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
 
         return view('admin.students.trashed', compact('students'));
     }
 
     public function restore($id): RedirectResponse
     {
-        Student::withTrashed()->findOrFail($id)->restore();
+        $student = Student::withTrashed()->findOrFail($id);
+
+        if ($student->user()->withTrashed()->exists()) {
+            $student->user()->restore();
+        }
+
+        $student->restore();
 
         return redirect(RoutingHelper::restoreToIndex())->with([
             'message' => 'Siswa berhasil dipulihkan',

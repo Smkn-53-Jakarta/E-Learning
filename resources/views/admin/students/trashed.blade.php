@@ -5,7 +5,7 @@
                 <div class="d-flex align-items-center">
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                            Siswa
+                            Murid
                         </h1>
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <li class="breadcrumb-item text-muted">
@@ -16,7 +16,7 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('students.index') }}" class="text-muted text-hover-primary">Siswa</a>
+                                <a href="{{ route('students.index') }}" class="text-muted text-hover-primary">Murid</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
@@ -52,8 +52,6 @@
                                             <th class="min-w-250px">Kelas</th>
                                             <th class="min-w-250px">Tahun Pelajaran</th>
                                             <th class="min-w-250px">Nis</th>
-                                            <th class="min-w-200px">Dibuat Pada</th>
-                                            <th class="min-w-200px">Diubah Pada</th>
                                             <th class="min-w-200px">Dihapus Pada</th>
                                             <th class="min-w-100px">Aksi</th>
                                         </tr>
@@ -62,14 +60,12 @@
                                         @foreach ($students as $student)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $student->name }}</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
+                                                <td>{{ $student->user->name }}</td>
+                                                <td>{{ $student->user->status->name }}</td>
+                                                <td>{{ $student->user->email }}</td>
+                                                <td>{{ $student->classroom->name }}</td>
+                                                <td>{{ $student->schoolYear->year }}</td>
+                                                <td>{{ $student->identification_number }}</td>
                                                 <td>{{ $student->deleted_at->diffForHumans() }}</td>
                                                 <td>
                                                     <a href="#"
@@ -81,11 +77,12 @@
                                                         data-kt-menu="true">
                                                         @can('students.restore')
                                                             <div class="menu-item px-3">
-                                                                <form action="{{ route('students.restore', $student->id) }}"
+                                                                <form
+                                                                    action="{{ route('students.restore', $student->id) }}"
                                                                     method="post">
                                                                     @csrf
                                                                     <a href="#" class="menu-link px-3"
-                                                                        onclick="confirmPopup(this, 'Akan mengembalikan mata pelajaran ini')">Pulihkan</a>
+                                                                        onclick="confirmPopup(this, 'Akan mengembalikan murid ini')">Pulihkan</a>
                                                                 </form>
                                                             </div>
                                                         @endcan
@@ -96,7 +93,7 @@
                                                                     method="post">
                                                                     @csrf
                                                                     <a href="#" class="menu-link px-3"
-                                                                        onclick="confirmPopup(this, 'Akan menghapus permanen mata pelajaran ini')">Hapus
+                                                                        onclick="confirmPopup(this, 'Akan menghapus permanen murid ini')">Hapus
                                                                         Permanen</a>
                                                                 </form>
                                                             </div>
