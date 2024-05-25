@@ -51,136 +51,134 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="container">
-                            <div class="row">
-                                <div class="card border m-5 border-white" style="width: 20rem;">
-                                    <div class="pricing-header secondary p-2 rounded " style="text-align: center">
-                                        <h6 class=" pricing-title">BAHASA INDONESIA</h6>
+                        <div class="row">
+                            <div class="card border m-5 border-white" style="width: 20rem;">
+                                <div class="pricing-header secondary p-2 rounded " style="text-align: center">
+                                    <h6 class=" pricing-title">BAHASA INDONESIA</h6>
 
-                                        <div class="pricing-save">Senin - 13:20 - 15:00</div>
-                                    </div>
-                                    <img src="{{ asset('images/guru/gurucewe.png') }}"
-                                        class="card-img-top mx-auto d-block pt-3" style="width:90px" alt="...">
-                                    <div class="card-body p-5">
-                                        <h5 class="styled"><i class="icon-user"></i> Guru : Kharisma Audina</h5>
-                                        <h5 class="styled"><i class="icon-local_library"></i> Kelas : XI TKJ 1</h5>
-                                        <div class="pricing-footer">
-                                            <div class="btn-group w-100" role="group" aria-label="Basic example">
-                                                <a href="" type="button" class="btn btn-secondary"
-                                                    data-toggle="tooltip" data-placement="bottom" title=""
-                                                    data-original-title="Edit">
-                                                    <i class="bi bi-pen-fill fs-4 text-info"></i>
-                                                </a>
-                                                <a href="" type="button" class="btn btn-secondary"
-                                                    data-toggle="tooltip" data-placement="bottom" title=""
-                                                    data-original-title="Detail">
-                                                    <i class="bi bi-file-text-fill fs-4 text-success"></i>
-                                                </a>
-                                                <a href="" type="button" class="btn btn-secondary"
-                                                    data-toggle="tooltip" data-placement="bottom" title=""
-                                                    data-original-title="Hapus">
-                                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
-                                                </a>
-                                            </div>
+                                    <div class="pricing-save">Senin - 13:20 - 15:00</div>
+                                </div>
+                                <img src="{{ asset('images/guru/gurucewe.png') }}"
+                                    class="card-img-top mx-auto d-block pt-3" style="width:90px" alt="...">
+                                <div class="card-body p-5">
+                                    <h5 class="styled"><i class="icon-user"></i> Guru : Kharisma Audina</h5>
+                                    <h5 class="styled"><i class="icon-local_library"></i> Kelas : XI TKJ 1</h5>
+                                    <div class="pricing-footer">
+                                        <div class="btn-group w-100" role="group" aria-label="Basic example">
+                                            <a href="" type="button" class="btn btn-secondary"
+                                                data-toggle="tooltip" data-placement="bottom" title=""
+                                                data-original-title="Edit">
+                                                <i class="bi bi-pen-fill fs-4 text-info"></i>
+                                            </a>
+                                            <a href="" type="button" class="btn btn-secondary"
+                                                data-toggle="tooltip" data-placement="bottom" title=""
+                                                data-original-title="Detail">
+                                                <i class="bi bi-file-text-fill fs-4 text-success"></i>
+                                            </a>
+                                            <a href="" type="button" class="btn btn-secondary"
+                                                data-toggle="tooltip" data-placement="bottom" title=""
+                                                data-original-title="Hapus">
+                                                <i class="bi bi-trash-fill fs-4 text-danger"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="card border m-5 border-white" style="width: 20rem;">
-                                    <div class="pricing-header secondary p-2 rounded " style="text-align: center">
-                                        <h6 class=" pricing-title">BAHASA INDONESIA</h6>
+                            <div class="card border m-5 border-white" style="width: 20rem;">
+                                <div class="pricing-header secondary p-2 rounded " style="text-align: center">
+                                    <h6 class=" pricing-title">BAHASA INDONESIA</h6>
 
-                                        <div class="pricing-save">Senin - 13:20 - 15:00</div>
-                                    </div>
-                                    <img src="{{ asset('images/guru/gurulaki.png') }}"
-                                        class="card-img-top mx-auto d-block pt-3" style="width:90px" alt="...">
-                                    <div class="card-body p-5">
-                                        <h5 class="styled"><i class="icon-user"></i> Guru : Kharisma Audina</h5>
-                                        <h5 class="styled"><i class="icon-local_library"></i> Kelas : XI TKJ 1</h5>
-                                        <div class="pricing-footer">
-                                            <div class="btn-group w-100" role="group" aria-label="Basic example">
-                                                <a href="" type="button" class="btn btn-secondary"
-                                                    data-toggle="tooltip" data-placement="bottom" title=""
-                                                    data-original-title="Edit">
-                                                    <i class="bi bi-pen-fill fs-4 text-info"></i>
-                                                </a>
-                                                <a href="" type="button" class="btn btn-secondary"
-                                                    data-toggle="tooltip" data-placement="bottom" title=""
-                                                    data-original-title="Detail">
-                                                    <i class="bi bi-file-text-fill fs-4 text-success"></i>
-                                                </a>
-                                                <a href="" type="button" class="btn btn-secondary"
-                                                    data-toggle="tooltip" data-placement="bottom" title=""
-                                                    data-original-title="Hapus">
-                                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
-                                                </a>
-                                            </div>
+                                    <div class="pricing-save">Senin - 13:20 - 15:00</div>
+                                </div>
+                                <img src="{{ asset('images/guru/gurulaki.png') }}"
+                                    class="card-img-top mx-auto d-block pt-3" style="width:90px" alt="...">
+                                <div class="card-body p-5">
+                                    <h5 class="styled"><i class="icon-user"></i> Guru : Kharisma Audina</h5>
+                                    <h5 class="styled"><i class="icon-local_library"></i> Kelas : XI TKJ 1</h5>
+                                    <div class="pricing-footer">
+                                        <div class="btn-group w-100" role="group" aria-label="Basic example">
+                                            <a href="" type="button" class="btn btn-secondary"
+                                                data-toggle="tooltip" data-placement="bottom" title=""
+                                                data-original-title="Edit">
+                                                <i class="bi bi-pen-fill fs-4 text-info"></i>
+                                            </a>
+                                            <a href="" type="button" class="btn btn-secondary"
+                                                data-toggle="tooltip" data-placement="bottom" title=""
+                                                data-original-title="Detail">
+                                                <i class="bi bi-file-text-fill fs-4 text-success"></i>
+                                            </a>
+                                            <a href="" type="button" class="btn btn-secondary"
+                                                data-toggle="tooltip" data-placement="bottom" title=""
+                                                data-original-title="Hapus">
+                                                <i class="bi bi-trash-fill fs-4 text-danger"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="card border m-5 border-white" style="width: 20rem;">
-                                    <div class="pricing-header secondary p-2 rounded " style="text-align: center">
-                                        <h6 class=" pricing-title">BAHASA INDONESIA</h6>
+                            <div class="card border m-5 border-white" style="width: 20rem;">
+                                <div class="pricing-header secondary p-2 rounded " style="text-align: center">
+                                    <h6 class=" pricing-title">BAHASA INDONESIA</h6>
 
-                                        <div class="pricing-save">Senin - 13:20 - 15:00</div>
-                                    </div>
-                                    <img src="{{ asset('images/guru/gurucewe.png') }}"
-                                        class="card-img-top mx-auto d-block pt-3" style="width:90px" alt="...">
-                                    <div class="card-body p-5">
-                                        <h5 class="styled"><i class="icon-user"></i> Guru : Kharisma Audina</h5>
-                                        <h5 class="styled"><i class="icon-local_library"></i> Kelas : XI TKJ 1</h5>
-                                        <div class="pricing-footer">
-                                            <div class="btn-group w-100" role="group" aria-label="Basic example">
-                                                <a href="" type="button" class="btn btn-secondary"
-                                                    data-toggle="tooltip" data-placement="bottom" title=""
-                                                    data-original-title="Edit">
-                                                    <i class="bi bi-pen-fill fs-4 text-info"></i>
-                                                </a>
-                                                <a href="" type="button" class="btn btn-secondary"
-                                                    data-toggle="tooltip" data-placement="bottom" title=""
-                                                    data-original-title="Detail">
-                                                    <i class="bi bi-file-text-fill fs-4 text-success"></i>
-                                                </a>
-                                                <a href="" type="button" class="btn btn-secondary"
-                                                    data-toggle="tooltip" data-placement="bottom" title=""
-                                                    data-original-title="Hapus">
-                                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
-                                                </a>
-                                            </div>
+                                    <div class="pricing-save">Senin - 13:20 - 15:00</div>
+                                </div>
+                                <img src="{{ asset('images/guru/gurucewe.png') }}"
+                                    class="card-img-top mx-auto d-block pt-3" style="width:90px" alt="...">
+                                <div class="card-body p-5">
+                                    <h5 class="styled"><i class="icon-user"></i> Guru : Kharisma Audina</h5>
+                                    <h5 class="styled"><i class="icon-local_library"></i> Kelas : XI TKJ 1</h5>
+                                    <div class="pricing-footer">
+                                        <div class="btn-group w-100" role="group" aria-label="Basic example">
+                                            <a href="" type="button" class="btn btn-secondary"
+                                                data-toggle="tooltip" data-placement="bottom" title=""
+                                                data-original-title="Edit">
+                                                <i class="bi bi-pen-fill fs-4 text-info"></i>
+                                            </a>
+                                            <a href="" type="button" class="btn btn-secondary"
+                                                data-toggle="tooltip" data-placement="bottom" title=""
+                                                data-original-title="Detail">
+                                                <i class="bi bi-file-text-fill fs-4 text-success"></i>
+                                            </a>
+                                            <a href="" type="button" class="btn btn-secondary"
+                                                data-toggle="tooltip" data-placement="bottom" title=""
+                                                data-original-title="Hapus">
+                                                <i class="bi bi-trash-fill fs-4 text-danger"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="card border m-5 border-white" style="width: 20rem;">
-                                    <div class="pricing-header secondary p-2 rounded " style="text-align: center">
-                                        <h6 class=" pricing-title">BAHASA INDONESIA</h6>
+                            <div class="card border m-5 border-white" style="width: 20rem;">
+                                <div class="pricing-header secondary p-2 rounded " style="text-align: center">
+                                    <h6 class=" pricing-title">BAHASA INDONESIA</h6>
 
-                                        <div class="pricing-save">Senin - 13:20 - 15:00</div>
-                                    </div>
-                                    <img src="{{ asset('images/guru/gurulaki.png') }}"
-                                        class="card-img-top mx-auto d-block pt-3" style="width:90px" alt="...">
-                                    <div class="card-body p-5">
-                                        <h5 class="styled"><i class="icon-user"></i> Guru : Kharisma Audina</h5>
-                                        <h5 class="styled"><i class="icon-local_library"></i> Kelas : XI TKJ 1</h5>
-                                        <div class="pricing-footer">
-                                            <div class="btn-group w-100" role="group" aria-label="Basic example">
-                                                <a href="" type="button" class="btn btn-secondary"
-                                                    data-toggle="tooltip" data-placement="bottom" title=""
-                                                    data-original-title="Edit">
-                                                    <i class="bi bi-pen-fill fs-4 text-info"></i>
-                                                </a>
-                                                <a href="" type="button" class="btn btn-secondary"
-                                                    data-toggle="tooltip" data-placement="bottom" title=""
-                                                    data-original-title="Detail">
-                                                    <i class="bi bi-file-text-fill fs-4 text-success"></i>
-                                                </a>
-                                                <a href="" type="button" class="btn btn-secondary"
-                                                    data-toggle="tooltip" data-placement="bottom" title=""
-                                                    data-original-title="Hapus">
-                                                    <i class="bi bi-trash-fill fs-4 text-danger"></i>
-                                                </a>
-                                            </div>
+                                    <div class="pricing-save">Senin - 13:20 - 15:00</div>
+                                </div>
+                                <img src="{{ asset('images/guru/gurulaki.png') }}"
+                                    class="card-img-top mx-auto d-block pt-3" style="width:90px" alt="...">
+                                <div class="card-body p-5">
+                                    <h5 class="styled"><i class="icon-user"></i> Guru : Kharisma Audina</h5>
+                                    <h5 class="styled"><i class="icon-local_library"></i> Kelas : XI TKJ 1</h5>
+                                    <div class="pricing-footer">
+                                        <div class="btn-group w-100" role="group" aria-label="Basic example">
+                                            <a href="" type="button" class="btn btn-secondary"
+                                                data-toggle="tooltip" data-placement="bottom" title=""
+                                                data-original-title="Edit">
+                                                <i class="bi bi-pen-fill fs-4 text-info"></i>
+                                            </a>
+                                            <a href="" type="button" class="btn btn-secondary"
+                                                data-toggle="tooltip" data-placement="bottom" title=""
+                                                data-original-title="Detail">
+                                                <i class="bi bi-file-text-fill fs-4 text-success"></i>
+                                            </a>
+                                            <a href="" type="button" class="btn btn-secondary"
+                                                data-toggle="tooltip" data-placement="bottom" title=""
+                                                data-original-title="Hapus">
+                                                <i class="bi bi-trash-fill fs-4 text-danger"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

@@ -198,7 +198,7 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion">
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/pages/user-profile/overview.html">
+                            <a class="menu-link" href="{{ route('attendances.teachers.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -206,7 +206,7 @@
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/pages/user-profile/projects.html">
+                            <a class="menu-link" href="{{ route('attendances.students.index') }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
