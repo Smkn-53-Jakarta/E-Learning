@@ -198,6 +198,34 @@ class PermissionSeeder extends Seeder
                 'name' => 'extracurriculars.restore',
                 'guard_name' => 'web'
             ],
+            [
+                'name' => 'schedule-of-subjects.read',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'schedule-of-subjects.create',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'schedule-of-subjects.update',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'schedule-of-subjects.delete',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'schedule-of-subjects.restore',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'attendances-teachers.read',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'attendances-students.read',
+                'guard_name' => 'web'
+            ],
         ];
 
         Permission::insert($permissions);
