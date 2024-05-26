@@ -121,4 +121,14 @@ class ScheduleOfSubjectController extends Controller
             'status' => 'success',
         ]);
     }
+
+    public function forceDelete($id): RedirectResponse
+    {
+        ScheduleOfSubject::withTrashed()->findOrFail($id)->forceDelete();
+
+        return redirect(RoutingHelper::forceDeleteToIndex())->with([
+            'message' => 'Jadwal mata pelajaran berhasil dihapus',
+            'status' => 'success',
+        ]);
+    }
 }
