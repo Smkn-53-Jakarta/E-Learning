@@ -16,7 +16,7 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('attendances.teachers.index') }}"
+                                <a href="{{ route('attendances-teachers.index') }}"
                                     class="text-muted text-hover-primary">Rekap Guru</a>
                             </li>
                         </ul>
@@ -48,42 +48,37 @@
                     </div>
                     <div class="card-body">
                         <h3 class="pb-1">Periode Juni</h3>
+                        <div class="class dash"></div>
                         <div class="table-responsive fixed-actions-table">
                             <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
                                 <thead>
                                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                         <th class="text-center">No</th>
-                                        <th class="min-w-250px">Nama Guru</th>
-                                        <th class="min-w-200px">Mata Pelajaran</th>
-                                        <th class="min-w-50px">Kelas 10</th>
-                                        <th class="min-w-50px">Kelas 11</th>
-                                        <th class="min-w-50px">Kelas 12</th>
+                                        <th class="min-w-200px text-start">Nama Guru</th>
+                                        <th class="min-w-200px text-start">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="fw-semibold text-gray-600">
                                     <tr>
                                         <td class="text-center">1</td>
-                                        <td>Atikah</td>
-                                        <td>-</td>
-                                        <td><a href="#" class="btn btn-light-primary btn-sm">Detail</a></td>
-                                        <td><a href="#" class="btn btn-light-primary btn-sm">Detail</a></td>
-                                        <td><a href="#" class="btn btn-light-primary btn-sm">Detail</a></td>
+                                        <td class="text-start">Atikah Rahmawati S.Kom</td>
+                                        <td class="text-start">
+                                            <a href="#" class="btn btn-light-primary btn-sm">Detail</a>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">2</td>
-                                        <td>Rahmat</td>
-                                        <td>-</td>
-                                        <td><a href="#" class="btn btn-light-primary btn-sm">Detail</a></td>
-                                        <td><a href="#" class="btn btn-light-primary btn-sm">Detail</a></td>
-                                        <td><a href="#" class="btn btn-light-primary btn-sm">Detail</a></td>
+                                        <td class="text-start">Muhammad Ridwan S.Kom</td>
+                                        <td class="text-start">
+                                            <a href="#" class="btn btn-light-primary btn-sm">Detail</a>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">3</td>
-                                        <td>Ridwan</td>
-                                        <td>-</td>
-                                        <td><a href="#" class="btn btn-light-primary btn-sm">Detail</a></td>
-                                        <td><a href="#" class="btn btn-light-primary btn-sm">Detail</a></td>
-                                        <td><a href="#" class="btn btn-light-primary btn-sm">Detail</a></td>
+                                        <td class="text-start">Rahmat Fauzi Widianto S.Kom</td>
+                                        <td class="text-start">
+                                            <a href="#" class="btn btn-light-primary btn-sm">Detail</a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

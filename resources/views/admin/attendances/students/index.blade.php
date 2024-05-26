@@ -16,7 +16,7 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('attendances.teachers.index') }}"
+                                <a href="{{ route('attendances-students.index') }}"
                                     class="text-muted text-hover-primary">Rekap Siswa</a>
                             </li>
                         </ul>
@@ -45,29 +45,29 @@
                                 <thead>
                                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                         <th class="text-center">No</th>
-                                        <th class="min-w-200px text-center">Kelas</th>
-                                        <th class="min-w-200px text-center">Aksi</th>
+                                        <th class="min-w-100px text-start">Kelas</th>
+                                        <th class="min-w-200px text-start">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="fw-semibold text-gray-600">
                                     <tr>
                                         <td class="text-center">1</td>
-                                        <td class="text-center">Kelas 10</td>
-                                        <td class="text-center">
+                                        <td class="text-start">Kelas 10</td>
+                                        <td class="text-start">
                                             <a href="#" class="btn btn-light-primary btn-sm">Detail</a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">2</td>
-                                        <td class="text-center">Kelas 11</td>
-                                        <td class="text-center">
+                                        <td class="text-start">Kelas 11</td>
+                                        <td class="text-start">
                                             <a href="#" class="btn btn-light-primary btn-sm">Detail</a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">3</td>
-                                        <td class="text-center">Kelas 12</td>
-                                        <td class="text-center">
+                                        <td class="text-start">Kelas 12</td>
+                                        <td class="text-start">
                                             <a href="#" class="btn btn-light-primary btn-sm">Detail</a>
                                         </td>
                                     </tr>

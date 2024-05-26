@@ -46,10 +46,10 @@
                         <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
                     @endif
                 </div>
-                <div class="row mt-5">
+                <div class="row mt-1">
                     @if (count($scheduleOfSubjects))
                         @foreach ($scheduleOfSubjects as $scheduleOfSubject)
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 mt-4">
                                 <x-ScheduleOfSubjects.CardWithAction :scheduleOfSubject="$scheduleOfSubject" />
                             </div>
                         @endforeach
