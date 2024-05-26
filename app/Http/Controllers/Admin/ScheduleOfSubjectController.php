@@ -104,4 +104,21 @@ class ScheduleOfSubjectController extends Controller
             'status' => 'success',
         ]);
     }
+
+    public function trashed(): View
+    {
+        $scheduleOfSubjects = ScheduleOfSubject::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
+
+        return view('admin.schedule-of-subjects.trashed', compact('scheduleOfSubjects'));
+    }
+
+    public function restore($id): RedirectResponse
+    {
+        ScheduleOfSubject::withTrashed()->findOrFail($id)->restore();
+
+        return redirect(RoutingHelper::restoreToIndex())->with([
+            'message' => 'Jadwal mata pelajaran berhasil dipulihkan',
+            'status' => 'success',
+        ]);
+    }
 }

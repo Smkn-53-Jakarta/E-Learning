@@ -24,26 +24,50 @@
             </tbody>
         </table>
         <div class="btn-group w-100">
-            @can('schedule-of-subjects.update')
-                <a href="{{ route('schedule-of-subjects.edit', $scheduleOfSubject->id) }}" class="btn btn-secondary">
-                    <i class="bi bi-pen fs-4 text-info"></i>
-                </a>
-            @endcan
-            @can('schedule-of-subjects.read')
-                <a href="" class="btn btn-secondary">
-                    <i class="bi bi-file-text fs-4 text-success"></i>
-                </a>
-            @endcan
-            @can('schedule-of-subjects.delete')
-                <form class="btn btn-secondary" action="{{ route('schedule-of-subjects.destroy', $scheduleOfSubject->id) }}"
-                    method="post">
-                    @csrf
-                    @method('DELETE')
-                    <a href="" onclick="confirmPopup(this, 'Akan menghapus jadwal mata pelajaran ini')">
-                        <i class="bi bi-trash fs-4 text-danger"></i>
+            @if (Request::routeIs('schedule-of-subjects.trashed'))
+                @can('schedule-of-subjects.restore')
+                    <form class="btn btn-secondary"
+                        action="{{ route('schedule-of-subjects.restore', $scheduleOfSubject->id) }}" method="post"
+                        onclick="confirmPopup(this, 'Akan mengembalikan jadwal mata pelajaran ini')">
+                        @csrf
+                        <a href="#">
+                            <i class="bi bi-arrow-clockwise fs-4 text-primary"></i>
+                        </a>
+                    </form>
+                @endcan
+                @can('schedule-of-subjects.delete')
+                    <form class="btn btn-secondary"
+                        action="{{ route('schedule-of-subjects.force-delete', $scheduleOfSubject->id) }}" method="post"
+                        onclick="confirmPopup(this, 'Akan hapus permanen jadwal mata pelajaran ini')">
+                        @csrf
+                        <a href="#">
+                            <i class="bi bi-trash fs-4 text-danger"></i>
+                        </a>
+                    </form>
+                @endcan
+            @else
+                @can('schedule-of-subjects.update')
+                    <a href="{{ route('schedule-of-subjects.edit', $scheduleOfSubject->id) }}" class="btn btn-secondary">
+                        <i class="bi bi-pen fs-4 text-info"></i>
                     </a>
-                </form>
-            @endcan
+                @endcan
+                @can('schedule-of-subjects.read')
+                    <a href="" class="btn btn-secondary">
+                        <i class="bi bi-file-text fs-4 text-success"></i>
+                    </a>
+                @endcan
+                @can('schedule-of-subjects.delete')
+                    <form class="btn btn-secondary"
+                        action="{{ route('schedule-of-subjects.destroy', $scheduleOfSubject->id) }}" method="post"
+                        onclick="confirmPopup(this, 'Akan menghapus jadwal mata pelajaran ini')">
+                        @csrf
+                        @method('DELETE')
+                        <a href="#">
+                            <i class="bi bi-trash fs-4 text-danger"></i>
+                        </a>
+                    </form>
+                @endcan
+            @endif
         </div>
     </div>
 </div>
