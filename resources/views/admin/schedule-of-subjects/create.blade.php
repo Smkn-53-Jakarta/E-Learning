@@ -49,7 +49,8 @@
                                     <select class="form-select" data-control="select2" data-placeholder="Pilih Kelas"
                                         name="classroom_id" required>
                                         @foreach ($classrooms as $classroom)
-                                            <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                                            <option value="{{ $classroom->id }}" @selected(old('classroom_id') == $classroom->id)>
+                                                {{ $classroom->name }}</option>
                                         @endforeach
                                     </select>
                                     <x-Form.InputError name="classroom_id" />
@@ -61,7 +62,8 @@
                                     <select class="form-select" data-control="select2"
                                         data-placeholder="Pilih Guru Mengajar" name="teacher_id" required>
                                         @foreach ($teachers as $teacher)
-                                            <option value="{{ $teacher->id }}">{{ $teacher->user->name }}</option>
+                                            <option value="{{ $teacher->id }}" @selected(old('teacher_id') == $teacher->id)>
+                                                {{ $teacher->user->name }}</option>
                                         @endforeach
                                     </select>
                                     <x-Form.InputError name="teacher_id" />
@@ -75,7 +77,8 @@
                                     <select class="form-select" data-control="select2"
                                         data-placeholder="Pilih Mata Pelajaran" name="course_id" required>
                                         @foreach ($courses as $course)
-                                            <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                            <option value="{{ $course->id }}" @selected(old('course_id') == $course->id)>
+                                                {{ $course->name }}</option>
                                         @endforeach
                                     </select>
                                     <x-Form.InputError name="course_id" />
@@ -86,13 +89,13 @@
                                     </label>
                                     <select class="form-select" data-control="select2" data-placeholder="Pilih Hari"
                                         name="day" required>
-                                        <option value="Senin">Senin</option>
-                                        <option value="Selasa">Selasa</option>
-                                        <option value="Rabu">Rabu</option>
-                                        <option value="Kamis">Kamis</option>
-                                        <option value="Jumat">Jumat</option>
-                                        <option value="Sabtu">Sabtu</option>
-                                        <option value="Minggu">Minggu</option>
+                                        <option value="Senin" @selected(old('day') == 'Senin')>Senin</option>
+                                        <option value="Selasa" @selected(old('day') == 'Selasa')>Selasa</option>
+                                        <option value="Rabu" @selected(old('day') == 'Rabu')>Rabu</option>
+                                        <option value="Kamis" @selected(old('day') == 'Kamis')>Kamis</option>
+                                        <option value="Jumat" @selected(old('day') == 'Jumat')>Jumat</option>
+                                        <option value="Sabtu" @selected(old('day') == 'Sabtu')>Sabtu</option>
+                                        <option value="Minggu" @selected(old('day') == 'Minggu')>Minggu</option>
                                     </select>
                                     <x-Form.InputError name="day" />
                                 </div>

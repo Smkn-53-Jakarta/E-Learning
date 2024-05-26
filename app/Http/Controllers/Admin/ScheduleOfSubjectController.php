@@ -62,14 +62,37 @@ class ScheduleOfSubjectController extends Controller
         //
     }
 
-    public function edit(ScheduleOfSubject $scheduleOfSubject)
+    public function edit(ScheduleOfSubject $scheduleOfSubject): View
     {
-        //
+        $classrooms = Classroom::latest()->get();
+        $teachers = Teacher::with('user')->latest()->get();
+        $courses = Course::latest()->get();
+
+        return view('admin.schedule-of-subjects.edit', compact('classrooms', 'teachers', 'courses', 'scheduleOfSubject'));
     }
 
-    public function update(UpdateScheduleOfSubjectRequest $request, ScheduleOfSubject $scheduleOfSubject)
+    public function update(UpdateScheduleOfSubjectRequest $request, ScheduleOfSubject $scheduleOfSubject): RedirectResponse
     {
-        //
+        $data = $request->validated();
+
+        try {
+            DB::beginTransaction();
+
+            $scheduleOfSubject->update($data);
+
+            DB::commit();
+            return redirect(RoutingHelper::updateToIndexRoute())->with([
+                'message' => 'Jadwal mata pelajaran berhasil diubah',
+                'status' => 'success',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return redirect()->back()->withInput()->with([
+                'message' => trans('message.error'),
+                'status' => 'danger',
+            ]);
+        }
     }
 
     public function destroy(ScheduleOfSubject $scheduleOfSubject)
