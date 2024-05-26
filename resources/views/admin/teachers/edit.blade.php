@@ -72,13 +72,14 @@
                                                 <span class="required">Status</span>
                                             </label>
                                             <select class="form-select" data-control="select2"
-                                                data-placeholder="Pilih Status" data-hide-search="true"
-                                                name="status_id">
+                                                data-placeholder="Pilih Status" data-hide-search="true" name="status_id"
+                                                required>
                                                 @foreach ($statuses as $status)
                                                     <option value="{{ $status->id }}" @selected(old('status_id', $teacher->user->status_id) == $status->id)>
                                                         {{ $status->name }}</option>
                                                 @endforeach
                                             </select>
+                                            <x-Form.InputError name="status_id" />
                                         </div>
                                         <div class="fv-row mb-10">
                                             <label class="fs-5 fw-bold form-label mb-2">

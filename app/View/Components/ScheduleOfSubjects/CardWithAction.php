@@ -8,12 +8,11 @@ use Illuminate\View\Component;
 
 class CardWithAction extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public $scheduleOfSubject;
+
+    public function __construct($scheduleOfSubject)
     {
-        //
+        $this->scheduleOfSubject = $scheduleOfSubject;
     }
 
     /**

@@ -13,7 +13,17 @@ return new class extends Migration
     {
         Schema::create('schedule_of_subjects', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('classroom_id');
+            $table->foreign('classroom_id')->references('id')->on('classrooms')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('teacher_id');
+            $table->foreign('teacher_id')->references('id')->on('teachers')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('course_id');
+            $table->foreign('course_id')->references('id')->on('courses')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->enum('day', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']);
+            $table->time('start_time');
+            $table->time('end_time');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

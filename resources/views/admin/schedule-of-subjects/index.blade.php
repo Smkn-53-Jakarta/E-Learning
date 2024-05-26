@@ -30,12 +30,12 @@
                 <div class="d-flex justify-content-between flex-column flex-lg-row w-100">
                     <x-SearchInput placeholder="Cari Jadwal Mata Pelajaran" />
                     <div>
-                        {{-- @if ($scheduleofsubjectsTrashed) --}}
-                        <a href="{{ route('schedule-of-subjects.trashed') }}" class="btn btn-light-primary me-3">
-                            <i class="fa-solid fa-trash-can"></i>
-                            Sampah
-                        </a>
-                        {{-- @endif  --}}
+                        @if ($scheduleOfSubjectsTrashed)
+                            <a href="{{ route('schedule-of-subjects.trashed') }}" class="btn btn-light-primary me-3">
+                                <i class="fa-solid fa-trash-can"></i>
+                                Sampah
+                            </a>
+                        @endif
                         @can('schedule-of-subjects.create')
                             <x-AddButton :url="route('schedule-of-subjects.create')">Tambah Mata Pelajaran</x-AddButton>
                         @endcan
@@ -47,9 +47,15 @@
                     @endif
                 </div>
                 <div class="row mt-5">
-                    <div class="col-lg-4">
-                        <x-ScheduleOfSubjects.CardWithAction />
-                    </div>
+                    @if (count($scheduleOfSubjects))
+                        @foreach ($scheduleOfSubjects as $scheduleOfSubject)
+                            <div class="col-lg-4">
+                                <x-ScheduleOfSubjects.CardWithAction :scheduleOfSubject="$scheduleOfSubject" />
+                            </div>
+                        @endforeach
+                    @else
+                        <x-DataNotFound />
+                    @endif
                 </div>
             </div>
         </div>

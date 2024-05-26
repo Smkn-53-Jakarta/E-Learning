@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             RolePermissionSeeder::class,
             SchoolYearSeeder::class,
             ExtracurricularSeeder::class,
+            CourseSeeder::class,
             StatusSeeder::class,
             AdminSeeder::class,
             TeacherSeeder::class,
