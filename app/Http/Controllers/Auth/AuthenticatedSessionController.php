@@ -4,10 +4,16 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Validation\ValidationException;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -24,11 +30,33 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        $request->ensureIsNotRateLimited();
 
-        $request->session()->regenerate();
+        $identifier = $request->input('identifier');
+        $password = $request->input('password');
 
-        return redirect()->intended(route('dashboard.index'));
+        if (filter_var($identifier, FILTER_VALIDATE_EMAIL)) {
+            $user = User::where('email', $identifier)->first();
+        } else {
+            $student = Student::where('identification_number', $identifier)->first();
+            $teacher = Teacher::where('identification_number', $identifier)->first();
+            $user = $student ? $student->user : ($teacher ? $teacher->user : null);
+        }
+
+        if ($user && Hash::check($password, $user->password)) {
+            Auth::login($user);
+
+            RateLimiter::clear($request->throttleKey());
+
+            $request->session()->regenerate();
+
+            return redirect()->intended(route('dashboard.index'));
+        }
+
+        return back()->with([
+            'message' => 'NIP, NIS atau Password Salah!',
+            'status' => 'danger',
+        ]);
     }
 
     /**

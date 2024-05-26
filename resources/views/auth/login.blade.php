@@ -9,15 +9,16 @@
                     <span class="login100-form-title p-b-49">
                         Login
                     </span>
-                    @if (session()->has('error'))
+                    @if (session('message'))
                         <div class="alert alert-danger" role="alert">
                             <i class="fa fa-check"></i>
-                            {{ session('error') }}
+                            {{ session('message') }}
                         </div>
                     @endif
                     <div class="wrap-input100 validate-input m-b-23">
-                        <span class="label-input100">Email</span>
-                        <input class="input100" type="email" name="email" placeholder="Masukan Email" required>
+                        <span class="label-input100">NIP / NIS</span>
+                        <input class="input100" type="text" name="identifier" placeholder="Masukan NIP atau NIS"
+                            required>
                         <span class="focus-input100" data-symbol="&#xf206;"></span>
                     </div>
                     <div class="wrap-input100 validate-input mb-3">
