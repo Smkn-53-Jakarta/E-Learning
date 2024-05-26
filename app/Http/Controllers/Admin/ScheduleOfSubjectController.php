@@ -95,8 +95,13 @@ class ScheduleOfSubjectController extends Controller
         }
     }
 
-    public function destroy(ScheduleOfSubject $scheduleOfSubject)
+    public function destroy(ScheduleOfSubject $scheduleOfSubject): RedirectResponse
     {
-        //
+        $scheduleOfSubject->delete();
+
+        return back()->with([
+            'message' => 'Jadwal mata pelajaran berhasil dihapus',
+            'status' => 'success',
+        ]);
     }
 }
