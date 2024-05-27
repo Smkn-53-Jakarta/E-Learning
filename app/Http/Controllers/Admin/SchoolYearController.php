@@ -79,8 +79,13 @@ class SchoolYearController extends Controller
         }
     }
 
-    public function destroy(SchoolYear $schoolYear)
+    public function destroy(SchoolYear $schoolYear): RedirectResponse
     {
-        //
+        $schoolYear->delete();
+
+        return back()->with([
+            'message' => 'Tahun pelajaran berhasil dihapus',
+            'status' => 'success',
+        ]);
     }
 }
