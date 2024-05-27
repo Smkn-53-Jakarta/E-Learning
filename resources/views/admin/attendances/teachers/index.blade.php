@@ -55,6 +55,7 @@
                                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                         <th class="text-center">No</th>
                                         <th class="min-w-200px text-start">Nama Guru</th>
+                                        <th class="min-w-200px text-start">NIP</th>
                                         <th class="min-w-200px text-start">Aksi</th>
                                     </tr>
                                 </thead>
@@ -62,22 +63,28 @@
                                     <tr>
                                         <td class="text-center">1</td>
                                         <td class="text-start">Atikah Rahmawati S.Kom</td>
+                                        <td class="text-start">112233</td>
                                         <td class="text-start">
-                                            <a href="#" class="btn btn-light-primary btn-sm">Detail</a>
+                                            <a href="{{ route('attendances-teachers.show', 'slskkksqmmmmkw') }}"
+                                                class="btn btn-light-primary btn-sm">Detail</a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">2</td>
                                         <td class="text-start">Muhammad Ridwan S.Kom</td>
+                                        <td class="text-start">445566</td>
                                         <td class="text-start">
-                                            <a href="#" class="btn btn-light-primary btn-sm">Detail</a>
+                                            <a href="{{ route('attendances-teachers.show', 'ckckckckdlds') }}"
+                                                class="btn btn-light-primary btn-sm">Detail</a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">3</td>
                                         <td class="text-start">Rahmat Fauzi Widianto S.Kom</td>
+                                        <td class="text-start">778899</td>
                                         <td class="text-start">
-                                            <a href="#" class="btn btn-light-primary btn-sm">Detail</a>
+                                            <a href="{{ route('attendances-teachers.show', 'sksdkslalala') }}"
+                                                class="btn btn-light-primary btn-sm">Detail</a>
                                         </td>
                                     </tr>
                                 </tbody>
