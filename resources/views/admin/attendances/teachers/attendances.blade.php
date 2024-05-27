@@ -129,9 +129,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-grid gap-2 d-md-block pt-3">
-                    <a href="{{ route('attendances-teachers.show', 'slskkksqmmmmkw') }}" class="btn btn-primary me-3"><i
-                            class="bi bi-arrow-left-circle"></i>Kembali</a>
+                <div class="card card-footer">
+                    <div class="row">
+                        <div class="d-grid gap-2 d-md-block pt-3">
+                            <a href="{{ route('attendances-teachers.show', 'slskkksqmmmmkw') }}"
+                                class="btn btn-primary me-3"><i class="bi bi-arrow-left-circle"></i>Kembali</a>
+                        </div>
+                    </div>
                 </div>
                 {{-- <div class="d-flex p-5 justify-content-end">
                         {!! $attendances->links() !!}
