@@ -50,19 +50,33 @@ class ExtracurricularController extends Controller
         }
     }
 
-    public function show(Extracurricular $extracurricular)
-    {
-        //
-    }
-
     public function edit(Extracurricular $extracurricular): View
     {
         return view('admin.extracurriculars.edit', compact('extracurricular'));
     }
 
-    public function update(UpdateExtracurricularRequest $request, Extracurricular $extracurricular)
+    public function update(UpdateExtracurricularRequest $request, Extracurricular $extracurricular): RedirectResponse
     {
-        //
+        $data = $request->validated();
+
+        try {
+            DB::beginTransaction();
+
+            $extracurricular->update($data);
+
+            DB::commit();
+            return redirect(RoutingHelper::updateToIndexRoute())->with([
+                'message' => 'Ekstrakurikuler berhasil diubah',
+                'status' => 'success',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return redirect()->back()->withInput()->with([
+                'message' => trans('message.error'),
+                'status' => 'danger',
+            ]);
+        }
     }
 
     public function destroy(Extracurricular $extracurricular)
