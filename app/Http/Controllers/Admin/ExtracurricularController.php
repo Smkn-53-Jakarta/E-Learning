@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\RoutingHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Extracurricular\StoreExtracurricularRequest;
 use App\Http\Requests\Extracurricular\UpdateExtracurricularRequest;
 use App\Models\Extracurricular;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 
 class ExtracurricularController extends Controller
 {
@@ -23,9 +26,28 @@ class ExtracurricularController extends Controller
         return view('admin.extracurriculars.create');
     }
 
-    public function store(StoreExtracurricularRequest $request)
+    public function store(StoreExtracurricularRequest $request): RedirectResponse
     {
-        //
+        $data = $request->validated();
+
+        try {
+            DB::beginTransaction();
+
+            Extracurricular::create($data);
+
+            DB::commit();
+            return redirect(RoutingHelper::storeToIndexRoute())->with([
+                'message' => 'Ekstrakurikuler berhasil ditambahkan',
+                'status' => 'success',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return redirect()->back()->withInput()->with([
+                'message' => trans('message.error'),
+                'status' => 'danger',
+            ]);
+        }
     }
 
     public function show(Extracurricular $extracurricular)
