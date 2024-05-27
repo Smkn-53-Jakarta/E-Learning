@@ -3,6 +3,7 @@
 namespace App\Http\Requests\SchoolYear;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateSchoolyearRequest extends FormRequest
 {
