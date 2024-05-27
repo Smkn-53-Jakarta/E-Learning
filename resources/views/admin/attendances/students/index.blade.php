@@ -35,11 +35,18 @@
                     <div class="card-header mt-6">
                         <div class="card-title">
                             <div class="d-flex align-items-center position-relative my-1 me-5">
-                                <x-SearchInput placeholder="Cari Rekap Absensi Siswa" />
+                                <h3>Periode Juni</h3>
+                            </div>
+                        </div>
+                        <div class="card-toolbar">
+                            <div class="d-grid gap-2 d-md-block">
+                                <a href="#" class="btn btn-primary me-3"><i class="bi bi-filter"></i>Filter
+                                    Bulanan</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
+
                         <div class="table-responsive fixed-actions-table">
                             <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
                                 <thead>
@@ -54,7 +61,8 @@
                                         <td class="text-center">1</td>
                                         <td class="text-start">Kelas 10</td>
                                         <td class="text-start">
-                                            <a href="#" class="btn btn-light-primary btn-sm">Detail</a>
+                                            <a href="{{ route('attendances-students.show', 'mksksjwhwhwiw') }}"
+                                                class="btn btn-light-primary btn-sm">Detail</a>
                                         </td>
                                     </tr>
                                     <tr>
