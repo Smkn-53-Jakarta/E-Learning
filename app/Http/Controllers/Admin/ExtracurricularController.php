@@ -79,8 +79,13 @@ class ExtracurricularController extends Controller
         }
     }
 
-    public function destroy(Extracurricular $extracurricular)
+    public function destroy(Extracurricular $extracurricular): RedirectResponse
     {
-        //
+        $extracurricular->delete();
+
+        return back()->with([
+            'message' => 'Ekstrakurikuler berhasil dihapus',
+            'status' => 'success',
+        ]);
     }
 }
