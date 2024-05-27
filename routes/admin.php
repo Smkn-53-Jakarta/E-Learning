@@ -13,8 +13,7 @@ use App\Http\Controllers\Admin\StatusController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->middleware('auth', 'permissions')->group(function () 
-{
+Route::prefix('admin')->middleware('auth', 'permissions')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard.index');
@@ -137,20 +136,21 @@ Route::prefix('admin')->middleware('auth', 'permissions')->group(function ()
     Route::get('rekap-absensi/guru', function () {
         return view('admin.attendances.teachers.index');
     })->name('attendances-teachers.index');
+
     //*Show Attendances Teachers
-    Route::get('rekap-absensi/guru/{teacher_id}', function(){
+    Route::get('rekap-absensi/guru/{teacher_id}', function () {
         return view('admin.attendances.teachers.show');
     })->name('attendances-teachers.show');
+
     //*Attendances Teachers
-    Route::get('rekap-absensi/guru/{teacher_id}', function(){
+    Route::get('rekap-absensi/guru/{teacher_id}/kehadiran', function () {
         return view('admin.attendances.teachers.attendances');
-    })->name('attendances-teachers.attendances');
-    
+    })->name('attendances-teachers-attendances.index');
 
     //* Route Attendances Students
     Route::get('rekap-absensi/siswa', function () {
         return view('admin.attendances.students.index');
     })->name('attendances-students.index');
     //*Show Attendances Students
-    
+
 });

@@ -71,7 +71,7 @@
                                         <td class="text-start">XII-TKJ</td>
                                         <td class="text-start">Matematika</td>
                                         <td class="text-start">
-                                            <a href="{{ route('attendances-teachers.attendances', 'slskkksqmmmmkw') }}"
+                                            <a href="{{ route('attendances-teachers-attendances.index', 'slskkksqmmmmkw') }}"
                                                 class="btn btn-light-primary btn-sm">Detail</a>
                                         </td>
                                     </tr>
