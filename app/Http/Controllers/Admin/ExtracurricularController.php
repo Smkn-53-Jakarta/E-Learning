@@ -88,4 +88,31 @@ class ExtracurricularController extends Controller
             'status' => 'success',
         ]);
     }
+
+    public function trashed(): View
+    {
+        $extracurriculars = Extracurricular::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
+
+        return view('admin.extracurriculars.trashed', compact('extracurriculars'));
+    }
+
+    public function restore($id): RedirectResponse
+    {
+        Extracurricular::withTrashed()->findOrFail($id)->restore();
+
+        return redirect(RoutingHelper::restoreToIndex())->with([
+            'message' => 'Ekstrakurikuler berhasil dipulihkan',
+            'status' => 'success',
+        ]);
+    }
+
+    public function forceDelete($id): RedirectResponse
+    {
+        Extracurricular::withTrashed()->findOrFail($id)->forceDelete();
+
+        return redirect(RoutingHelper::forceDeleteToIndex())->with([
+            'message' => 'Ekstrakurikuler berhasil dihapus',
+            'status' => 'success',
+        ]);
+    }
 }
