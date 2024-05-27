@@ -88,4 +88,31 @@ class SchoolYearController extends Controller
             'status' => 'success',
         ]);
     }
+
+    public function trashed(): View
+    {
+        $schoolYears = SchoolYear::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
+
+        return view('admin.schoolYears.trashed', compact('schoolYears'));
+    }
+
+    public function restore($id): RedirectResponse
+    {
+        SchoolYear::withTrashed()->findOrFail($id)->restore();
+
+        return redirect(RoutingHelper::restoreToIndex())->with([
+            'message' => 'Tahun pelajaran berhasil dipulihkan',
+            'status' => 'success',
+        ]);
+    }
+
+    public function forceDelete($id): RedirectResponse
+    {
+        SchoolYear::withTrashed()->findOrFail($id)->forceDelete();
+
+        return redirect(RoutingHelper::forceDeleteToIndex())->with([
+            'message' => 'Tahun pelajaran berhasil dihapus',
+            'status' => 'success',
+        ]);
+    }
 }
