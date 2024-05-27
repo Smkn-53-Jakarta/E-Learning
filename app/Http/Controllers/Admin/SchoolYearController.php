@@ -55,9 +55,28 @@ class SchoolYearController extends Controller
         return view('admin.school-years.edit', compact('schoolYear'));
     }
 
-    public function update(UpdateSchoolyearRequest $request, SchoolYear $schoolYear)
+    public function update(UpdateSchoolyearRequest $request, SchoolYear $schoolYear): RedirectResponse
     {
-        //
+        $data = $request->validated();
+
+        try {
+            DB::beginTransaction();
+
+            $schoolYear->update($data);
+
+            DB::commit();
+            return redirect(RoutingHelper::updateToIndexRoute())->with([
+                'message' => 'Tahun pelajaran berhasil diubah',
+                'status' => 'success',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return redirect()->back()->withInput()->with([
+                'message' => trans('message.error'),
+                'status' => 'danger',
+            ]);
+        }
     }
 
     public function destroy(SchoolYear $schoolYear)

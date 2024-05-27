@@ -13,17 +13,17 @@ class StoreSchoolyearRequest extends FormRequest
         $tableName = (new SchoolYear())->getTable();
 
         return [
-            'name' => ['required', 'string', 'max:64', Rule::unique($tableName, 'name')],
+            'year' => ['required', 'string', 'max:64', Rule::unique($tableName, 'year')],
         ];
     }
 
     public function messages(): array
     {
         return [
-            'name.required' => 'Nama tahun pelajaran wajib diisi',
-            'name.string' => 'Nama tahun pelajaran wajib string',
-            'name.max' => 'Nama tahun pelajaran maksimal 64 karakter',
-            'name.unique' => 'Nama tahun pelajaran sudah tersedia',
+            'year.required' => 'Nama tahun pelajaran wajib diisi',
+            'year.string' => 'Nama tahun pelajaran wajib string',
+            'year.max' => 'Nama tahun pelajaran maksimal 64 karakter',
+            'year.unique' => 'Nama tahun pelajaran sudah tersedia',
         ];
     }
 }
