@@ -93,7 +93,7 @@ class SchoolYearController extends Controller
     {
         $schoolYears = SchoolYear::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
 
-        return view('admin.schoolYears.trashed', compact('schoolYears'));
+        return view('admin.school-years.trashed', compact('schoolYears'));
     }
 
     public function restore($id): RedirectResponse
