@@ -148,7 +148,7 @@ Route::prefix('admin')->middleware('auth', 'permissions')->group(function () {
     })->name('attendances-teachers-attendances.index');
 
     //* Route Attendances Students
-    Route::get('rekap-absensi/siswa', function () {
+    Route::get('rekap-absensi/kelas', function () {
         return view('admin.attendances.students.index');
     })->name('attendances-students.index');
     //*Show Attendances Students
