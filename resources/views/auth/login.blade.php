@@ -3,12 +3,13 @@
         <div class="container-login100"
             style="background-image: url({{ FileHelper::getImage('assets/auth/images/bg-01.jpg') }});">
             <div class="wrap-login100 p-l-55 p-r-55 p-t-60 p-b-50">
-
                 <form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
+                    <div class="container text-center d-flex align-items-center justify-content-center">
+                        <div class="logo mb-4" style="width: 17rem;">
+                            <img src="{{ asset('images/logo/Logotnpbg.png') }}" alt="" class="img-fluid">
+                        </div>
+                    </div>
                     @csrf
-                    <span class="login100-form-title p-b-49">
-                        Login
-                    </span>
                     @if (session('message'))
                         <div class="alert alert-danger" role="alert">
                             <i class="fa fa-check"></i>
