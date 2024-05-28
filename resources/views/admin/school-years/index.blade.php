@@ -16,8 +16,8 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('schoolYears.index') }}"
-                                    class="text-muted text-hover-primary">Tahun Pelajaran</a>
+                                <a href="{{ route('school-years.index') }}" class="text-muted text-hover-primary">Tahun
+                                    Pelajaran</a>
                             </li>
                         </ul>
                     </div>
@@ -40,13 +40,13 @@
                         </div>
                         <div class="card-toolbar">
                             @if ($schoolYearsTrashed)
-                                <a href="{{ route('schoolYears.trashed') }}" class="btn btn-light-primary me-3">
+                                <a href="{{ route('school-years.trashed') }}" class="btn btn-light-primary me-3">
                                     <i class="fa-solid fa-trash-can"></i>
                                     Sampah
                                 </a>
                             @endif
-                            @can('schoolYears.create')
-                                <x-AddButton :url="route('schoolYears.create')">Tambah Tahun Pelajaran</x-AddButton>
+                            @can('school-years.create')
+                                <x-AddButton :url="route('school-years.create')">Tambah Tahun Pelajaran</x-AddButton>
                             @endcan
                         </div>
                     </div>
@@ -78,16 +78,16 @@
                                                     </a>
                                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
                                                         data-kt-menu="true">
-                                                        @can('schoolYears.update')
+                                                        @can('school-years.update')
                                                             <div class="menu-item px-3">
-                                                                <a href="{{ route('schoolYears.edit', $schoolYear->id) }}"
+                                                                <a href="{{ route('school-years.edit', $schoolYear->id) }}"
                                                                     class="menu-link px-3">Ubah</a>
                                                             </div>
                                                         @endcan
-                                                        @can('schoolYears.delete')
+                                                        @can('school-years.delete')
                                                             <div class="menu-item px-3">
                                                                 <form
-                                                                    action="{{ route('schoolYears.destroy', $schoolYear->id) }}"
+                                                                    action="{{ route('school-years.destroy', $schoolYear->id) }}"
                                                                     method="post" class="me-3">
                                                                     @csrf
                                                                     @method('DELETE')
@@ -115,4 +115,3 @@
         </div>
     </div>
 </x-AppLayout>
-

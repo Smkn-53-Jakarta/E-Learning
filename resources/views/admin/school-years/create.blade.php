@@ -16,14 +16,14 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('extracurriculars.index') }}"
-                                    class="text-muted text-hover-primary">Tahun Pelajaran</a>
+                                <a href="{{ route('school-years.index') }}" class="text-muted text-hover-primary">Tahun
+                                    Pelajaran</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('extracurriculars.create') }}"
+                                <a href="{{ route('school-years.create') }}"
                                     class="text-muted text-hover-primary">Tambah</a>
                             </li>
                         </ul>
@@ -37,7 +37,7 @@
                     <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
                 @endif
                 <div class="card">
-                    <form class="form card-body" action="{{ route('schoolYears.store') }}" method="post">
+                    <form class="form card-body" action="{{ route('school-years.store') }}" method="post">
                         @csrf
                         <div class="d-flex flex-column me-n7 pe-7">
                             <div class="fv-row mb-10">
@@ -45,8 +45,8 @@
                                     <span class="required">Tahun Pelajaran</span>
                                 </label>
                                 <input id="year" class="form-control mb-2 @error('year') is-invalid @enderror"
-                                    placeholder="Masukan tahun pelajaran" name="year"
-                                    value="{{ old('year') }}" maxlength="64" required />
+                                    placeholder="Masukan tahun pelajaran" name="year" value="{{ old('year') }}"
+                                    maxlength="64" required />
                                 <x-Form.InputError name="year" />
                             </div>
                             <div class="d-flex gap-3">
@@ -64,11 +64,10 @@
 
     @push('scripts')
         <script>
-            $('#name').maxlength({
+            $('#year').maxlength({
                 warningClass: "badge badge-success",
                 limitReachedClass: "badge badge-danger"
             });
         </script>
     @endpush
 </x-AppLayout>
-

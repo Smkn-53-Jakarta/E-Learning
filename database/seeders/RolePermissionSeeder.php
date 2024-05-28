@@ -16,7 +16,12 @@ class RolePermissionSeeder extends Seeder
     {
         $admin = Role::where('name', 'Admin')->first();
         $adminPermissions = Permission::pluck('id')->all();
-
         $admin->syncPermissions($adminPermissions);
+
+        $teacher = Role::where('name', 'Teacher')->first();
+        $teacherPermissions = Permission::where(function ($query) {
+            $query->where('name', 'like', 'dashboard.%');
+        })->pluck('id')->all();
+        $teacher->syncPermissions($teacherPermissions);
     }
 }

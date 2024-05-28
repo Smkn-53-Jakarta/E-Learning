@@ -16,8 +16,8 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('schoolYears.index') }}"
-                                    class="text-muted text-hover-primary">Tahun Pelajaran</a>
+                                <a href="{{ route('school-years.index') }}" class="text-muted text-hover-primary">Tahun
+                                    Pelajaran</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
@@ -66,10 +66,10 @@
                                                     </a>
                                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
                                                         data-kt-menu="true">
-                                                        @can('schoolYears.restore')
+                                                        @can('school-years.restore')
                                                             <div class="menu-item px-3">
                                                                 <form
-                                                                    action="{{ route('schoolYears.restore', $schoolYear->id) }}"
+                                                                    action="{{ route('school-years.restore', $schoolYear->id) }}"
                                                                     method="post">
                                                                     @csrf
                                                                     <a href="#" class="menu-link px-3"
@@ -77,10 +77,10 @@
                                                                 </form>
                                                             </div>
                                                         @endcan
-                                                        @can('schoolYears.delete')
+                                                        @can('school-years.delete')
                                                             <div class="menu-item px-3">
                                                                 <form
-                                                                    action="{{ route('schoolYears.force-delete', $schoolYear->id) }}"
+                                                                    action="{{ route('school-years.force-delete', $schoolYear->id) }}"
                                                                     method="post">
                                                                     @csrf
                                                                     <a href="#" class="menu-link px-3"
@@ -108,4 +108,3 @@
         </div>
     </div>
 </x-AppLayout>
-

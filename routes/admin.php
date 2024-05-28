@@ -94,16 +94,16 @@ Route::prefix('admin')->middleware('auth', 'permissions')->group(function () {
     ]);
 
     //* Route SchoolYears
-    Route::get('/tahun-pelajaran/trashed', [SchoolYearController::class, 'trashed'])->name('schoolYears.trashed');
-    Route::post('/tahun-pelajaran/{schoolYear}/restore', [SchoolYearController::class, 'restore'])->name('schoolYears.restore');
-    Route::post('/tahun-pelajaran/{schoolYear}/force-delete', [SchoolYearController::class, 'forceDelete'])->name('schoolYears.force-delete');
+    Route::get('/tahun-pelajaran/trashed', [SchoolYearController::class, 'trashed'])->name('school-years.trashed');
+    Route::post('/tahun-pelajaran/{schoolYear}/restore', [SchoolYearController::class, 'restore'])->name('school-years.restore');
+    Route::post('/tahun-pelajaran/{schoolYear}/force-delete', [SchoolYearController::class, 'forceDelete'])->name('school-years.force-delete');
     Route::resource('tahun-pelajaran', SchoolYearController::class)->except(['show'])->parameters(['tahun-pelajaran' => 'schoolYear'])->names([
-        'index' => 'schoolYears.index',
-        'create' => 'schoolYears.create',
-        'store' => 'schoolYears.store',
-        'edit' => 'schoolYears.edit',
-        'update' => 'schoolYears.update',
-        'destroy' => 'schoolYears.destroy',
+        'index' => 'school-years.index',
+        'create' => 'school-years.create',
+        'store' => 'school-years.store',
+        'edit' => 'school-years.edit',
+        'update' => 'school-years.update',
+        'destroy' => 'school-years.destroy',
     ]);
 
     //* Route Ekstracurriculars

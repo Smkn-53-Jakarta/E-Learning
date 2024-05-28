@@ -159,23 +159,23 @@ class PermissionSeeder extends Seeder
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'schoolYears.read',
+                'name' => 'school-years.read',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'schoolYears.create',
+                'name' => 'school-years.create',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'schoolYears.update',
+                'name' => 'school-years.update',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'schoolYears.delete',
+                'name' => 'school-years.delete',
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'schoolYears.restore',
+                'name' => 'school-years.restore',
                 'guard_name' => 'web'
             ],
             [

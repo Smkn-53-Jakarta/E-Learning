@@ -16,8 +16,8 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('schoolYears.index') }}"
-                                    class="text-muted text-hover-primary">Tahun Pelajaran</a>
+                                <a href="{{ route('school-years.index') }}" class="text-muted text-hover-primary">Tahun
+                                    Pelajaran</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
@@ -36,7 +36,7 @@
                     <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
                 @endif
                 <div class="card">
-                    <form class="form card-body" action="{{ route('schoolYears.update', $schoolYear->id) }}"
+                    <form class="form card-body" action="{{ route('school-years.update', $schoolYear->id) }}"
                         method="post">
                         @csrf
                         @method('PUT')
@@ -47,7 +47,7 @@
                                 </label>
                                 <input id="year" class="form-control mb-2 @error('year') is-invalid @enderror"
                                     placeholder="Masukan tahun pelajaran" name="year"
-                                    value="{{ old('year', $schoolYear->name) }}" maxlength="64" required />
+                                    value="{{ old('year', $schoolYear->year) }}" maxlength="64" required />
                                 <x-Form.InputError name="year" />
                             </div>
                             <div class="d-flex gap-3">
@@ -65,11 +65,10 @@
 
     @push('scripts')
         <script>
-            $('#name').maxlength({
+            $('#year').maxlength({
                 warningClass: "badge badge-success",
                 limitReachedClass: "badge badge-danger"
             });
         </script>
     @endpush
 </x-AppLayout>
-
