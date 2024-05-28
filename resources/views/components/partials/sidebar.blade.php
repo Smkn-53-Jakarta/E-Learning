@@ -30,6 +30,7 @@
             data-kt-scroll-wrappers="#kt_app_sidebar_menu" data-kt-scroll-offset="5px" data-kt-scroll-save-state="true">
             <div class="menu menu-column menu-rounded menu-sub-indention px-3" id="#kt_app_sidebar_menu"
                 data-kt-menu="true" data-kt-menu-expand="false">
+                {{-- SIDE BAR ADMIN --}}
                 @can('dashboard.index')
                     <div class="menu-item">
                         <a class="menu-link {{ Request::is('admin/dashboard*') ? 'active' : '' }}"
@@ -53,6 +54,7 @@
                         </a>
                     </div>
                 @endcan
+                {{-- ADMIN MANAGEMENET PENGGUNA --}}
                 @canany(['roles.read', 'permissions.read'])
                     <div data-kt-menu-trigger="click"
                         class="menu-item menu-accordion {{ Request::is('admin/roles*', 'admin/permissions*') ? 'show' : '' }}">
@@ -212,34 +214,38 @@
                         </div>
                     </div>
                 @endcanany
-                {{-- REKAP ABSENSI --}}
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                    <span class="menu-link">
-                        <span class="menu-icon">
-                            <i class="bi bi-clipboard-check" style="font-size: 20px;"></i>
+                {{-- ADMIN REKAP ABSENSI --}}
+                @canany(['statuses.read', 'courses.read', 'teachers.read', 'students.read', 'classrooms.read',
+                    'school-years.read', 'extracurriculars.read'])
+                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <span class="menu-link">
+                            <span class="menu-icon">
+                                <i class="bi bi-clipboard-check" style="font-size: 20px;"></i>
+                            </span>
+                            <span class="menu-title">Rekap Absensi</span>
+                            <span class="menu-arrow"></span>
                         </span>
-                        <span class="menu-title">Rekap Absensi</span>
-                        <span class="menu-arrow"></span>
-                    </span>
-                    <div class="menu-sub menu-sub-accordion">
-                        <div class="menu-item">
-                            <a class="menu-link" href="{{ route('attendances-teachers.index') }}">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Rekap Guru</span>
-                            </a>
-                        </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="{{ route('attendances-students.index') }}">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Rekap Siswa</span>
-                            </a>
+                        <div class="menu-sub menu-sub-accordion">
+                            <div class="menu-item">
+                                <a class="menu-link" href="{{ route('attendances-teachers.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Rekap Guru</span>
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <a class="menu-link" href="{{ route('attendances-students.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Rekap Siswa</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endcanany
+                {{-- ADMIN JADWAL MAPEL --}}
                 @can('schedule-of-subjects.read')
                     <div class="menu-item">
                         <a class="menu-link  {{ Request::is('admin/jadwal-mata-pelajaran*') ? 'active' : '' }}"
@@ -264,6 +270,36 @@
                         </a>
                     </div>
                 @endcan
+
+
+
+                {{-- SIDE BAR GURU --}}
+                @can('dashboard-teachers.index')
+                    <div class="menu-item">
+                        <a class="menu-link {{ Request::is('guru/dashboard*') ? 'active' : '' }}"
+                            href="{{ route('dashboard.index') }}">
+                            <span class="menu-icon">
+                                <span class="svg-icon svg-icon-2">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="2" y="2" width="9" height="9" rx="2"
+                                            fill="currentColor" />
+                                        <rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2"
+                                            fill="currentColor" />
+                                        <rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2"
+                                            fill="currentColor" />
+                                        <rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2"
+                                            fill="currentColor" />
+                                    </svg>
+                                </span>
+                            </span>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </div>
+                @endcan
+                {{-- MENGAJAR GURU --}}
+                @canany('')
+                @endcanany
             </div>
         </div>
     </div>
