@@ -17,7 +17,7 @@
                     <td class="p-1">{{ $scheduleOfSubject->teacher->user->name }}</td>
                 </tr>
                 <tr>
-                    <td class="p-1"><i class="bi bi-people fs-2"></i> Kelas</td>
+                    <td class="p-1"><i class="bi bi-signpost-split-fill fs-2"></i> Kelas</td>
                     <td class="p-1">:</td>
                     <td class="p-1">{{ $scheduleOfSubject->classroom->name }}</td>
                 </tr>
