@@ -148,9 +148,17 @@ Route::prefix('admin')->middleware('auth', 'permissions')->group(function () {
     })->name('attendances-teachers-attendances.index');
 
     //* Route Attendances Students
-    Route::get('rekap-absensi/siswa', function () {
+    Route::get('rekap-absensi/kelas', function () {
         return view('admin.attendances.students.index');
     })->name('attendances-students.index');
-    //*Show Attendances Students
 
+    //*Show Attendances Students
+    Route::get('rekap-absensi/kelas/mata-pelajaran', function () {
+        return view('admin.attendances.students.show');
+    })->name('attendances-students.show');
+
+    //*Attendances Students
+    Route::get('rekap-absensi/kelas/mata-pelajaran/{student_id}/kehadiran', function () {
+        return view('admin.attendances.students.attendances');
+    })->name('attendances-students-attendances.index');
 });

@@ -17,14 +17,14 @@
                             </li>
                             <li class="breadcrumb-item text-muted">
                                 <a href="{{ route('attendances-teachers.index') }}"
-                                    class="text-muted text-hover-primary">Guru</a>
+                                    class="text-muted text-hover-primary">Rekap Guru</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
                                 <a href="{{ route('attendances-teachers.show', 'Guru-Atikah') }}"
-                                    class="text-muted text-hover-primary">Detail</a>
+                                    class="text-muted text-hover-primary">Guru bersangkutan</a>
                             </li>
                         </ul>
                     </div>
@@ -47,14 +47,12 @@
                         </div>
                         <div class="card-toolbar">
                             <div class="d-grid gap-2 d-md-block">
-                                <a href="#" class="btn btn-light-primary me-3">Generate</a>
-                                <a href="#" class="btn btn-light-primary me-3"><i
-                                        class="bi bi-filter"></i>Filter</a>
+                                <a href="#" class="btn btn-primary me-3"><i class="bi bi-filter"></i>Filter
+                                    Bulanan</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="class dash"></div>
                         <div class="table-responsive fixed-actions-table">
                             <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
                                 <thead>
@@ -93,6 +91,14 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-footer">
+                    <div class="row">
+                        <div class="d-grid gap-2 d-md-block pt-3">
+                            <a href="{{ route('attendances-teachers.index') }}" class="btn btn-primary me-3"><i
+                                    class="bi bi-arrow-left-circle"></i>Kembali</a>
                         </div>
                     </div>
                 </div>

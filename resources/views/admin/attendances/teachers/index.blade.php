@@ -40,23 +40,21 @@
                         </div>
                         <div class="card-toolbar">
                             <div class="d-grid gap-2 d-md-block">
-                                <a href="#" class="btn btn-light-primary me-3">Generate</a>
-                                <a href="#" class="btn btn-light-primary me-3"><i
-                                        class="bi bi-filter"></i>Filter</a>
+                                <a href="#" class="btn btn-primary me-3"><i class="bi bi-filter"></i>Filter
+                                    Bulanan</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <h3 class="pb-1">Periode Juni</h3>
-                        <div class="class dash"></div>
                         <div class="table-responsive fixed-actions-table">
                             <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
                                 <thead>
                                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                         <th class="text-center">No</th>
                                         <th class="min-w-200px text-start">Nama Guru</th>
-                                        <th class="min-w-200px text-start">NIP</th>
-                                        <th class="min-w-200px text-start">Aksi</th>
+                                        <th class="min-w-80px text-start">NIP</th>
+                                        <th class="min-w-40px text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="fw-semibold text-gray-600">
@@ -64,7 +62,7 @@
                                         <td class="text-center">1</td>
                                         <td class="text-start">Atikah Rahmawati S.Kom</td>
                                         <td class="text-start">112233</td>
-                                        <td class="text-start">
+                                        <td class="text-center">
                                             <a href="{{ route('attendances-teachers.show', 'slskkksqmmmmkw') }}"
                                                 class="btn btn-light-primary btn-sm">Detail</a>
                                         </td>
@@ -73,7 +71,7 @@
                                         <td class="text-center">2</td>
                                         <td class="text-start">Muhammad Ridwan S.Kom</td>
                                         <td class="text-start">445566</td>
-                                        <td class="text-start">
+                                        <td class="text-center">
                                             <a href="{{ route('attendances-teachers.show', 'ckckckckdlds') }}"
                                                 class="btn btn-light-primary btn-sm">Detail</a>
                                         </td>
@@ -82,7 +80,7 @@
                                         <td class="text-center">3</td>
                                         <td class="text-start">Rahmat Fauzi Widianto S.Kom</td>
                                         <td class="text-start">778899</td>
-                                        <td class="text-start">
+                                        <td class="text-center">
                                             <a href="{{ route('attendances-teachers.show', 'sksdkslalala') }}"
                                                 class="btn btn-light-primary btn-sm">Detail</a>
                                         </td>

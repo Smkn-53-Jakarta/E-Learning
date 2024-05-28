@@ -17,14 +17,21 @@
                             </li>
                             <li class="breadcrumb-item text-muted">
                                 <a href="{{ route('attendances-teachers.index') }}"
-                                    class="text-muted text-hover-primary">Guru</a>
+                                    class="text-muted text-hover-primary">Rekap Guru</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
                                 <a href="{{ route('attendances-teachers.show', 'Guru-Atikah') }}"
-                                    class="text-muted text-hover-primary">Detail</a>
+                                    class="text-muted text-hover-primary">Guru bersangkutan</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <span class="bullet bg-gray-400 w-5px h-2px"></span>
+                            </li>
+                            <li class="breadcrumb-item text-muted">
+                                <a href="{{ route('attendances-teachers-attendances.index', 'Guru-Atikah') }}"
+                                    class="text-muted text-hover-primary">Kehadiran</a>
                             </li>
                         </ul>
                     </div>
@@ -48,21 +55,24 @@
                         <div class="card-toolbar">
                             <div class="d-grid gap-2 d-md-block">
                                 <a href="#" class="btn btn-light-primary me-3">Generate</a>
-                                <a href="#" class="btn btn-light-primary me-3"><i
-                                        class="bi bi-filter"></i>Filter</a>
+                                <a href="#" class="btn btn-primary me-3"><i class="bi bi-filter"></i>Filter
+                                    Bulanan</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="class dash"></div>
                         <div class="table-responsive fixed-actions-table">
                             <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
                                 <thead>
                                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                         <th class="text-center">No</th>
-                                        <th class="min-w-200px text-start">Nama Kelas</th>
+                                        <th class="min-w-90px text-start">Nama Kelas</th>
                                         <th class="min-w-200px text-start">Mata Pelajaran</th>
-                                        <th class="min-w-200px text-start">Aksi</th>
+                                        <th class="min-w-80px text-center">Tanggal</th>
+                                        <th class="min-w-100px text-center">Jam Mulai</th>
+                                        <th class="min-w-100px text-center">Jam Selesai</th>
+                                        <th class="min-w-50px text-center">Pertemuan</th>
+                                        <th class="min-w-80px text-center">Ket.</th>
                                     </tr>
                                 </thead>
                                 <tbody class="fw-semibold text-gray-600">
@@ -70,28 +80,60 @@
                                         <td class="text-center">1</td>
                                         <td class="text-start">XII-TKJ</td>
                                         <td class="text-start">Matematika</td>
-                                        <td class="text-start">
-                                            <a href="#" class="btn btn-light-primary btn-sm">Detail</a>
+                                        <td class="text-center">27-08-2024</td>
+                                        <td class="text-center">07.00</td>
+                                        <td class="text-center">09.00</td>
+                                        <td class="text-center">1</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-success">Hadir</button>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">2</td>
-                                        <td class="text-start">XI-TKJ</td>
-                                        <td class="text-start">Desain Visual</td>
-                                        <td class="text-start">
-                                            <a href="#" class="btn btn-light-primary btn-sm">Detail</a>
+                                        <td class="text-start">XII-TKJ</td>
+                                        <td class="text-start">Bahasa Indonesia</td>
+                                        <td class="text-center">27-08-2024</td>
+                                        <td class="text-center">07.00</td>
+                                        <td class="text-center">09.00</td>
+                                        <td class="text-center">1</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-danger">Tidak Hadir</button>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">3</td>
-                                        <td class="text-start">X-TKJ</td>
-                                        <td class="text-start">Web Program</td>
-                                        <td class="text-start">
-                                            <a href="#" class="btn btn-light-primary btn-sm">Detail</a>
+                                        <td class="text-start">XII-TKJ</td>
+                                        <td class="text-start">Bahasa Inggris</td>
+                                        <td class="text-center">27-08-2024</td>
+                                        <td class="text-center">07.00</td>
+                                        <td class="text-center">09.00</td>
+                                        <td class="text-center">1</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-success">Hadir</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center">4</td>
+                                        <td class="text-start">XII-TKJ</td>
+                                        <td class="text-start">Bahasa Inggris</td>
+                                        <td class="text-center">27-08-2024</td>
+                                        <td class="text-center">07.00</td>
+                                        <td class="text-center">09.00</td>
+                                        <td class="text-center">1</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-warning">Izin</button>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-footer">
+                    <div class="row">
+                        <div class="d-grid gap-2 d-md-block pt-3">
+                            <a href="{{ route('attendances-teachers.show', 'slskkksqmmmmkw') }}"
+                                class="btn btn-primary me-3"><i class="bi bi-arrow-left-circle"></i>Kembali</a>
                         </div>
                     </div>
                 </div>
