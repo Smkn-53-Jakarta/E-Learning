@@ -20,7 +20,7 @@ class RolePermissionSeeder extends Seeder
 
         $teacher = Role::where('name', 'Teacher')->first();
         $teacherPermissions = Permission::where(function ($query) {
-            $query->where('name', 'like', 'dashboard.%');
+            $query->where('name', 'like', 'dashboard-teachers.%');
         })->pluck('id')->all();
         $teacher->syncPermissions($teacherPermissions);
     }
