@@ -298,8 +298,16 @@
                     </div>
                 @endcan
                 {{-- MENGAJAR GURU --}}
-                @canany('')
-                @endcanany
+                @can('teaching-schedules.read')
+                    <div class="menu-item {{ Request::is('guru/mengajar*') ? 'active' : '' }}">
+                        <a class="menu-link active:" href="{{ route('teaching-schedules.index') }}">
+                            <span class="menu-icon">
+                                <i class="bi bi-calendar" style="font-size: 20px;"></i>
+                            </span>
+                            <span class="menu-title">Mengajar</span>
+                        </a>
+                    </div>
+                @endcan
             </div>
         </div>
     </div>
