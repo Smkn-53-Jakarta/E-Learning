@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Teacher\TeachingScheduleController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
@@ -6,7 +8,5 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
         return view('teachers.dashboard');
     })->name('dashboard-teachers.index');
 
-    Route::get('mengajar', function(){
-        return view('teachers.teaching-schedules.index');
-    })->name('teaching-schedules.index');
+    Route::get('/jadwal-mengajar', [TeachingScheduleController::class, 'index'])->name('teaching-schedules.index');
 });

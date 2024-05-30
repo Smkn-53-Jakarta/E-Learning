@@ -27,7 +27,12 @@
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <div id="kt_app_content_container" class="app-container container-xxl">
-                <div class="card card-flush">
+                <div class="mt-2">
+                    @if (session('message'))
+                        <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
+                    @endif
+                </div>
+                <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between flex-column flex-lg-row w-100">
                             <div class="card-title">
@@ -48,12 +53,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-2">
-                    @if (session('message'))
-                        <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
-                    @endif
-                </div>
-                <div class="row mt-1">
+                <div class="row">
                     @if (count($scheduleOfSubjects))
                         @foreach ($scheduleOfSubjects as $scheduleOfSubject)
                             <div class="col-lg-4 mt-4">

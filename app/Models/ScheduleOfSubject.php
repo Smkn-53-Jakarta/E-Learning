@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -36,5 +37,16 @@ class ScheduleOfSubject extends Model
                 $query->where('year', 'like', '%' . $search . '%');
             });
         });
+    }
+
+    public function getStartTimeAttribute($value)
+    {
+        return Carbon::parse($value)->format('H:i');
+    }
+
+    // Accessor for end_time
+    public function getEndTimeAttribute($value)
+    {
+        return Carbon::parse($value)->format('H:i');
     }
 }
