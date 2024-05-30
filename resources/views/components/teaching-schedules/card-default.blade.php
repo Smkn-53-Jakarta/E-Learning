@@ -25,11 +25,44 @@
         </table>
         <div class="container mt-5">
             <div class="btn-group w-100">
-                <form class="btn btn-primary" action="" method="POST">
-                    <a href="#" class="text-white">
+                @php
+                    use Carbon\Carbon;
+
+                    date_default_timezone_set('Asia/Jakarta');
+                    $now = Carbon::now();
+                    $startTime = Carbon::parse($teachingSchedule->start_time);
+                    $endTime = Carbon::parse($teachingSchedule->end_time);
+
+                    if ($endTime->lessThan($startTime)) {
+                        $endTime->addDay();
+                    }
+
+                    $scheduleDay = $teachingSchedule->day;
+                    $todayDay = $now->locale('id')->dayName;
+
+                    $days = [
+                        'Sunday' => 'Minggu',
+                        'Monday' => 'Senin',
+                        'Tuesday' => 'Selasa',
+                        'Wednesday' => 'Rabu',
+                        'Thursday' => 'Kamis',
+                        'Friday' => 'Jumat',
+                        'Saturday' => 'Sabtu',
+                    ];
+
+                    $todayDay = $days[$now->englishDayOfWeek];
+                @endphp
+
+                @if ($todayDay !== $scheduleDay || $now->lessThan($startTime) || $now->greaterThan($endTime))
+                    <a href="#" class="btn btn-warning text-white">
+                        Belum Mulai
+                    </a>
+                @else
+                    <a href="#" class="btn btn-primary text-white">
                         Masuk Kelas
                     </a>
-                </form>
+                @endif
+
                 <a href="#" class="btn btn-secondary">
                     <i class="bi bi-pen fs-4 text-primary"></i>
                 </a>
