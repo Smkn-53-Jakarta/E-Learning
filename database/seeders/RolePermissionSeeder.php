@@ -15,15 +15,19 @@ class RolePermissionSeeder extends Seeder
     public function run(): void
     {
         $admin = Role::where('name', 'Admin')->first();
-        $adminPermissions = Permission::pluck('id')->all();
-        $admin->syncPermissions($adminPermissions);
-
         $teacher = Role::where('name', 'Teacher')->first();
+
         $teacherPermissions = Permission::where(function ($query) {
-            $query->where('name', 'like', 'dashboard-teachers.%')
-            ->orWhere('name', 'like', 'teaching-schedules.%');
+            $query->where('name', 'like', 'teacher-dashboard.%')
+                ->orWhere('name', 'like', 'teacher-teaching-schedules.%')
+                ->orWhere('name', 'like', 'teacher-attendances.%');
         })->pluck('id')->all();
+
+        $allPermissions = Permission::pluck('id')->all();
+
+        $adminPermissions = array_diff($allPermissions, $teacherPermissions);
+
+        $admin->syncPermissions($adminPermissions);
         $teacher->syncPermissions($teacherPermissions);
-        
     }
 }

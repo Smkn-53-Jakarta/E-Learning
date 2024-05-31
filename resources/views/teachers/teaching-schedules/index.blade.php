@@ -9,14 +9,14 @@
                         </h1>
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('dashboard-teachers.index') }}"
+                                <a href="{{ route('teacher-dashboard.index') }}"
                                     class="text-muted text-hover-primary">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('teaching-schedules.index') }}"
+                                <a href="{{ route('teacher-teaching-schedules.index') }}"
                                     class="text-muted text-hover-primary">Jadwal Mengajar</a>
                             </li>
                         </ul>
@@ -27,7 +27,11 @@
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <div id="kt_app_content_container" class="app-container container-xxl">
-
+                <div class="mt-2">
+                    @if (session('message'))
+                        <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
+                    @endif
+                </div>
                 <div class="row">
                     @if (count($teachingSchedules))
                         @foreach ($teachingSchedules as $teachingSchedule)

@@ -28,7 +28,6 @@
                 @php
                     use Carbon\Carbon;
 
-                    date_default_timezone_set('Asia/Jakarta');
                     $now = Carbon::now();
                     $startTime = Carbon::parse($teachingSchedule->start_time);
                     $endTime = Carbon::parse($teachingSchedule->end_time);
@@ -39,26 +38,14 @@
 
                     $scheduleDay = $teachingSchedule->day;
                     $todayDay = $now->locale('id')->dayName;
-
-                    $days = [
-                        'Sunday' => 'Minggu',
-                        'Monday' => 'Senin',
-                        'Tuesday' => 'Selasa',
-                        'Wednesday' => 'Rabu',
-                        'Thursday' => 'Kamis',
-                        'Friday' => 'Jumat',
-                        'Saturday' => 'Sabtu',
-                    ];
-
-                    $todayDay = $days[$now->englishDayOfWeek];
                 @endphp
-
                 @if ($todayDay !== $scheduleDay || $now->lessThan($startTime) || $now->greaterThan($endTime))
                     <a href="#" class="btn btn-warning text-white">
                         Belum Mulai
                     </a>
                 @else
-                    <a href="#" class="btn btn-primary text-white">
+                    <a href="{{ route('teacher-attendances.index', $teachingSchedule->id) }}"
+                        class="btn btn-primary text-white">
                         Masuk Kelas
                     </a>
                 @endif

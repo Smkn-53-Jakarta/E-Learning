@@ -274,10 +274,10 @@
 
 
                 {{-- SIDE BAR GURU --}}
-                @can('dashboard-teachers.index')
+                @can('teacher-dashboard.index')
                     <div class="menu-item">
                         <a class="menu-link {{ Request::is('guru/dashboard*') ? 'active' : '' }}"
-                            href="{{ route('dashboard-teachers.index') }}">
+                            href="{{ route('teacher-dashboard.index') }}">
                             <span class="menu-icon">
                                 <span class="svg-icon svg-icon-2">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -298,7 +298,7 @@
                     </div>
                 @endcan
                 {{-- MENGAJAR GURU --}}
-                @canany(['teaching-schedules.read'])
+                @canany(['teacher-teaching-schedules.read'])
                     <div data-kt-menu-trigger="click"
                         class="menu-item menu-accordion {{ Request::is('guru/jadwal-mengajar*') ? 'show' : '' }}">
                         <span class="menu-link">
@@ -322,10 +322,10 @@
                             <span class="menu-arrow"></span>
                         </span>
                         <div class="menu-sub menu-sub-accordion">
-                            @can('teaching-schedules.read')
+                            @can('teacher-teaching-schedules.read')
                                 <div class="menu-item">
                                     <a class="menu-link {{ Request::is('guru/jadwal-mengajar*') ? 'active' : '' }}"
-                                        href="{{ route('teaching-schedules.index') }}">
+                                        href="{{ route('teacher-teaching-schedules.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
                                         </span>
