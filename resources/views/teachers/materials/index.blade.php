@@ -53,9 +53,9 @@
                                 <thead>
                                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                         <th class="text-center">No</th>
-                                        <th class="min-w-250px">Judul</th>
-                                        <th class="min-w-250px">Deskripsi</th>
-                                        <th class="min-w-400px">File</th>
+                                        <th class="min-w-400px">Judul</th>
+                                        <th class="min-w-300px">Deskripsi</th>
+                                        <th class="min-w-250px">File</th>
                                         <th class="min-w-250px">History Update</th>
                                         <th class="min-w-200px">Dibuat Pada</th>
                                         <th class="min-w-200px">Diubah Pada</th>
@@ -67,17 +67,7 @@
                                         <td class="text-center">1</td>
                                         <td>Bab 1 Pengenalan & Struktur</td>
                                         <td>Dibaca & dipahami</td>
-                                        <td>
-                                            <div class="mb-3 d-flex align-items-center position-relative"
-                                                style="width: 350px;">
-                                                <input class="form-control form-control-sm" id="formFileSm"
-                                                    type="file" style="padding-left: 30px;">
-                                                <i class="bi bi-file-earmark-arrow-up-fill"
-                                                    style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
-                                                <i class="bi bi-x-circle-fill" id="clearFile"
-                                                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
-                                            </div>
-                                        </td>
+                                        <td class="text-primary cursor-pointer">Materi-Bab-1.pdf</td>
                                         <td>12-06-2026</td>
                                         <td>01-06-2024</td>
                                         <td>-</td>
@@ -100,17 +90,7 @@
                                         <td class="text-center">2</td>
                                         <td>Bab 2 Symbol Struktur</td>
                                         <td>Dibaca & dipahami</td>
-                                        <td>
-                                            <div class="mb-3 d-flex align-items-center position-relative"
-                                                style="width: 350px;">
-                                                <input class="form-control form-control-sm" id="formFileSm"
-                                                    type="file" style="padding-left: 30px;">
-                                                <i class="bi bi-file-earmark-arrow-up-fill"
-                                                    style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
-                                                <i class="bi bi-x-circle-fill" id="clearFile"
-                                                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
-                                            </div>
-                                        </td>
+                                        <td class="text-primary cursor-pointer">Materi-Bab-2.pdf</td>
                                         <td>12-06-2026</td>
                                         <td>01-06-2024</td>
                                         <td>-</td>
