@@ -12,4 +12,8 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
     Route::get('/jadwal-mengajar', [TeachingScheduleController::class, 'index'])->name('teacher-teaching-schedules.index');
 
     Route::get('/jadwal-mengajar/{scheduleOfSubject}/kehadiran', [AttendanceController::class, 'index'])->name('teacher-attendances.index');
+
+    Route::get('jadwal-mengajar/ruang-materi', function () {
+        return view('teachers.materials.index');
+    })->name('teacher-materials.index');
 });

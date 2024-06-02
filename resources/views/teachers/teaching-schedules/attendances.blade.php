@@ -80,6 +80,11 @@
                         <x-DataNotFound />
                     @endif
                 </div>
+
+                <div class="d-grid gap-2 d-md-block pt-5">
+                    <a href="{{ route('teacher-teaching-schedules.index') }}" class="btn btn-primary me-3"><i
+                            class="bi bi-arrow-left-circle"></i>Kembali</a>
+                </div>
             </div>
         </div>
     </div>
