@@ -40,11 +40,11 @@
                             </div>
                         </div>
                         <div class="card-toolbar">
-                            <a href="{{ route('courses.trashed') }}" class="btn btn-light-primary me-3">
+                            <a href="" class="btn btn-light-primary me-3">
                                 <i class="fa-solid fa-trash-can"></i>
                                 Sampah
                             </a>
-                            <x-AddButton :url="route('courses.create')">Tambah Materi</x-AddButton>
+                            <x-AddButton :url="route('teacher-materials.create')">Tambah Materi</x-AddButton>
                         </div>
                     </div>
                     <div class="card-body">
