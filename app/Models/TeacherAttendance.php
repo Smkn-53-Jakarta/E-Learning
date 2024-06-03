@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class TeacherAttendance extends Model
 {
     use HasFactory, HasUuids;
+
+    public $guarded = ['id'];
 }

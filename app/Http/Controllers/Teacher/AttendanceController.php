@@ -27,7 +27,7 @@ class AttendanceController extends Controller
 
         if ($todayDay !== $scheduleDay || $now->lessThan($startTime) || $now->greaterThan($endTime)) {
             return redirect()->route('teacher-teaching-schedules.index')->with([
-                'message' => 'Mata pelajaran belum dimulai!',
+                'message' => 'Mata pelajaran belum dimula`i!',
                 'status' => 'warning'
             ]);
         }

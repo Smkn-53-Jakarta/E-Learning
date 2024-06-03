@@ -17,24 +17,10 @@ class StudentSeeder extends Seeder
      */
     public function run(): void
     {
-        $statusIds = Status::pluck('id')->toArray();
+        $students = Student::factory()->count(20)->create();
 
-        $student = User::create([
-            'status_id' => $statusIds[0],
-            'name' => 'Student',
-            'email' => 'student@gmail.com',
-            'password' => bcrypt('student')
-        ]);
-
-        $student->assignRole('Student');
-        $classroomIds = Classroom::pluck('id')->toArray();
-        $schoolYearids = SchoolYear::pluck('id')->toArray();
-
-        Student::create([
-            'user_id' => $student->id,
-            'classroom_id' => $classroomIds[0],
-            'school_year_id' => $schoolYearids[0],
-            'identification_number' => '19200850'
-        ]);
+        $students->each(function ($student) {
+            $student->user->assignRole('Student');
+        });
     }
 }

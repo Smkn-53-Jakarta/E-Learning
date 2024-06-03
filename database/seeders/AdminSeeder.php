@@ -14,10 +14,10 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        $statusIds = Status::pluck('id')->toArray();
+        $statusActive = Status::where('name', 'Aktif')->first();
 
         $admin = User::create([
-            'status_id' => $statusIds[0],
+            'status_id' => $statusActive->id,
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin')
