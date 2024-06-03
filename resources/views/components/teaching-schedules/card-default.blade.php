@@ -59,7 +59,7 @@
                             fill="currentColor" />
                     </svg>
                 </a>
-                <a href="#" class="btn btn-secondary data-bs-toggle="tooltip" data-bs-placement="bottom"
+                <a href="{{ route('teacher-assignments.index') }}" class="btn btn-secondary data-bs-toggle="tooltip" data-bs-placement="bottom"
                     title="Ruang Tugas">
                     <i class="bi bi-archive-fill" style="font-size:17px"></i>
                 </a>
