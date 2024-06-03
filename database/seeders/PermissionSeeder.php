@@ -254,6 +254,10 @@ class PermissionSeeder extends Seeder
                 'name' => 'teacher-materials.create',
                 'guard_name' => 'web'
             ],
+            [
+                'name' => 'teacher-materials.edit',
+                'guard_name' => 'web'
+            ],
         ];
 
         Permission::insert($permissions);

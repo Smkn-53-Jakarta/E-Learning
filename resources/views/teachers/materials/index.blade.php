@@ -40,7 +40,8 @@
                             </div>
                         </div>
                         <div class="card-toolbar">
-                            <a href="" class="btn btn-light-primary me-3">
+                            <a href="{{ route('teacher-materials.trashed', 'archive-materi') }}"
+                                class="btn btn-light-primary me-3">
                                 <i class="fa-solid fa-trash-can"></i>
                                 Sampah
                             </a>
@@ -57,43 +58,16 @@
                                         <th class="min-w-300px">Deskripsi</th>
                                         <th class="min-w-250px">File</th>
                                         <th class="min-w-250px">History Update</th>
-                                        <th class="min-w-200px">Dibuat Pada</th>
-                                        <th class="min-w-200px">Diubah Pada</th>
                                         <th class="min-w-100px">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="fw-semibold text-gray-600">
                                     <tr>
                                         <td class="text-center">1</td>
-                                        <td>Bab 1 Pengenalan & Struktur</td>
-                                        <td>Dibaca & dipahami</td>
-                                        <td class="text-primary cursor-pointer">Materi-Bab-1.pdf</td>
-                                        <td>12-06-2026</td>
-                                        <td>01-06-2024</td>
-                                        <td>-</td>
-                                        <td>
-                                            <a href="#" class="btn btn-sm btn-icon btn-active-light-primary"
-                                                data-kt-menu-trigger="click" data-kt-menu-placement="top-end">
-                                                <i class="bi bi-three-dots fs-3"></i>
-                                            </a>
-                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
-                                                data-kt-menu="true">
-                                                <div class="menu-item px-3">
-                                                    <a href="" class="menu-link px-3">Ubah</a>
-                                                    <a href="" class="menu-link px-3">Hapus</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="text-center">2</td>
                                         <td>Bab 2 Symbol Struktur</td>
                                         <td>Dibaca & dipahami</td>
                                         <td class="text-primary cursor-pointer">Materi-Bab-2.pdf</td>
-                                        <td>12-06-2026</td>
                                         <td>01-06-2024</td>
-                                        <td>-</td>
                                         <td>
                                             <a href="#" class="btn btn-sm btn-icon btn-active-light-primary"
                                                 data-kt-menu-trigger="click" data-kt-menu-placement="top-end">
@@ -102,7 +76,8 @@
                                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
                                                 data-kt-menu="true">
                                                 <div class="menu-item px-3">
-                                                    <a href="" class="menu-link px-3">Ubah</a>
+                                                    <a href="{{ route('teacher-materials.edit', 'edit-materi') }}"
+                                                        class="menu-link px-3">Ubah</a>
                                                     <a href="" class="menu-link px-3">Hapus</a>
                                                 </div>
                                             </div>
