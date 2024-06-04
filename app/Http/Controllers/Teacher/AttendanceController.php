@@ -32,16 +32,19 @@ class AttendanceController extends Controller
             ]);
         }
 
-        $students = Student::with('user')->whereHas('user.status', function ($query) {
+        $students = Student::with(['user', 'studentAttendance' => function ($query) use ($scheduleOfSubject, $now) {
+            $query->where('schedule_of_subject_id', $scheduleOfSubject->id)
+                ->whereDate('attendance_time', $now->format('Y-m-d'));
+        }])->whereHas('user.status', function ($query) {
             $query->where('name', 'Aktif');
         })->where('classroom_id', $scheduleOfSubject->classroom_id)->get();
 
         $existingStudentAttendances = StudentAttendance::where('schedule_of_subject_id', $scheduleOfSubject->id)
-            ->where('attendance_time', $now)
+            ->whereDate('attendance_time', $now->format('Y-m-d'))
             ->exists();
 
         $existingTeacherAttendances = TeacherAttendance::where('schedule_of_subject_id', $scheduleOfSubject->id)
-            ->where('attendance_time', $now)
+            ->whereDate('attendance_time', $now->format('Y-m-d'))
             ->exists();
 
         if (!$existingStudentAttendances) {
@@ -50,7 +53,7 @@ class AttendanceController extends Controller
                     'student_id' => $student->id,
                     'schedule_of_subject_id' => $scheduleOfSubject->id,
                     'attendance_time' => $now,
-                    'status' => 'Tidak Hadir',
+                    'status' => 'Hadir',
                 ]);
             }
         }

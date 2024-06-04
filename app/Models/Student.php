@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Student extends Model
@@ -27,6 +28,11 @@ class Student extends Model
     public function schoolYear(): BelongsTo
     {
         return $this->belongsTo(SchoolYear::class);
+    }
+
+    public function studentAttendance(): HasOne
+    {
+        return $this->hasOne(StudentAttendance::class);
     }
 
     public function scopeFilter($query, array $filters)

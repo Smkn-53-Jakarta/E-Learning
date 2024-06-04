@@ -40,9 +40,9 @@
                     $todayDay = $now->locale('id')->dayName;
                 @endphp
                 @if ($todayDay !== $scheduleDay || $now->lessThan($startTime) || $now->greaterThan($endTime))
-                    <a href="#" class="btn btn-warning text-white">
+                    <button class="btn btn-warning text-white">
                         Belum Mulai
-                    </a>
+                    </button>
                 @else
                     <a href="{{ route('teacher-attendances.index', $teachingSchedule->id) }}"
                         class="btn btn-primary text-white">

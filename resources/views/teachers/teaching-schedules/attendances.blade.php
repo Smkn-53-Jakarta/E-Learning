@@ -47,15 +47,6 @@
                                 <div class="card shadow-sm">
                                     <div class="card-header">
                                         <h3 class="card-title">{{ $student->user->name }}</h3>
-                                        <div class="card-toolbar">
-                                            <select class="form-select form-select-sm form-select-solid"
-                                                data-control="select2" data-hide-search="true">
-                                                <option value="1" selected>Hadir</option>
-                                                <option value="2">Alfa</option>
-                                                <option value="3">Izin</option>
-                                                <option value="4">Sakit</option>
-                                            </select>
-                                        </div>
                                     </div>
                                     <div class="card-body">
                                         <div class="text-center mb-3">
@@ -72,6 +63,14 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        <select class="form-select form-select-sm form-select-solid status"
+                                            data-control="select2" data-hide-search="true"
+                                            data-student-id="{{ $student->id }}">
+                                            <option value="Hadir" @selected(optional($student->studentAttendance)->status == 'Hadir')>Hadir</option>
+                                            <option value="Alfa" @selected(optional($student->studentAttendance)->status == 'Alfa')>Alfa</option>
+                                            <option value="Izin" @selected(optional($student->studentAttendance)->status == 'Izin')>Izin</option>
+                                            <option value="Sakit" @selected(optional($student->studentAttendance)->status == 'Sakit')>Sakit</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +79,6 @@
                         <x-DataNotFound />
                     @endif
                 </div>
-
                 <div class="d-grid gap-2 d-md-block pt-5">
                     <a href="{{ route('teacher-teaching-schedules.index') }}" class="btn btn-primary me-3"><i
                             class="bi bi-arrow-left-circle"></i>Kembali</a>
@@ -88,4 +86,28 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+        <script>
+            $(document).ready(function() {
+                $('.status').on('change', function() {
+                    var studentId = $(this).data('student-id');
+                    var status = $(this).val();
+
+                    $.ajax({
+                        url: `/guru/jadwal-mengajar/kehadiran/${studentId}`,
+                        method: 'PUT',
+                        data: {
+                            status
+                        },
+                        success: function(response) {
+                            console.log(response.message);
+                        },
+                        error: function(xhr) {
+                            console.error(xhr.responseText);
+                        }
+                    });
+                });
+            });
+        </script>
+    @endpush
 </x-AppLayout>
