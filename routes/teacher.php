@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\StudentAttendanceController;
+use App\Http\Controllers\Teacher\AssignmentController;
 use App\Http\Controllers\Teacher\AttendanceController;
 use App\Http\Controllers\Teacher\MaterialController;
 use App\Http\Controllers\Teacher\TeachingScheduleController;
@@ -26,5 +27,16 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
             'index' => 'teacher-materials.index',
             'create' => 'teacher-materials.create',
             'edit' => 'teacher-materials.edit',
+        ]);
+
+    Route::get('jadwal-mengajar/ruang-tugas/trashed', [AssignmentController::class, 'trashed'])
+        ->name('teacher-assignments.trashed');
+    Route::resource('jadwal-mengajar/ruang-tugas', AssignmentController::class)
+        ->except(['show', 'destroy', 'update', 'store'])
+        ->parameters(['ruang-tugas' => 'assignment'])
+        ->names([
+            'index' => 'teacher-assignments.index',
+            'create' => 'teacher-assignments.create',
+            'edit' => 'teacher-assignments.edit',
         ]);
 });

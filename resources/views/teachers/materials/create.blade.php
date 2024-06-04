@@ -67,10 +67,9 @@
                                             </div>
                                         </div>
                                         <div class="fv-row mb-10">
-                                            <label class="fs-5 fw-bold form-label">
+                                            <label class="fs-5 fw-bold form-label w-100">
                                                 <span class="required">File</span>
-                                                <div class="mt-2 d-flex align-items-center position-relative"
-                                                    style="width: 1190px;">
+                                                <div class="mt-2 d-flex align-items-center position-relative w-100">
                                                     <input class="form-control form-control-lg" id="formFileLg"
                                                         type="file" style="padding-left: 30px;">
                                                     <i class="bi bi-file-earmark-arrow-up-fill fs-4"
@@ -79,7 +78,6 @@
                                                         style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
                                                 </div>
                                             </label>
-
                                         </div>
                                         <div class="fv-row mb-10">
                                             <label class="fs-5 fw-bold form-label mb-2">
