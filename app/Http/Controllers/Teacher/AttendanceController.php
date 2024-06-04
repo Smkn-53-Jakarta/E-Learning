@@ -8,7 +8,7 @@ use App\Models\Student;
 use App\Models\StudentAttendance;
 use App\Models\TeacherAttendance;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\DB;
 
 class AttendanceController extends Controller
 {
@@ -63,10 +63,21 @@ class AttendanceController extends Controller
                 'teacher_id' => $scheduleOfSubject->teacher_id,
                 'schedule_of_subject_id' => $scheduleOfSubject->id,
                 'attendance_time' => $now,
-                'status' => 'Tidak Hadir',
+                'status' => 'Hadir',
             ]);
         }
 
-        return view('teachers.teaching-schedules.attendances', compact('scheduleOfSubject', 'students'));
+        $attendanceCounts = StudentAttendance::select('status', DB::raw('count(*) as total'))
+            ->where('schedule_of_subject_id', $scheduleOfSubject->id)
+            ->whereDate('attendance_time', $now->format('Y-m-d'))
+            ->groupBy('status')
+            ->pluck('total', 'status');
+
+        $totalPresent = $attendanceCounts->get('Hadir', 0);
+        $totalAbsent = $attendanceCounts->get('Alfa', 0);
+        $totalPermission = $attendanceCounts->get('Izin', 0);
+        $totalSick = $attendanceCounts->get('Sakit', 0);
+
+        return view('teachers.teaching-schedules.attendances', compact('scheduleOfSubject', 'students', 'totalPresent', 'totalAbsent', 'totalPermission', 'totalSick'));
     }
 }

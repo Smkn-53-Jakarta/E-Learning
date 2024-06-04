@@ -19,6 +19,12 @@
                                 <a href="{{ route('teacher-teaching-schedules.index') }}"
                                     class="text-muted text-hover-primary">Jadwal Mengajar</a>
                             </li>
+                            <li class="breadcrumb-item">
+                                <span class="bullet bg-gray-400 w-5px h-2px"></span>
+                            </li>
+                            <li class="breadcrumb-item text-muted">
+                                <a href="{{ url()->current() }}" class="text-muted text-hover-primary">Kehadiran</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -28,16 +34,16 @@
             <div id="kt_app_content_container" class="app-container container-xxl">
                 <div class="d-flex gap-5 justify-content-center">
                     <button type="button" class="btn btn-success btn-sm rounded-pill">
-                        Hadir <span class="badge text-bg-secondary rounded-circle">4</span>
+                        Hadir <span class="badge text-bg-secondary rounded-circle">{{ $totalPresent }}</span>
                     </button>
                     <button type="button" class="btn btn-danger btn-sm rounded-pill">
-                        Alfa <span class="badge text-bg-secondary rounded-circle">4</span>
+                        Alfa <span class="badge text-bg-secondary rounded-circle">{{ $totalAbsent }}</span>
                     </button>
                     <button type="button" class="btn btn-info btn-sm rounded-pill">
-                        Izin <span class="badge text-bg-secondary rounded-circle">4</span>
+                        Izin <span class="badge text-bg-secondary rounded-circle">{{ $totalPermission }}</span>
                     </button>
                     <button type="button" class="btn btn-warning btn-sm rounded-pill">
-                        Sakit <span class="badge text-bg-secondary rounded-circle">4</span>
+                        Sakit <span class="badge text-bg-secondary rounded-circle">{{ $totalSick }}</span>
                     </button>
                 </div>
                 <div class="row">

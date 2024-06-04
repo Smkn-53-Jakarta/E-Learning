@@ -17,7 +17,6 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
     Route::get('/jadwal-mengajar/{scheduleOfSubject}/kehadiran', [AttendanceController::class, 'index'])->name('teacher-attendances.index');
     Route::put('/jadwal-mengajar/kehadiran/{studentId}', [StudentAttendanceController::class, 'changeStatus'])->name('teacher-attendances.update');
 
-
     Route::get('jadwal-mengajar/ruang-materi/trashed', [MaterialController::class, 'trashed'])
         ->name('teacher-materials.trashed');
     Route::resource('jadwal-mengajar/ruang-materi', MaterialController::class)
