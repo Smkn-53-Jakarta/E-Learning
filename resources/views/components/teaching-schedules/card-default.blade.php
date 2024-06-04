@@ -50,8 +50,8 @@
                     </a>
                 @endif
 
-                <a href="{{ route('teacher-materials.index') }}" class="btn btn-secondary data-bs-toggle="tooltip"
-                    data-bs-placement="bottom" title="Ruang Materi">
+                <a href="{{ route('teacher-materials.index', $teachingSchedule->id) }}"
+                    class="btn btn-secondary data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ruang Materi">
                     <svg class="currenColor" width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="currentColor" />
                         <path
@@ -59,8 +59,8 @@
                             fill="currentColor" />
                     </svg>
                 </a>
-                <a href="{{ route('teacher-assignments.index') }}" class="btn btn-secondary data-bs-toggle="tooltip" data-bs-placement="bottom"
-                    title="Ruang Tugas">
+                <a href="{{ route('teacher-assignments.index') }}" class="btn btn-secondary data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" title="Ruang Tugas">
                     <i class="bi bi-archive-fill" style="font-size:17px"></i>
                 </a>
             </div>

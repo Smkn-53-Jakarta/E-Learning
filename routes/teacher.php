@@ -19,14 +19,19 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
 
     Route::get('jadwal-mengajar/ruang-materi/trashed', [MaterialController::class, 'trashed'])
         ->name('teacher-materials.trashed');
-    Route::resource('jadwal-mengajar/ruang-materi', MaterialController::class)
-        ->only(['index', 'create', 'edit'])
-        ->parameters(['ruang-materi' => 'material'])
-        ->names([
-            'index' => 'teacher-materials.index',
-            'create' => 'teacher-materials.create',
-            'edit' => 'teacher-materials.edit',
-        ]);
+
+    //* Route Materials  
+    Route::resource('jadwal-mengajar.ruang-materi', MaterialController::class)->parameters([
+        'jadwal-mengajar' => 'scheduleOfSubject',
+        'ruang-materi' => 'material'
+    ])->names([
+        'index' => 'teacher-materials.index',
+        'create' => 'teacher-materials.create',
+        'store' => 'teacher-materials.store',
+        'edit' => 'teacher-materials.edit',
+        'update' => 'teacher-materials.update',
+        'destroy' => 'teacher-materials.destroy',
+    ]);
 
     Route::get('jadwal-mengajar/ruang-tugas/trashed', [AssignmentController::class, 'trashed'])
         ->name('teacher-assignments.trashed');

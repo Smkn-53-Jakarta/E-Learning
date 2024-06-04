@@ -3,36 +3,39 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Material\StoreMaterialRequest;
+use App\Http\Requests\Material\UpdateMaterialRequest;
+use App\Models\Material;
+use App\Models\ScheduleOfSubject;
 
 class MaterialController extends Controller
 {
-    public function index()
+    public function index(ScheduleOfSubject $scheduleOfSubject)
     {
-        return view('teachers.materials.index');
+        return view('teachers.materials.index', compact('scheduleOfSubject'));
     }
 
-    public function create()
+    public function create(ScheduleOfSubject $scheduleOfSubject)
     {
-        return view('teachers.materials.create');
+        return view('teachers.materials.create', compact('scheduleOfSubject'));
     }
 
-    public function store(Request $request)
+    public function store(StoreMaterialRequest $request)
     {
         //
     }
 
-    public function edit(string $id)
+    public function edit(Material $material)
     {
         return view('teachers.materials.edit');
     }
 
-    public function update(Request $request, string $id)
+    public function update(UpdateMaterialRequest $request, Material $material)
     {
         //
     }
 
-    public function destroy(string $id)
+    public function destroy(Material $material)
     {
         //
     }
