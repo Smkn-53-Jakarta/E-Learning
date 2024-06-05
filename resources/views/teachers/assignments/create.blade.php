@@ -62,9 +62,8 @@
                                             <label class="fs-5 fw-bold form-label mb-2">
                                                 <span class="required">Deskripsi</span>
                                             </label>
-                                            <div class="input-group">
-                                                <textarea class="form-control" placeholder="Masukkan Deskripsi" aria-label="With textarea"></textarea>
-                                            </div>
+                                            <x-Form.CkEditor />
+                                            <x-Form.InputError name="description" />
                                         </div>
                                         <div class="fv-row mb-10">
                                             <label class="fs-5 fw-bold form-label mb-2">
@@ -75,41 +74,38 @@
                                             </div>
                                         </div>
                                         <div class="fv-row mb-10">
-                                            <label class="fs-5 fw-bold form-label">
+                                            <label class="fs-5 fw-bold form-label w-100">
                                                 <span class="required">File</span>
-                                                <div class="mt-2 d-flex align-items-center position-relative"
-                                                    style="width: 1190px;">
+                                                <div class="mt-2 d-flex align-items-center position-relative w-100">
                                                     <input class="form-control form-control-lg" id="formFileLg"
                                                         type="file" style="padding-left: 30px;">
                                                     <i class="bi bi-file-earmark-arrow-up-fill fs-4"
                                                         style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
-                                                    <i class="bi bi-x-circle-fill" id="clearFile"
-                                                        style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
                                                 </div>
                                             </label>
                                         </div>
                                         <div class="row mb-10">
-                                <div class="col-md-6">
-                                    <label class="fs-5 fw-bold form-label mb-2">
-                                        <span class="required">Jam Mulai</span>
-                                    </label>
-                                    <input type="time" id="start_time"
-                                        class="form-control mb-2 @error('start_time') is-invalid @enderror"
-                                        placeholder="Masukan jam mulai" name="start_time"
-                                        value="{{ old('start_time') }}" required />
-                                    <x-Form.InputError name="start_time" />
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="fs-5 fw-bold form-label mb-2">
-                                        <span class="required">Jam Selesai</span>
-                                    </label>
-                                    <input type="time" id="end_time"
-                                        class="form-control mb-2 @error('end_time') is-invalid @enderror"
-                                        placeholder="Masukan jam selesai" name="end_time" value="{{ old('end_time') }}"
-                                        required />
-                                    <x-Form.InputError name="end_time" />
-                                </div>
-                            </div>
+                                            <div class="col-md-6">
+                                                <label class="fs-5 fw-bold form-label mb-2">
+                                                    <span class="required">Jam Mulai</span>
+                                                </label>
+                                                <input type="time" id="start_time"
+                                                    class="form-control mb-2 @error('start_time') is-invalid @enderror"
+                                                    placeholder="Masukan jam mulai" name="start_time"
+                                                    value="{{ old('start_time') }}" required />
+                                                <x-Form.InputError name="start_time" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="fs-5 fw-bold form-label mb-2">
+                                                    <span class="required">Jam Selesai</span>
+                                                </label>
+                                                <input type="time" id="end_time"
+                                                    class="form-control mb-2 @error('end_time') is-invalid @enderror"
+                                                    placeholder="Masukan jam selesai" name="end_time"
+                                                    value="{{ old('end_time') }}" required />
+                                                <x-Form.InputError name="end_time" />
+                                            </div>
+                                        </div>
                                         <div class="d-flex gap-3">
                                             <a href="{{ RoutingHelper::createToIndexRoute() }}" class="btn btn-danger">
                                                 Cancel
@@ -140,5 +136,14 @@
             });
         </script>
     @endpush
-</x-AppLayout>
 
+    @push('scripts')
+        <script src="{{ asset('assets/plugins/custom-ckeditor5/ckeditor.js') }}"></script>
+        <script>
+            $('#title').maxlength({
+                warningClass: "badge badge-success",
+                limitReachedClass: "badge badge-danger"
+            });
+        </script>
+    @endpush
+</x-AppLayout>
