@@ -33,6 +33,7 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
         'destroy' => 'teacher-materials.destroy',
     ]);
 
+    //* Route Assignments
     Route::get('jadwal-mengajar/ruang-tugas/trashed', [AssignmentController::class, 'trashed'])->name('teacher-assignments.trashed');
     Route::resource('jadwal-mengajar/ruang-tugas', AssignmentController::class)->except(['destroy', 'update', 'store'])->parameters(['ruang-tugas' => 'assignment'])->names([
         'index' => 'teacher-assignments.index',
