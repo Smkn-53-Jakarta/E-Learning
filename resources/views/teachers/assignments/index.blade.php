@@ -80,6 +80,8 @@
                                                 <div class="menu-item px-3">
                                                     <a href="{{ route('teacher-assignments.edit', 'edit-tugas') }}"
                                                         class="menu-link px-3">Ubah</a>
+                                                    <a href="{{ route('teacher-assignments.show', 'lihat-tugas') }}"
+                                                        class="menu-link px-3">Nilai</a>
                                                     <a href="" class="menu-link px-3">Hapus</a>
                                                 </div>
                                             </div>

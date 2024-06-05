@@ -12,13 +12,10 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
         return view('teachers.dashboard');
     })->name('teacher-dashboard.index');
 
+    //* Route Teaching Schedules 
     Route::get('/jadwal-mengajar', [TeachingScheduleController::class, 'index'])->name('teacher-teaching-schedules.index');
-
     Route::get('/jadwal-mengajar/{scheduleOfSubject}/kehadiran', [AttendanceController::class, 'index'])->name('teacher-attendances.index');
     Route::put('/jadwal-mengajar/kehadiran/{studentId}', [StudentAttendanceController::class, 'changeStatus'])->name('teacher-attendances.update');
-
-    Route::get('jadwal-mengajar/ruang-materi/trashed', [MaterialController::class, 'trashed'])
-        ->name('teacher-materials.trashed');
 
     //* Route Materials  
     Route::get('guru/jadwal-mengajar/{scheduleOfSubject}/ruang-materi/trashed', [MaterialController::class, 'trashed'])->name('teacher-materials.trashed');
@@ -36,14 +33,11 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
         'destroy' => 'teacher-materials.destroy',
     ]);
 
-    Route::get('jadwal-mengajar/ruang-tugas/trashed', [AssignmentController::class, 'trashed'])
-        ->name('teacher-assignments.trashed');
-    Route::resource('jadwal-mengajar/ruang-tugas', AssignmentController::class)
-        ->except(['show', 'destroy', 'update', 'store'])
-        ->parameters(['ruang-tugas' => 'assignment'])
-        ->names([
-            'index' => 'teacher-assignments.index',
-            'create' => 'teacher-assignments.create',
-            'edit' => 'teacher-assignments.edit',
-        ]);
+    Route::get('jadwal-mengajar/ruang-tugas/trashed', [AssignmentController::class, 'trashed'])->name('teacher-assignments.trashed');
+    Route::resource('jadwal-mengajar/ruang-tugas', AssignmentController::class)->except(['destroy', 'update', 'store'])->parameters(['ruang-tugas' => 'assignment'])->names([
+        'index' => 'teacher-assignments.index',
+        'create' => 'teacher-assignments.create',
+        'edit' => 'teacher-assignments.edit',
+        'show' => 'teacher-assignments.show',
+    ]);
 });
