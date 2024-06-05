@@ -80,9 +80,11 @@ class RoutingHelper
         return $parameter ? route($indexRouteName, $parameter) : route($indexRouteName);
     }
 
-    public static function forceDeleteToIndex()
+    public static function forceDeleteToIndex($parameter = null)
     {
-        return route(str_replace('force-delete', 'index', Route::currentRouteName()));
+        $indexRouteName = str_replace('force-delete', 'index', Route::currentRouteName());
+
+        return $parameter ? route($indexRouteName, $parameter) : route($indexRouteName);
     }
 
     public static function copyToIndex()

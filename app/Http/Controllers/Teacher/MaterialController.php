@@ -131,4 +131,17 @@ class MaterialController extends Controller
             'status' => 'success',
         ]);
     }
+
+    public function forceDelete($scheduleOfSubjectId, $materialId): RedirectResponse
+    {
+        $material = Material::withTrashed()->findOrFail($materialId);
+        $material->forceDelete();
+
+        Storage::disk('public')->delete($material->file);
+
+        return redirect(RoutingHelper::forceDeleteToIndex($scheduleOfSubjectId))->with([
+            'message' => 'Materi berhasil dihapus',
+            'status' => 'success',
+        ]);
+    }
 }
