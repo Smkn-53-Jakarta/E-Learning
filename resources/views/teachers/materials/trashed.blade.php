@@ -9,7 +9,8 @@
                         </h1>
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <li class="breadcrumb-item text-muted">
-                                <a href="" class="text-muted text-hover-primary">Dashboard</a>
+                                <a href="{{ route('teacher-dashboard.index') }}"
+                                    class="text-muted text-hover-primary">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
@@ -23,14 +24,15 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('teacher-materials.index') }}"
+                                <a href="{{ route('teacher-materials.index', $scheduleOfSubject->id) }}"
                                     class="text-muted text-hover-primary">Ruang Materi</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="" class="text-muted text-hover-primary">Archive Materi</a>
+                                <a href="{{ url()->current() }}" class="text-muted text-hover-primary">Archive
+                                    Materi</a>
                             </li>
                         </ul>
                     </div>
@@ -48,52 +50,80 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive fixed-actions-table">
-                            <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
-                                <thead>
-                                    <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                                        <th class="text-center">No</th>
-                                        <th class="min-w-400px">Judul</th>
-                                        <th class="min-w-300px">Deskripsi</th>
-                                        <th class="min-w-250px">File</th>
-                                        <th class="min-w-250px">History Update</th>
-                                        <th class="min-w-200px">Dibuat Pada</th>
-                                        <th class="min-w-200px">Diubah Pada</th>
-                                        <th class="min-w-100px">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="fw-semibold text-gray-600">
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td>Bab 1 Pengenalan & Struktur</td>
-                                        <td>Dibaca & dipahami</td>
-                                        <td class="text-primary cursor-pointer">Materi-Bab-1.pdf</td>
-                                        <td>12-06-2026</td>
-                                        <td>01-06-2024</td>
-                                        <td>-</td>
-                                        <td>
-                                            <a href="#" class="btn btn-sm btn-icon btn-active-light-primary"
-                                                data-kt-menu-trigger="click" data-kt-menu-placement="top-end">
-                                                <i class="bi bi-three-dots fs-3"></i>
-                                            </a>
-                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
-                                                data-kt-menu="true">
-                                                <div class="menu-item px-3">
-                                                    <a href="{{ route('teacher-materials.edit', 'edit-materi') }}"
-                                                        class="menu-link px-3">Pulihkan</a>
-                                                    <a href="" class="menu-link px-3">Hapus Permanen</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        @if (count($materials))
+                            <div class="table-responsive fixed-actions-table">
+                                <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                                    <thead>
+                                        <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                            <th class="text-center">No</th>
+                                            <th class="min-w-400px">Judul Materi</th>
+                                            <th class="min-w-300px">Deskripsi</th>
+                                            <th class="min-w-250px">File</th>
+                                            <th class="min-w-250px">Dihapus Pada</th>
+                                            <th class="min-w-100px">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fw-semibold text-gray-600">
+                                        @foreach ($materials as $material)
+                                            <tr>
+                                                <td class="text-center">{{ $loop->iteration }}</td>
+                                                <td>{{ $material->title }}</td>
+                                                <td>{{ GlobalHelper::formatDescription($material->description, 20) }}
+                                                </td>
+                                                <td>
+                                                    <a href="{{ asset("storage/$material->file") }}" target="_blank">
+                                                        <div class="symbol symbol-25px pointer">
+                                                            <img src="{{ asset('assets/media/svg/files/pdf.svg') }}"
+                                                                alt="icon" />
+                                                        </div>
+                                                    </a>
+                                                </td>
+                                                <td>{{ $material->deleted_at->diffForHumans() }}</td>
+                                                <td>
+                                                    <a href="#"
+                                                        class="btn btn-sm btn-icon btn-active-light-primary"
+                                                        data-kt-menu-trigger="click" data-kt-menu-placement="top-end">
+                                                        <i class="bi bi-three-dots fs-3"></i>
+                                                    </a>
+                                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
+                                                        data-kt-menu="true">
+                                                        @can('teacher-materials.restore')
+                                                            <div class="menu-item px-3">
+                                                                <form
+                                                                    action="{{ route('teacher-materials.restore', ['scheduleOfSubject' => $scheduleOfSubject->id, 'material' => $material->id]) }}"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    <a href="#" class="menu-link px-3"
+                                                                        onclick="confirmPopup(this, 'Akan mengembalikan materi ini')">Pulihkan</a>
+                                                                </form>
+                                                            </div>
+                                                        @endcan
+                                                        @can('teacher-materials.delete')
+                                                            <div class="menu-item px-3">
+                                                                <form
+                                                                    action="{{ route('teacher-materials.force-delete', ['scheduleOfSubject' => $scheduleOfSubject->id, 'material' => $material->id]) }}"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    <a href="#" class="menu-link px-3"
+                                                                        onclick="confirmPopup(this, 'Akan menghapus permanen materi ini')">Hapus
+                                                                        Permanen</a>
+                                                                </form>
+                                                            </div>
+                                                        @endcan
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
+                            <x-DataNotFound />
+                        @endif
                     </div>
                 </div>
-                <div class="d-grid gap-2 d-md-block pt-5">
-                    <a href="{{ route('teacher-teaching-schedules.index') }}" class="btn btn-primary me-3"><i
-                            class="bi bi-arrow-left-circle"></i>Kembali</a>
+                <div class="d-flex p-5 justify-content-end">
+                    {!! $materials->appends($_GET)->links() !!}
                 </div>
             </div>
         </div>

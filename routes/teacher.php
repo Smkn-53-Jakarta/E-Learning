@@ -21,6 +21,9 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
         ->name('teacher-materials.trashed');
 
     //* Route Materials  
+    Route::get('guru/jadwal-mengajar/{scheduleOfSubject}/ruang-materi/trashed', [MaterialController::class, 'trashed'])->name('teacher-materials.trashed');
+    Route::post('guru/jadwal-mengajar/{scheduleOfSubject}/ruang-materi/{material}/restore', [MaterialController::class, 'restore'])->name('teacher-materials.restore');
+    Route::post('guru/jadwal-mengajar/{scheduleOfSubject}/ruang-materi/{material}/force-delete', [MaterialController::class, 'forceDelete'])->name('teacher-materials.force-delete');
     Route::resource('jadwal-mengajar.ruang-materi', MaterialController::class)->parameters([
         'jadwal-mengajar' => 'scheduleOfSubject',
         'ruang-materi' => 'material'

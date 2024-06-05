@@ -73,9 +73,11 @@ class RoutingHelper
         return $parameter ? route($indexRouteName, $parameter) : route($indexRouteName);
     }
 
-    public static function restoreToIndex()
+    public static function restoreToIndex($parameter = null)
     {
-        return route(str_replace('restore', 'index', Route::currentRouteName()));
+        $indexRouteName = str_replace('restore', 'index', Route::currentRouteName());
+
+        return $parameter ? route($indexRouteName, $parameter) : route($indexRouteName);
     }
 
     public static function forceDeleteToIndex()

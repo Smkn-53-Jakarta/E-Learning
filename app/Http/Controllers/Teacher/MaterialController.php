@@ -115,8 +115,20 @@ class MaterialController extends Controller
         ]);
     }
 
-    public function trashed()
+    public function trashed(ScheduleOfSubject $scheduleOfSubject): View
     {
-        return view('teachers.materials.trashed');
+        $materials = Material::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
+
+        return view('teachers.materials.trashed', compact('materials', 'scheduleOfSubject'));
+    }
+
+    public function restore($scheduleOfSubjectId, $materialId): RedirectResponse
+    {
+        Material::withTrashed()->findOrFail($materialId)->restore();
+
+        return redirect(RoutingHelper::restoreToIndex($scheduleOfSubjectId))->with([
+            'message' => 'Materi berhasil dipulihkan',
+            'status' => 'success',
+        ]);
     }
 }

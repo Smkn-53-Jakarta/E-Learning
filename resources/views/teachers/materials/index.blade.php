@@ -45,7 +45,8 @@
                         </div>
                         <div class="card-toolbar">
                             @if ($materialsTrashed)
-                                <a href="" class="btn btn-light-primary me-3">
+                                <a href="{{ route('teacher-materials.trashed', $scheduleOfSubject->id) }}"
+                                    class="btn btn-light-primary me-3">
                                     <i class="fa-solid fa-trash-can"></i>
                                     Sampah
                                 </a>
