@@ -9,7 +9,8 @@
                         </h1>
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <li class="breadcrumb-item text-muted">
-                                <a href="" class="text-muted text-hover-primary">Dashboard</a>
+                                <a href="{{ route('teacher-dashboard.index') }}"
+                                    class="text-muted text-hover-primary">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
@@ -94,10 +95,24 @@
                                                     </a>
                                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
                                                         data-kt-menu="true">
-                                                        <div class="menu-item px-3">
-                                                            <a href="" class="menu-link px-3">Ubah</a>
-                                                            <a href="" class="menu-link px-3">Hapus</a>
-                                                        </div>
+                                                        @can('teacher-materials.update')
+                                                            <div class="menu-item px-3">
+                                                                <a href="{{ route('teacher-materials.edit', ['scheduleOfSubject' => $scheduleOfSubject->id, 'material' => $material->id]) }}"
+                                                                    class="menu-link px-3">Ubah</a>
+                                                            </div>
+                                                        @endcan
+                                                        @can('teacher-materials.delete')
+                                                            <div class="menu-item px-3">
+                                                                <form
+                                                                    action="{{ route('teacher-materials.destroy', ['scheduleOfSubject' => $scheduleOfSubject->id, 'material' => $material->id]) }}"
+                                                                    method="post" class="me-3">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <a href="#" class="menu-link px-3"
+                                                                        onclick="confirmPopup(this, 'Akan menghapus materi ini')">Hapus</a>
+                                                                </form>
+                                                            </div>
+                                                        @endcan
                                                     </div>
                                                 </td>
                                             </tr>

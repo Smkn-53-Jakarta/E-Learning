@@ -6,23 +6,25 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateMaterialRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return false;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
-            //
+            'title' => ['required', 'string', 'max:64'],
+            'description' => ['required', 'string'],
+            'file' => ['nullable', 'mimes:pdf', 'max:10240'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'Judul materi wajib diisi',
+            'title.string' => 'Judul materi wajib string',
+            'title.max' => 'Judul materi maksimal 64 karakter',
+            'description.required' => 'Deskripsi wajib diisi',
+            'description.string' => 'Deskripsi wajib string',
+            'file.mimes' => 'File harus memiliki format pdf',
+            'file.max' => 'File maksimal berukuran 10MB.',
         ];
     }
 }

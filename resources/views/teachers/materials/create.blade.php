@@ -9,7 +9,8 @@
                         </h1>
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <li class="breadcrumb-item text-muted">
-                                <a href="" class="text-muted text-hover-primary">Dashboard</a>
+                                <a href="{{ route('teacher-dashboard.index') }}"
+                                    class="text-muted text-hover-primary">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
@@ -55,7 +56,7 @@
                                                 <span class="required">Judul Materi</span>
                                             </label>
                                             <input id="title" class="form-control mb-2"
-                                                placeholder="Masukan Nama Materi" name="title"
+                                                placeholder="Masukan Judul Materi" name="title"
                                                 value="{{ old('title') }}" maxlength="64" required />
                                             <x-Form.InputError name="title" />
                                         </div>

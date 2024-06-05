@@ -9,6 +9,7 @@ use App\Http\Requests\Material\UpdateMaterialRequest;
 use App\Models\Material;
 use App\Models\ScheduleOfSubject;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,7 +28,7 @@ class MaterialController extends Controller
         return view('teachers.materials.create', compact('scheduleOfSubject'));
     }
 
-    public function store(StoreMaterialRequest $request, ScheduleOfSubject $scheduleOfSubject)
+    public function store(StoreMaterialRequest $request, ScheduleOfSubject $scheduleOfSubject): RedirectResponse
     {
         $data = $request->validated();
         $data['teacher_id'] = $scheduleOfSubject->teacher_id;
@@ -53,7 +54,7 @@ class MaterialController extends Controller
             if (isset($data['file'])) {
                 Storage::disk('public')->delete($data['file']);
             }
-            dd($th->getMessage());
+
             return redirect()->back()->withInput()->with([
                 'message' => trans('message.error'),
                 'status' => 'danger',
@@ -61,14 +62,47 @@ class MaterialController extends Controller
         }
     }
 
-    public function edit(Material $material)
+    public function edit(ScheduleOfSubject $scheduleOfSubject, Material $material): View
     {
-        return view('teachers.materials.edit');
+        return view('teachers.materials.edit', compact('scheduleOfSubject', 'material'));
     }
 
-    public function update(UpdateMaterialRequest $request, Material $material)
+    public function update(UpdateMaterialRequest $request, ScheduleOfSubject $scheduleOfSubject, Material $material): RedirectResponse
     {
-        //
+        $data = $request->validated();
+
+        if ($request->hasFile('file')) {
+            $data['file'] = $request->file('file')->store('materials', 'public');;
+            $oldFile = $material->file;
+        }
+
+        try {
+            DB::beginTransaction();
+
+            $material->update($data);
+
+            DB::commit();
+
+            if (isset($oldFile)) {
+                Storage::disk('public')->delete($oldFile);
+            }
+
+            return redirect(RoutingHelper::updateToIndexRoute($scheduleOfSubject->id))->with([
+                'message' => 'Materi berhasil diubah',
+                'status' => 'success',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            if (isset($data['file'])) {
+                Storage::disk('public')->delete($data['file']);
+            }
+
+            return redirect()->back()->withInput()->with([
+                'message' => trans('message.error'),
+                'status' => 'danger',
+            ]);
+        }
     }
 
     public function destroy(Material $material)

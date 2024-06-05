@@ -259,7 +259,15 @@ class PermissionSeeder extends Seeder
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'teacher-materials.edit',
+                'name' => 'teacher-materials.update',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'teacher-materials.delete',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'teacher-materials.restore',
                 'guard_name' => 'web'
             ],
             [
