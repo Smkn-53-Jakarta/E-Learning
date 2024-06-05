@@ -42,7 +42,8 @@
                 @if (session('message'))
                     <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
                 @endif
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="{{ route('teacher-materials.store', $scheduleOfSubject->id) }}" method="post"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="d-flex flex-column flex-lg-row align-items-start mb-10">
                         <div class="d-flex flex-column gap-7 gap-lg-10 w-100">
@@ -54,8 +55,8 @@
                                                 <span class="required">Judul Materi</span>
                                             </label>
                                             <input id="title" class="form-control mb-2"
-                                                placeholder="Masukan Nama Materi" name="title" value=""
-                                                maxlength="64" required />
+                                                placeholder="Masukan Nama Materi" name="title"
+                                                value="{{ old('title') }}" maxlength="64" required />
                                             <x-Form.InputError name="title" />
                                         </div>
                                         <div class="fv-row mb-10">
@@ -71,7 +72,7 @@
                                                 <div class="mt-2 d-flex align-items-center position-relative w-100">
                                                     <input class="form-control form-control-lg" id="formFileLg"
                                                         name="file" type="file" style="padding-left: 30px;"
-                                                        required>
+                                                        accept=".pdf" required>
                                                     <i class="bi bi-file-earmark-arrow-up-fill fs-4"
                                                         style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
                                                 </div>
@@ -79,7 +80,7 @@
                                             <x-Form.InputError name="file" />
                                         </div>
                                         <div class="d-flex gap-3">
-                                            <a href="{{ route('teacher-materials.index', $scheduleOfSubject->id) }}"
+                                            <a href="{{ RoutingHelper::createToIndexRoute($scheduleOfSubject->id) }}"
                                                 class="btn btn-danger">
                                                 Cancel
                                             </a>

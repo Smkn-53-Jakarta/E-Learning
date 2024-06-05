@@ -30,9 +30,11 @@ class RoutingHelper
         return route(str_replace('index', 'destroy', Route::currentRouteName()), $id);
     }
 
-    public static function createToIndexRoute(): String
+    public static function createToIndexRoute($parameter = null)
     {
-        return route(str_replace('create', 'index', Route::currentRouteName()));
+        $indexRouteName = str_replace('create', 'index', Route::currentRouteName());
+
+        return $parameter ? route($indexRouteName, $parameter) : route($indexRouteName);
     }
 
     public static function editToIndexRoute(): String
@@ -50,9 +52,11 @@ class RoutingHelper
         return route(str_replace('store', 'create', Route::currentRouteName()));
     }
 
-    public static function storeToIndexRoute()
+    public static function storeToIndexRoute($parameter = null)
     {
-        return route(str_replace('store', 'index', Route::currentRouteName()));
+        $indexRouteName = str_replace('store', 'index', Route::currentRouteName());
+
+        return $parameter ? route($indexRouteName, $parameter) : route($indexRouteName);
     }
 
     public static function editToUpdateRoute($id)

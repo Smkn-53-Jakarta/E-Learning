@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
 use App\Models\ScheduleOfSubject;
-use App\Models\Status;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 
 class TeachingScheduleController extends Controller
 {
