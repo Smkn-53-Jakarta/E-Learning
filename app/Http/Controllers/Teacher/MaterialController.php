@@ -105,9 +105,14 @@ class MaterialController extends Controller
         }
     }
 
-    public function destroy(Material $material)
+    public function destroy(ScheduleOfSubject $scheduleOfSubject, Material $material): RedirectResponse
     {
-        //
+        $material->delete();
+
+        return back()->with([
+            'message' => 'Materi berhasil dihapus',
+            'status' => 'success',
+        ]);
     }
 
     public function trashed()
