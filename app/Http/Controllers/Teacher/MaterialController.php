@@ -31,7 +31,6 @@ class MaterialController extends Controller
     public function store(StoreMaterialRequest $request, ScheduleOfSubject $scheduleOfSubject): RedirectResponse
     {
         $data = $request->validated();
-        $data['teacher_id'] = $scheduleOfSubject->teacher_id;
         $data['schedule_of_subject_id'] = $scheduleOfSubject->id;
 
         if ($request->hasFile('file')) {
