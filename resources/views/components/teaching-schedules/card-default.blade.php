@@ -63,6 +63,10 @@
                     data-bs-placement="bottom" title="Ruang Tugas">
                     <i class="bi bi-archive-fill" style="font-size:17px"></i>
                 </a>
+                <a href="{{ route('teacher-attendances-recap.index') }}"
+                    class="btn btn-secondary data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ruang Tugas">
+                    <i class="bi bi-archive-fill" style="font-size:17px"></i>
+                </a>
             </div>
         </div>
     </div>
