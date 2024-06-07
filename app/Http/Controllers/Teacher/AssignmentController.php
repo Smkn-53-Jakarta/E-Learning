@@ -126,8 +126,20 @@ class AssignmentController extends Controller
         ]);
     }
 
-    public function trashed(): View
+    public function trashed(ScheduleOfSubject $scheduleOfSubject): View
     {
-        return view('teachers.assignments.trashed');
+        $assignments = Assignment::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
+
+        return view('teachers.assignments.trashed', compact('assignments', 'scheduleOfSubject'));
+    }
+
+    public function restore($scheduleOfSubjectId, $assignmentId): RedirectResponse
+    {
+        Assignment::withTrashed()->findOrFail($assignmentId)->restore();
+
+        return redirect(RoutingHelper::restoreToIndex($scheduleOfSubjectId))->with([
+            'message' => 'Tugas berhasil dipulihkan',
+            'status' => 'success',
+        ]);
     }
 }

@@ -66,6 +66,8 @@
                                             <th class="min-w-250px">Pertemuan</th>
                                             <th class="min-w-250px">Tanggal Mulai</th>
                                             <th class="min-w-250px">Tanggal Selesai</th>
+                                            <th class="min-w-250px">Dibuat Pada</th>
+                                            <th class="min-w-250px">Diubah Pada</th>
                                             <th class="min-w-100px">Aksi</th>
                                         </tr>
                                     </thead>
@@ -87,6 +89,8 @@
                                                 <td>{{ $assignment->meeting }}</td>
                                                 <td>{{ $assignment->start_date }}</td>
                                                 <td>{{ $assignment->end_date }}</td>
+                                                <td>{{ $assignment->created_at->diffForHumans() }}</td>
+                                                <td>{{ $assignment->updated_at->diffForHumans() }}</td>
                                                 <td>
                                                     <a href="#"
                                                         class="btn btn-sm btn-icon btn-active-light-primary"
