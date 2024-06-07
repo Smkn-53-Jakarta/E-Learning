@@ -93,8 +93,8 @@
                                                 <span class="required">File</span>
                                                 <div class="mt-2 d-flex align-items-center position-relative w-100">
                                                     <input class="form-control form-control-lg" id="formFileLg"
-                                                        type="file" style="padding-left: 30px;" name="file"
-                                                        required>
+                                                        type="file" style="padding-left: 30px;" accept=".pdf"
+                                                        name="file" required>
                                                     <i class="bi bi-file-earmark-arrow-up-fill fs-4"
                                                         style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
                                                 </div>

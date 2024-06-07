@@ -55,7 +55,7 @@ class AssignmentController extends Controller
             if (isset($data['file'])) {
                 Storage::disk('public')->delete($data['file']);
             }
-            dd($th->getMessage());
+
             return redirect()->back()->withInput()->with([
                 'message' => trans('message.error'),
                 'status' => 'danger',
@@ -68,14 +68,51 @@ class AssignmentController extends Controller
         return view('teachers.assignments.show');
     }
 
-    public function edit(string $id): View
+    public function edit(ScheduleOfSubject $scheduleOfSubject, Assignment $assignment): View
     {
-        return view('teachers.assignments.edit');
+        return view('teachers.assignments.edit', compact('scheduleOfSubject', 'assignment'));
     }
 
-    public function update(UpdateAssignmentRequest $request, string $id)
+    public function update(UpdateAssignmentRequest $request, ScheduleOfSubject $scheduleOfSubject, Assignment $assignment)
     {
-        //return view('teachers.assignments.update');
+        $data = $request->validated();
+        $deadline = explode('-', $data['deadline']);
+        $data['start_date'] = date('Y-m-d H:i', strtotime(trim($deadline[0])));
+        $data['end_date'] = date('Y-m-d H:i', strtotime($deadline[1]));
+        $data['schedule_of_subject_id'] = $scheduleOfSubject->id;
+
+        if ($request->hasFile('file')) {
+            $data['file'] = $request->file('file')->store('materials', 'public');;
+            $oldFile = $assignment->file;
+        }
+
+        try {
+            DB::beginTransaction();
+
+            $assignment->update($data);
+
+            DB::commit();
+
+            if (isset($oldFile)) {
+                Storage::disk('public')->delete($oldFile);
+            }
+
+            return redirect(RoutingHelper::updateToIndexRoute($scheduleOfSubject->id))->with([
+                'message' => 'Tugas berhasil diubah',
+                'status' => 'success',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            if (isset($data['file'])) {
+                Storage::disk('public')->delete($data['file']);
+            }
+            dd($th->getMessage());
+            return redirect()->back()->withInput()->with([
+                'message' => trans('message.error'),
+                'status' => 'danger',
+            ]);
+        }
     }
 
     public function destroy(string $id)

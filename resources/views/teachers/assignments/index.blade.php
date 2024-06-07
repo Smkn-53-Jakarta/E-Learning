@@ -62,6 +62,7 @@
                                             <th class="text-center">No</th>
                                             <th class="min-w-400px">Judul</th>
                                             <th class="min-w-300px">Deskripsi</th>
+                                            <th class="min-w-250px">File</th>
                                             <th class="min-w-250px">Pertemuan</th>
                                             <th class="min-w-250px">Tanggal Mulai</th>
                                             <th class="min-w-250px">Tanggal Selesai</th>
@@ -74,6 +75,14 @@
                                                 <td class="text-center">{{ $loop->iteration }}</td>
                                                 <td>{{ $assignment->title }}</td>
                                                 <td>{{ GlobalHelper::formatDescription($assignment->description, 20) }}
+                                                </td>
+                                                <td>
+                                                    <a href="{{ asset("storage/$assignment->file") }}" target="_blank">
+                                                        <div class="symbol symbol-25px pointer">
+                                                            <img src="{{ asset('assets/media/svg/files/pdf.svg') }}"
+                                                                alt="icon" />
+                                                        </div>
+                                                    </a>
                                                 </td>
                                                 <td>{{ $assignment->meeting }}</td>
                                                 <td>{{ $assignment->start_date }}</td>
