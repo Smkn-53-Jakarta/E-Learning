@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\StudentAttendanceController;
 use App\Http\Controllers\Teacher\AssignmentController;
 use App\Http\Controllers\Teacher\AttendanceController;
+use App\Http\Controllers\Teacher\AttendanceRecapController;
 use App\Http\Controllers\Teacher\MaterialController;
 use App\Http\Controllers\Teacher\TeachingScheduleController;
 use Illuminate\Support\Facades\Route;
@@ -49,4 +50,7 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
         'update' => 'teacher-assignments.update',
         'destroy' => 'teacher-assignments.destroy',
     ]);
+
+    // Route attendances recap
+    Route::get('jadwal-mengajar/rekap-absensi', [AttendanceRecapController::class, 'index'])->name('teacher-attendances-recap.index');
 });
