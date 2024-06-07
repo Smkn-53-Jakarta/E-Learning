@@ -142,4 +142,17 @@ class AssignmentController extends Controller
             'status' => 'success',
         ]);
     }
+
+    public function forceDelete($scheduleOfSubjectId, $assignmentId): RedirectResponse
+    {
+        $assignment = Assignment::withTrashed()->findOrFail($assignmentId);
+        $assignment->forceDelete();
+
+        Storage::disk('public')->delete($assignment->file);
+
+        return redirect(RoutingHelper::forceDeleteToIndex($scheduleOfSubjectId))->with([
+            'message' => 'Tugas berhasil dihapus',
+            'status' => 'success',
+        ]);
+    }
 }
