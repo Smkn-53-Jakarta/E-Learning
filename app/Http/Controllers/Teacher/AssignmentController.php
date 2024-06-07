@@ -9,6 +9,7 @@ use App\Http\Requests\Assignment\UpdateAssignmentRequest;
 use App\Models\Assignment;
 use App\Models\ScheduleOfSubject;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,7 +28,7 @@ class AssignmentController extends Controller
         return view('teachers.assignments.create', compact('scheduleOfSubject'));
     }
 
-    public function store(StoreAssignmentRequest $request, ScheduleOfSubject $scheduleOfSubject)
+    public function store(StoreAssignmentRequest $request, ScheduleOfSubject $scheduleOfSubject): RedirectResponse
     {
         $data = $request->validated();
         $deadline = explode('-', $data['deadline']);
@@ -73,7 +74,7 @@ class AssignmentController extends Controller
         return view('teachers.assignments.edit', compact('scheduleOfSubject', 'assignment'));
     }
 
-    public function update(UpdateAssignmentRequest $request, ScheduleOfSubject $scheduleOfSubject, Assignment $assignment)
+    public function update(UpdateAssignmentRequest $request, ScheduleOfSubject $scheduleOfSubject, Assignment $assignment): RedirectResponse
     {
         $data = $request->validated();
         $deadline = explode('-', $data['deadline']);
@@ -115,9 +116,14 @@ class AssignmentController extends Controller
         }
     }
 
-    public function destroy(string $id)
+    public function destroy(ScheduleOfSubject $scheduleOfSubject, Assignment $assignment): RedirectResponse
     {
-        //return view('teachers.assignments.index');
+        $assignment->delete();
+
+        return back()->with([
+            'message' => 'Tugas berhasil dihapus',
+            'status' => 'success',
+        ]);
     }
 
     public function trashed(): View
