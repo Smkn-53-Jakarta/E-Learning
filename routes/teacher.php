@@ -21,7 +21,7 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
     Route::get('guru/jadwal-mengajar/{scheduleOfSubject}/ruang-materi/trashed', [MaterialController::class, 'trashed'])->name('teacher-materials.trashed');
     Route::post('guru/jadwal-mengajar/{scheduleOfSubject}/ruang-materi/{material}/restore', [MaterialController::class, 'restore'])->name('teacher-materials.restore');
     Route::post('guru/jadwal-mengajar/{scheduleOfSubject}/ruang-materi/{material}/force-delete', [MaterialController::class, 'forceDelete'])->name('teacher-materials.force-delete');
-    Route::resource('jadwal-mengajar.ruang-materi', MaterialController::class)->parameters([
+    Route::resource('jadwal-mengajar.ruang-materi', MaterialController::class)->except(['show'])->parameters([
         'jadwal-mengajar' => 'scheduleOfSubject',
         'ruang-materi' => 'material'
     ])->names([
@@ -33,12 +33,20 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
         'destroy' => 'teacher-materials.destroy',
     ]);
 
-    //* Route Assignments
-    Route::get('jadwal-mengajar/ruang-tugas/trashed', [AssignmentController::class, 'trashed'])->name('teacher-assignments.trashed');
-    Route::resource('jadwal-mengajar/ruang-tugas', AssignmentController::class)->except(['destroy', 'update', 'store'])->parameters(['ruang-tugas' => 'assignment'])->names([
+    //* Route Assignments  
+    Route::get('guru/jadwal-mengajar/{scheduleOfSubject}/ruang-tugas/trashed', [AssignmentController::class, 'trashed'])->name('teacher-assignments.trashed');
+    Route::post('guru/jadwal-mengajar/{scheduleOfSubject}/ruang-tugas/{assignment}/restore', [AssignmentController::class, 'restore'])->name('teacher-assignments.restore');
+    Route::post('guru/jadwal-mengajar/{scheduleOfSubject}/ruang-tugas/{assignment}/force-delete', [AssignmentController::class, 'forceDelete'])->name('teacher-assignments.force-delete');
+    Route::resource('jadwal-mengajar.ruang-tugas', AssignmentController::class)->parameters([
+        'jadwal-mengajar' => 'scheduleOfSubject',
+        'ruang-tugas' => 'assignment'
+    ])->names([
         'index' => 'teacher-assignments.index',
         'create' => 'teacher-assignments.create',
-        'edit' => 'teacher-assignments.edit',
+        'store' => 'teacher-assignments.store',
         'show' => 'teacher-assignments.show',
+        'edit' => 'teacher-assignments.edit',
+        'update' => 'teacher-assignments.update',
+        'destroy' => 'teacher-assignments.destroy',
     ]);
 });

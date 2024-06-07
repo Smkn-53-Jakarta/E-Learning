@@ -9,7 +9,8 @@
                         </h1>
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <li class="breadcrumb-item text-muted">
-                                <a href="" class="text-muted text-hover-primary">Dashboard</a>
+                                <a href="{{ route('teacher-dashboard.index') }}"
+                                    class="text-muted text-hover-primary">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
@@ -23,14 +24,14 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('teacher-assignments.index') }}"
+                                <a href="{{ route('teacher-assignments.index', $scheduleOfSubject->id) }}"
                                     class="text-muted text-hover-primary">Ruang Tugas</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="" class="text-muted text-hover-primary">Tambah Tugas</a>
+                                <a href="{{ url()->current() }}" class="text-muted text-hover-primary">Tambah</a>
                             </li>
                         </ul>
                     </div>
@@ -39,11 +40,12 @@
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <div id="kt_app_content_container" class="app-container container-xxl">
-                {{-- @if (session('message'))
+                @if (session('message'))
                     <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
-                @endif --}}
-                <form action="#route" method="post" enctype="multipart/form-data">
-                    {{-- @csrf --}}
+                @endif
+                <form action="{{ route('teacher-assignments.store', $scheduleOfSubject->id) }}" method="post"
+                    enctype="multipart/form-data">
+                    @csrf
                     <div class="d-flex flex-column flex-lg-row align-items-start mb-10">
                         <div class="d-flex flex-column gap-7 gap-lg-10 w-100">
                             <div class="card">
@@ -53,10 +55,10 @@
                                             <label class="fs-5 fw-bold form-label mb-2">
                                                 <span class="required">Judul Tugas</span>
                                             </label>
-                                            <input id="name" class="form-control mb-2"
-                                                placeholder="Masukan Nama Tugas" name="name" value=""
-                                                maxlength="64" required />
-                                            <x-Form.InputError name="name" />
+                                            <input id="title" class="form-control mb-2"
+                                                placeholder="Masukan Judul Tugas" name="title"
+                                                value="{{ old('title') }}" maxlength="64" required />
+                                            <x-Form.InputError name="title" />
                                         </div>
                                         <div class="fv-row mb-10">
                                             <label class="fs-5 fw-bold form-label mb-2">
@@ -65,12 +67,25 @@
                                             <x-Form.CkEditor />
                                             <x-Form.InputError name="description" />
                                         </div>
-                                        <div class="fv-row mb-10">
-                                            <label class="fs-5 fw-bold form-label mb-2">
-                                                <span class="required">Pertemuan</span>
-                                            </label>
-                                            <div class="input-group">
-                                                <textarea class="form-control" placeholder="Masukkan Pertemuan" aria-label="With textarea"></textarea>
+                                        <div class="row mb-10">
+                                            <div class="col-md-6">
+                                                <label class="fs-5 fw-bold form-label mb-2">
+                                                    <span class="required">Pertemuan</span>
+                                                </label>
+                                                <input type="number" id="meeting" class="form-control mb-2"
+                                                    placeholder="Masukan Pertemuan" name="meeting"
+                                                    value="{{ old('meeting') }}" maxlength="3"
+                                                    pattern="/^-?\d+\.?\d*$/"
+                                                    onKeyPress="if(this.value.length == 3) return false;" required />
+                                                <x-Form.InputError name="meeting" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="fs-5 fw-bold form-label mb-2">
+                                                    <span class="required">Deadline</span>
+                                                </label>
+                                                <input class="form-control" placeholder="Pilih Deadline" id="deadline"
+                                                    name="deadline" value="{{ old('deadline') }}" required />
+                                                <x-Form.InputError name="deadline" />
                                             </div>
                                         </div>
                                         <div class="fv-row mb-10">
@@ -78,36 +93,18 @@
                                                 <span class="required">File</span>
                                                 <div class="mt-2 d-flex align-items-center position-relative w-100">
                                                     <input class="form-control form-control-lg" id="formFileLg"
-                                                        type="file" style="padding-left: 30px;">
+                                                        type="file" style="padding-left: 30px;" name="file"
+                                                        required>
                                                     <i class="bi bi-file-earmark-arrow-up-fill fs-4"
                                                         style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
                                                 </div>
                                             </label>
+                                            <x-Form.InputError name="file" />
                                         </div>
-                                        <div class="row mb-10">
-                                            <div class="col-md-6">
-                                                <label class="fs-5 fw-bold form-label mb-2">
-                                                    <span class="required">Jam Mulai</span>
-                                                </label>
-                                                <input type="time" id="start_time"
-                                                    class="form-control mb-2 @error('start_time') is-invalid @enderror"
-                                                    placeholder="Masukan jam mulai" name="start_time"
-                                                    value="{{ old('start_time') }}" required />
-                                                <x-Form.InputError name="start_time" />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="fs-5 fw-bold form-label mb-2">
-                                                    <span class="required">Jam Selesai</span>
-                                                </label>
-                                                <input type="time" id="end_time"
-                                                    class="form-control mb-2 @error('end_time') is-invalid @enderror"
-                                                    placeholder="Masukan jam selesai" name="end_time"
-                                                    value="{{ old('end_time') }}" required />
-                                                <x-Form.InputError name="end_time" />
-                                            </div>
-                                        </div>
+
                                         <div class="d-flex gap-3">
-                                            <a href="{{ RoutingHelper::createToIndexRoute() }}" class="btn btn-danger">
+                                            <a href="{{ RoutingHelper::createToIndexRoute($scheduleOfSubject->id) }}"
+                                                class="btn btn-danger">
                                                 Cancel
                                             </a>
                                             <x-SaveButton>Simpan</x-SaveButton>
@@ -122,27 +119,25 @@
         </div>
     </div>
     @push('scripts')
-        <script>
-            $("#start_time").flatpickr({
-                enableTime: true,
-                noCalendar: true,
-                dateFormat: "H:i",
-            });
-
-            $("#end_time").flatpickr({
-                enableTime: true,
-                noCalendar: true,
-                dateFormat: "H:i",
-            });
-        </script>
-    @endpush
-
-    @push('scripts')
         <script src="{{ asset('assets/plugins/custom-ckeditor5/ckeditor.js') }}"></script>
         <script>
             $('#title').maxlength({
                 warningClass: "badge badge-success",
                 limitReachedClass: "badge badge-danger"
+            });
+
+            $('#meeting').maxlength({
+                warningClass: "badge badge-success",
+                limitReachedClass: "badge badge-danger"
+            });
+
+            $("#deadline").daterangepicker({
+                timePicker: true,
+                timePicker24Hour: true,
+                startDate: moment(),
+                locale: {
+                    format: "M/DD HH:mm"
+                }
             });
         </script>
     @endpush

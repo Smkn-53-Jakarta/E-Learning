@@ -279,7 +279,15 @@ class PermissionSeeder extends Seeder
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'teacher-assignments.edit',
+                'name' => 'teacher-assignments.update',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'teacher-assignments.delete',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'teacher-assignments.restore',
                 'guard_name' => 'web'
             ],
         ];

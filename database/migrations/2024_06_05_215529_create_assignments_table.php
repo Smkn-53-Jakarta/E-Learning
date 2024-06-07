@@ -17,9 +17,10 @@ return new class extends Migration
             $table->foreign('schedule_of_subject_id')->references('id')->on('schedule_of_subjects')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('title', 64);
             $table->longText('description');
+            $table->unsignedInteger('meeting');
             $table->string('file');
-            $table->time('start_time');
-            $table->time('end_time');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
             $table->timestamps();
             $table->softDeletes();
         });
