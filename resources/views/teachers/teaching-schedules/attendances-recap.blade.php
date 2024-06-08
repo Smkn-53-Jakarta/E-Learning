@@ -33,10 +33,23 @@
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <div id="kt_app_content_container" class="app-container container-xxl">
-                <div class="mt-2">
-                    @if (session('message'))
-                        <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
-                    @endif
+                <div class="card card-flush mb-5">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th class="min-w-10px fw-medium">Kelas</th>
+                                        <th class="min-w-300px fw-normal">X-TKJ</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="min-w-10px fw-medium">Mata Pelajaran</th>
+                                        <th class="min-w-300px fw-normal">Bahasa Inggris</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
                 <div class="card card-flush">
                     <div class="card-header mt-6">
@@ -54,22 +67,21 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h3 class="pb-1">Periode Juni</h3>
-                        <div class="table-responsive fixed-actions-table">
+                        <div class="table-responsive">
                             <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
                                 <thead>
                                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                         <th class="text-center">No</th>
-                                        <th class="min-w-90px text-start">Nama Siswa</th>
-                                        <th class="min-w-70px text-start">NIS</th>
+                                        <th class="min-w-250px text-start">Nama Siswa</th>
+                                        <th class="min-w-150px text-start">NIS</th>
                                         <th class="min-w-30px text-center">1</th>
                                         <th class="min-w-30px text-center">2</th>
                                         <th class="min-w-30px text-center">3</th>
                                         <th class="min-w-30px text-center">4</th>
-                                        <th class="min-w-30px text-center">jml.hadir</th>
-                                        <th class="min-w-30px text-center">jml.alpha</th>
-                                        <th class="min-w-30px text-center">jml.izin</th>
-                                        <th class="min-w-30px text-center">jml.sakit</th>
+                                        <th class="min-w-100px text-center">jml.hadir</th>
+                                        <th class="min-w-100px text-center">jml.alpha</th>
+                                        <th class="min-w-100px text-center">jml.izin</th>
+                                        <th class="min-w-100px text-center">jml.sakit</th>
                                     </tr>
                                 </thead>
                                 <tbody class="fw-semibold text-gray-600">
@@ -77,21 +89,17 @@
                                         <td class="text-center">1</td>
                                         <td class="text-start">Agus Bambang Pamungkas</td>
                                         <td class="text-start">19200447</td>
-                                        <td class="text-center" style="position: relative;"><button type="button"
-                                                class="btn btn-success d-flex align-items-center justify-content-center"
-                                                style="width: 15px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">H</button>
+                                        <td class="text-center">
+                                            <span class="badge text-bg-success text-white">H</span>
                                         </td>
-                                        <td class="text-center" style="position: relative;"><button type="button"
-                                                class="btn btn-danger d-flex align-items-center justify-content-center"
-                                                style="width: 15px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">A</button>
+                                        <td class="text-center">
+                                            <span class="badge text-bg-danger text-white">A</span>
                                         </td>
-                                        <td class="text-center" style="position: relative;"><button type="button"
-                                                class="btn btn-primary d-flex align-items-center justify-content-center"
-                                                style="width: 15px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">I</button>
+                                        <td class="text-center">
+                                            <span class="badge text-bg-primary text-white">I</span>
                                         </td>
-                                        <td class="text-center" style="position: relative;"><button type="button"
-                                                class="btn btn-warning d-flex align-items-center justify-content-center"
-                                                style="width: 15px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">S</button>
+                                        <td class="text-center">
+                                            <span class="badge text-bg-warning text-white">S</span>
                                         </td>
                                         <td class="text-center">1</td>
                                         <td class="text-center">1</td>
@@ -105,40 +113,27 @@
                 </div>
                 <div class="card card-footer">
                     <div class="row">
-                        <div class="card-toolbar d-flex align-items-center position-relative my-1 pb-1">
-                            <div class="col-7">
-                                <a href="{{ route('teacher-teaching-schedules.index') }}"
-                                    class=" col-md-auto btn btn-primary me-3"><i
-                                        class="bi bi-arrow-left-circle"></i>Kembali</a>
-                            </div>
-                            <div class="col d-flex align-items-center position-relative">
-                                <button
-                                    class="btn btn-success text-center d-flex align-items-center justify-content-center m-1"
-                                    style="width: 120px; height:30px; position: relative;">
-                                    H : Hadir
-                                </button>
-                                <button
-                                    class="btn btn-danger text-center d-flex align-items-center justify-content-center m-1"
-                                    style="width: 120px; height:30px; position: relative;">
-                                    A : Alpha
-                                </button>
-                                <button
-                                    class="btn btn-primary text-center d-flex align-items-center justify-content-center m-1"
-                                    style="width: 120px; height:30px; position: relative;">
-                                    I : Izin
-                                </button>
-                                <button
-                                    class="btn btn-warning text-center d-flex align-items-center justify-content-center m-1"
-                                    style="width: 120px; height:30px; position: relative;">
-                                    S : Sakit
-                                </button>
-                            </div>
+                        <div class="col-7 px-0">
+                            <a href="{{ route('teacher-teaching-schedules.index') }}"
+                                class=" col-md-auto btn btn-primary me-3"><i
+                                    class="bi bi-arrow-left-circle"></i>Kembali</a>
+                        </div>
+                        <div class="col-5 d-flex gap-3 justify-content-end px-0">
+                            <button class="btn btn-success btn-sm">
+                                H : Hadir
+                            </button>
+                            <button class="btn btn-danger btn-sm">
+                                A : Alpha
+                            </button>
+                            <button class="btn btn-primary btn-sm">
+                                I : Izin
+                            </button>
+                            <button class="btn btn-warning btn-sm">
+                                S : Sakit
+                            </button>
                         </div>
                     </div>
                 </div>
-                {{-- <div class="d-flex p-5 justify-content-end">
-                        {!! $attendances->links() !!}
-                    </div> --}}
             </div>
         </div>
     </div>

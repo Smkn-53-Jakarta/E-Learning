@@ -23,51 +23,52 @@
                 </tr>
             </tbody>
         </table>
-        <div class="container mt-5">
-            <div class="btn-group w-100">
-                @php
-                    use Carbon\Carbon;
+        <div class="btn-group w-100">
+            @php
+                use Carbon\Carbon;
 
-                    $now = Carbon::now();
-                    $startTime = Carbon::parse($teachingSchedule->start_time);
-                    $endTime = Carbon::parse($teachingSchedule->end_time);
+                $now = Carbon::now();
+                $startTime = Carbon::parse($teachingSchedule->start_time);
+                $endTime = Carbon::parse($teachingSchedule->end_time);
 
-                    if ($endTime->lessThan($startTime)) {
-                        $endTime->addDay();
-                    }
+                if ($endTime->lessThan($startTime)) {
+                    $endTime->addDay();
+                }
 
-                    $scheduleDay = $teachingSchedule->day;
-                    $todayDay = $now->locale('id')->dayName;
-                @endphp
-                @if ($todayDay !== $scheduleDay || $now->lessThan($startTime) || $now->greaterThan($endTime))
-                    <button class="btn btn-warning text-white">
-                        Belum Mulai
-                    </button>
-                @else
-                    <a href="{{ route('teacher-attendances.index', $teachingSchedule->id) }}"
-                        class="btn btn-primary text-white">
-                        Masuk Kelas
-                    </a>
-                @endif
-
-                <a href="{{ route('teacher-materials.index', $teachingSchedule->id) }}"
-                    class="btn btn-secondary data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ruang Materi">
-                    <svg class="currenColor" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                        <path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="currentColor" />
-                        <path
-                            d="M9.2 3H3C2.4 3 2 3.4 2 4V19C2 19.6 2.4 20 3 20H21C21.6 20 22 19.6 22 19V7C22 6.4 21.6 6 21 6H12L10.4 3.60001C10.2 3.20001 9.7 3 9.2 3Z"
-                            fill="currentColor" />
-                    </svg>
+                $scheduleDay = $teachingSchedule->day;
+                $todayDay = $now->locale('id')->dayName;
+            @endphp
+            @if ($todayDay !== $scheduleDay || $now->lessThan($startTime) || $now->greaterThan($endTime))
+                <button class="btn btn-warning  btn-sm text-white">
+                    Belum Mulai
+                </button>
+            @else
+                <a href="{{ route('teacher-attendances.index', $teachingSchedule->id) }}"
+                    class="btn btn-primary  btn-sm text-white">
+                    Masuk Kelas
                 </a>
-                <a href="{{ route('teacher-assignments.index', $teachingSchedule->id) }}"
-                    class="btn btn-secondary data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ruang Tugas">
-                    <i class="bi bi-archive-fill" style="font-size:17px"></i>
-                </a>
-                <a href="{{ route('teacher-attendances-recap.index') }}"
-                    class="btn btn-secondary data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ruang Tugas">
-                    <i class="bi bi-archive-fill" style="font-size:17px"></i>
-                </a>
-            </div>
+            @endif
+
+            <a href="{{ route('teacher-materials.index', $teachingSchedule->id) }}"
+                class="btn btn-secondary  btn-sm data-bs-toggle="tooltip" data-bs-placement="bottom"
+                title="Ruang Materi">
+                <svg class="currenColor" width="20" height="20" viewBox="0 0 24 24">
+                    <path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="currentColor" />
+                    <path
+                        d="M9.2 3H3C2.4 3 2 3.4 2 4V19C2 19.6 2.4 20 3 20H21C21.6 20 22 19.6 22 19V7C22 6.4 21.6 6 21 6H12L10.4 3.60001C10.2 3.20001 9.7 3 9.2 3Z"
+                        fill="currentColor" />
+                </svg>
+            </a>
+            <a href="{{ route('teacher-assignments.index', $teachingSchedule->id) }}"
+                class="btn btn-secondary  btn-sm data-bs-toggle="tooltip" data-bs-placement="bottom"
+                title="Ruang Tugas">
+                <i class="bi bi-archive" style="font-size:17px"></i>
+            </a>
+            <a href="{{ route('teacher-attendances-recap.index') }}"
+                class="btn btn-secondary  btn-sm data-bs-toggle="tooltip" data-bs-placement="bottom"
+                title="Ruang Tugas">
+                <i class="bi bi-journal-check" style="font-size:17px"></i>
+            </a>
         </div>
     </div>
 </div>
