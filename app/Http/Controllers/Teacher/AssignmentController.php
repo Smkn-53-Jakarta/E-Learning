@@ -64,9 +64,9 @@ class AssignmentController extends Controller
         }
     }
 
-    public function show(string $id): View
+    public function show(ScheduleOfSubject $scheduleOfSubject): View
     {
-        return view('teachers.assignments.show');
+        return view('teachers.assignments.show', compact('scheduleOfSubject'));
     }
 
     public function edit(ScheduleOfSubject $scheduleOfSubject, Assignment $assignment): View

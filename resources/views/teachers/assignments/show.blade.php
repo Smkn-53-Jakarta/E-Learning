@@ -1,3 +1,6 @@
+{{-- @php
+    $teachingSchedule = $teachingSchedule ?? null;
+@endphp --}}
 <x-AppLayout>
     <div class="d-flex flex-column flex-column-fluid">
         <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
@@ -23,7 +26,7 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('teacher-assignments.index') }}"
+                                <a href="{{ route('teacher-assignments.index', $scheduleOfSubject->id) }}"
                                     class="text-muted text-hover-primary">Ruang Tugas</a>
                             </li>
                             <li class="breadcrumb-item">
@@ -127,8 +130,8 @@
                     </div>
                 </div>
                 <div class="d-grid gap-2 d-md-block pt-5">
-                    <a href="{{ route('teacher-assignments.index') }}" class="btn btn-outline btn-active-primary"><i
-                            class="bi bi-arrow-left-circle"></i>Kembali</a>
+                    <a href="{{ route('teacher-assignments.index', $scheduleOfSubject->id) }}"
+                        class="btn btn-outline btn-active-primary"><i class="bi bi-arrow-left-circle"></i>Kembali</a>
                 </div>
             </div>
         </div>
