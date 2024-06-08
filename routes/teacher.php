@@ -17,11 +17,17 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
     Route::get('/jadwal-mengajar', [TeachingScheduleController::class, 'index'])->name('teacher-teaching-schedules.index');
     Route::get('/jadwal-mengajar/{scheduleOfSubject}/kehadiran', [AttendanceController::class, 'index'])->name('teacher-attendances.index');
     Route::put('/jadwal-mengajar/kehadiran/{studentId}', [StudentAttendanceController::class, 'changeStatus'])->name('teacher-attendances.update');
+    // Route::resource('jadwal-mengajar.ruang-tugas', AssignmentController::class)->parameters([
+    //     'jadwal-mengajar' => 'scheduleOfSubject',
+    //     'ruang-tugas' => 'assignment'
+    // ])->names([
+    //     'index' => 'teacher-assignments.index',
+    // ]);
 
     //* Route Materials  
-    Route::get('guru/jadwal-mengajar/{scheduleOfSubject}/ruang-materi/trashed', [MaterialController::class, 'trashed'])->name('teacher-materials.trashed');
-    Route::post('guru/jadwal-mengajar/{scheduleOfSubject}/ruang-materi/{material}/restore', [MaterialController::class, 'restore'])->name('teacher-materials.restore');
-    Route::post('guru/jadwal-mengajar/{scheduleOfSubject}/ruang-materi/{material}/force-delete', [MaterialController::class, 'forceDelete'])->name('teacher-materials.force-delete');
+    Route::get('jadwal-mengajar/{scheduleOfSubject}/ruang-materi/trashed', [MaterialController::class, 'trashed'])->name('teacher-materials.trashed');
+    Route::post('jadwal-mengajar/{scheduleOfSubject}/ruang-materi/{material}/restore', [MaterialController::class, 'restore'])->name('teacher-materials.restore');
+    Route::post('jadwal-mengajar/{scheduleOfSubject}/ruang-materi/{material}/force-delete', [MaterialController::class, 'forceDelete'])->name('teacher-materials.force-delete');
     Route::resource('jadwal-mengajar.ruang-materi', MaterialController::class)->except(['show'])->parameters([
         'jadwal-mengajar' => 'scheduleOfSubject',
         'ruang-materi' => 'material'
@@ -35,9 +41,9 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
     ]);
 
     //* Route Assignments  
-    Route::get('guru/jadwal-mengajar/{scheduleOfSubject}/ruang-tugas/trashed', [AssignmentController::class, 'trashed'])->name('teacher-assignments.trashed');
-    Route::post('guru/jadwal-mengajar/{scheduleOfSubject}/ruang-tugas/{assignment}/restore', [AssignmentController::class, 'restore'])->name('teacher-assignments.restore');
-    Route::post('guru/jadwal-mengajar/{scheduleOfSubject}/ruang-tugas/{assignment}/force-delete', [AssignmentController::class, 'forceDelete'])->name('teacher-assignments.force-delete');
+    Route::get('jadwal-mengajar/{scheduleOfSubject}/ruang-tugas/trashed', [AssignmentController::class, 'trashed'])->name('teacher-assignments.trashed');
+    Route::post('jadwal-mengajar/{scheduleOfSubject}/ruang-tugas/{assignment}/restore', [AssignmentController::class, 'restore'])->name('teacher-assignments.restore');
+    Route::post('jadwal-mengajar/{scheduleOfSubject}/ruang-tugas/{assignment}/force-delete', [AssignmentController::class, 'forceDelete'])->name('teacher-assignments.force-delete');
     Route::resource('jadwal-mengajar.ruang-tugas', AssignmentController::class)->parameters([
         'jadwal-mengajar' => 'scheduleOfSubject',
         'ruang-tugas' => 'assignment'

@@ -48,7 +48,6 @@
                     Masuk Kelas
                 </a>
             @endif
-
             <a href="{{ route('teacher-materials.index', $teachingSchedule->id) }}"
                 class="btn btn-secondary  btn-sm data-bs-toggle="tooltip" data-bs-placement="bottom"
                 title="Ruang Materi">
