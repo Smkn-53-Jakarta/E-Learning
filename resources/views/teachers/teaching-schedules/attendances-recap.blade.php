@@ -40,11 +40,11 @@
                                 <tbody>
                                     <tr>
                                         <th class="min-w-10px fw-medium">Kelas</th>
-                                        <th class="min-w-300px fw-normal">X-TKJ</th>
+                                        <th class="min-w-300px fw-normal">{{ $scheduleOfSubject->classroom->name }}</th>
                                     </tr>
                                     <tr>
                                         <th class="min-w-10px fw-medium">Mata Pelajaran</th>
-                                        <th class="min-w-300px fw-normal">Bahasa Inggris</th>
+                                        <th class="min-w-300px fw-normal">{{ $scheduleOfSubject->course->name }}</th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -74,38 +74,53 @@
                                         <th class="text-center">No</th>
                                         <th class="min-w-250px text-start">Nama Siswa</th>
                                         <th class="min-w-150px text-start">NIS</th>
-                                        <th class="min-w-30px text-center">1</th>
-                                        <th class="min-w-30px text-center">2</th>
-                                        <th class="min-w-30px text-center">3</th>
-                                        <th class="min-w-30px text-center">4</th>
+                                        @foreach ($totalMeetings as $totalMeeting)
+                                            <th class="min-w-30px text-center">{{ $loop->iteration }}</th>
+                                        @endforeach
                                         <th class="min-w-100px text-center">jml.hadir</th>
-                                        <th class="min-w-100px text-center">jml.alpha</th>
+                                        <th class="min-w-100px text-center">jml.alfa</th>
                                         <th class="min-w-100px text-center">jml.izin</th>
                                         <th class="min-w-100px text-center">jml.sakit</th>
                                     </tr>
                                 </thead>
                                 <tbody class="fw-semibold text-gray-600">
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="text-start">Agus Bambang Pamungkas</td>
-                                        <td class="text-start">19200447</td>
-                                        <td class="text-center">
-                                            <span class="badge text-bg-success text-white">H</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <span class="badge text-bg-danger text-white">A</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <span class="badge text-bg-primary text-white">I</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <span class="badge text-bg-warning text-white">S</span>
-                                        </td>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">1</td>
-                                        <td class="text-center">1</td>
-                                    </tr>
+                                    @foreach ($students as $student)
+                                        @php
+                                            $hadirCount = 0;
+                                            $alfaCount = 0;
+                                            $izinCount = 0;
+                                            $sakitCount = 0;
+                                        @endphp
+                                        <tr>
+                                            <td class="text-center">{{ $loop->iteration }}</td>
+                                            <td class="text-start">{{ $student->user->name }}</td>
+                                            <td class="text-start">{{ $student->identification_number }}</td>
+                                            @foreach ($student->studentAttendances as $studentAttendance)
+                                                <td class="text-center">
+                                                    @if ($studentAttendance->status == 'Hadir')
+                                                        <span class="badge text-bg-success text-white">H</span>
+                                                        @php $hadirCount++; @endphp
+                                                    @elseif ($studentAttendance->status == 'Alfa')
+                                                        <span class="badge text-bg-danger text-white">A</span>
+                                                        @php $alfaCount++; @endphp
+                                                    @elseif ($studentAttendance->status == 'Izin')
+                                                        <span class="badge text-bg-primary text-white">I</span>
+                                                        @php $izinCount++; @endphp
+                                                    @elseif ($studentAttendance->status == 'Sakit')
+                                                        <span class="badge text-bg-warning text-white">S</span>
+                                                        @php $sakitCount++; @endphp
+                                                    @else
+                                                        <span
+                                                            class="badge text-bg-secondary text-white">{{ $studentAttendance->status }}</span>
+                                                    @endif
+                                                </td>
+                                            @endforeach
+                                            <td class="text-center">{{ $hadirCount }}</td>
+                                            <td class="text-center">{{ $alfaCount }}</td>
+                                            <td class="text-center">{{ $izinCount }}</td>
+                                            <td class="text-center">{{ $sakitCount }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -123,7 +138,7 @@
                                 H : Hadir
                             </button>
                             <button class="btn btn-danger btn-sm">
-                                A : Alpha
+                                A : Alfa
                             </button>
                             <button class="btn btn-primary btn-sm">
                                 I : Izin

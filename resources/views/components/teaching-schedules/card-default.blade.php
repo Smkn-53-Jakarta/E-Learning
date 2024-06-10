@@ -45,13 +45,13 @@
             @else
                 <a href="{{ route('teacher-attendances.index', $teachingSchedule->id) }}"
                     class="btn btn-primary  btn-sm text-white">
-                    Masuk Kelas
+                    Masuk
                 </a>
             @endif
             <a href="{{ route('teacher-materials.index', $teachingSchedule->id) }}"
-                class="btn btn-secondary  btn-sm data-bs-toggle="tooltip" data-bs-placement="bottom"
+                class="btn btn-secondary btn-sm data-bs-toggle="tooltip" data-bs-placement="bottom"
                 title="Ruang Materi">
-                <svg class="currenColor" width="20" height="20" viewBox="0 0 24 24">
+                <svg class="currenColor" width="17" height="17" viewBox="0 0 24 24">
                     <path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="currentColor" />
                     <path
                         d="M9.2 3H3C2.4 3 2 3.4 2 4V19C2 19.6 2.4 20 3 20H21C21.6 20 22 19.6 22 19V7C22 6.4 21.6 6 21 6H12L10.4 3.60001C10.2 3.20001 9.7 3 9.2 3Z"
@@ -59,14 +59,12 @@
                 </svg>
             </a>
             <a href="{{ route('teacher-assignments.index', $teachingSchedule->id) }}"
-                class="btn btn-secondary  btn-sm data-bs-toggle="tooltip" data-bs-placement="bottom"
-                title="Ruang Tugas">
-                <i class="bi bi-archive" style="font-size:17px"></i>
+                class="btn btn-secondary btn-sm data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ruang Tugas">
+                <i class="bi bi-archive"></i>
             </a>
-            <a href="{{ route('teacher-attendances-recap.index') }}"
-                class="btn btn-secondary  btn-sm data-bs-toggle="tooltip" data-bs-placement="bottom"
-                title="Ruang Tugas">
-                <i class="bi bi-journal-check" style="font-size:17px"></i>
+            <a href="{{ route('teacher-attendances-recap.index', $teachingSchedule->id) }}"
+                class="btn btn-secondary btn-sm data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ruang Tugas">
+                <i class="bi bi-journal-check"></i>
             </a>
         </div>
     </div>

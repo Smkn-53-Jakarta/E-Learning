@@ -57,6 +57,6 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
         'destroy' => 'teacher-assignments.destroy',
     ]);
 
-    // Route attendances recap
-    Route::get('jadwal-mengajar/rekap-absensi', [AttendanceRecapController::class, 'index'])->name('teacher-attendances-recap.index');
+    //* Route Attendances Recap
+    Route::get('jadwal-mengajar/{scheduleOfSubject}/rekap-absensi', [AttendanceRecapController::class, 'index'])->name('teacher-attendances-recap.index');
 });
