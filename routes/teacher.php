@@ -60,3 +60,11 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
     //* Route Attendances Recap
     Route::get('jadwal-mengajar/{scheduleOfSubject}/rekap-absensi', [AttendanceRecapController::class, 'index'])->name('teacher-attendances-recap.index');
 });
+
+Route::get('guru/e-raport/pdf', function () {
+    return view ('teachers.e-raports.generate');
+});
+
+Route::get('guru/e-raport', function () {
+    return view ('teachers.e-raports.index');
+})->name('teachers-e-raports.index');
