@@ -294,6 +294,10 @@ class PermissionSeeder extends Seeder
                 'name' => 'teacher-attendances-recap.read',
                 'guard_name' => 'web'
             ],
+            [
+                'name' => 'teacher-teaching-recaps.read',
+                'guard_name' => 'web'
+            ],
         ];
 
         Permission::insert($permissions);

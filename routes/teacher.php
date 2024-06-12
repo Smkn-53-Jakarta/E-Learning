@@ -5,6 +5,7 @@ use App\Http\Controllers\Teacher\AssignmentController;
 use App\Http\Controllers\Teacher\AttendanceController;
 use App\Http\Controllers\Teacher\AttendanceRecapController;
 use App\Http\Controllers\Teacher\MaterialController;
+use App\Http\Controllers\Teacher\TeachingRecapController;
 use App\Http\Controllers\Teacher\TeachingScheduleController;
 use Illuminate\Support\Facades\Route;
 
@@ -59,4 +60,8 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
 
     //* Route Attendances Recap
     Route::get('jadwal-mengajar/{scheduleOfSubject}/rekap-absensi', [AttendanceRecapController::class, 'index'])->name('teacher-attendances-recap.index');
+
+    //* Route Teaching Recaps
+    Route::get('jadwal-mengajar/rekap-ajar', [TeachingRecapController::class, 'index'])->name('teacher-teaching-recaps.index');
+    Route::get('jadwal-mengajar/{scheduleOfSubject}/rekap-ajar', [TeachingRecapController::class, 'show'])->name('teacher-teaching-recaps.show');
 });

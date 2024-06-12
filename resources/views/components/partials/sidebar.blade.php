@@ -333,6 +333,17 @@
                                     </a>
                                 </div>
                             @endcan
+                            @can('teacher-teaching-recaps.read')
+                                <div class="menu-item">
+                                    <a class="menu-link {{ Request::is('guru/rekap-ajar*') ? 'active' : '' }}"
+                                        href="{{ route('teacher-teaching-recaps.index') }}">
+                                        <span class="menu-bullet">
+                                            <span class="bullet bullet-dot"></span>
+                                        </span>
+                                        <span class="menu-title">Rekap Ajar</span>
+                                    </a>
+                                </div>
+                            @endcan
                         </div>
                     </div>
                 @endcanany

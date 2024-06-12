@@ -128,5 +128,6 @@ return [
         'FileHelper' => \App\Helpers\FileHelper::class,
         'RoutingHelper' => \App\Helpers\RoutingHelper::class,
         'GlobalHelper' => \App\Helpers\GlobalHelper::class,
+        'Semesterhelper' => \App\Helpers\SemesterHelper::class,
     ])->toArray(),
 ];
