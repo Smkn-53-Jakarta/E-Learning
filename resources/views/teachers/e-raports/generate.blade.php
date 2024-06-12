@@ -30,7 +30,7 @@
                     <div class="card-header justify-content-center mt-20">
                         <h1>LAPORAN HASIL BELAJAR SISWA</h1>
                     </div>
-                    <div class="card-body pb-0">
+                    <div class="card-body py-0">
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <tbody>
