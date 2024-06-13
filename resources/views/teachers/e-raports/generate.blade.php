@@ -118,7 +118,7 @@
                     {{-- card content 1 --}}
                     <div class="card-body py-0">
                         <div class="table-responsive">
-                            <table class="table table-bordered bg-light-primary">
+                            <table class="table table-bordered border-dark bg-light-primary">
                                 <tr class="text-center">
                                     <th class="align-middle" rowspan="2" style="width: 2%;">No</th>
                                     <th class="align-middle" rowspan="2">Nama Mata Pelajaran</th>
@@ -162,7 +162,7 @@
                     {{-- card content 2 --}}
                     <div class="card-body py-0">
                         <div class="table-responsive">
-                            <table class="table table-bordered bg-light-primary">
+                            <table class="table table-bordered border-dark bg-light-primary">
                                 <tr class="text-center">
                                     <th style="width: 2%;">No</th>
                                     <th class="min-w-130px" style="width: 30%;">Sikap dan Kepribadian</th>
@@ -199,7 +199,7 @@
                     {{-- card content 3 --}}
                     <div class="card-body py-0">
                         <div class="table-responsive">
-                            <table class="table table-bordered bg-light-primary">
+                            <table class="table table-bordered border-dark bg-light-primary">
                                 <tr class="text-center">
                                     <th style="width: 0.1%;">No</th>
                                     <th class="min-w-200px" style="width: 50%;">Ekstrakulikuler</th>
@@ -218,7 +218,7 @@
                     {{-- card content 4 --}}
                     <div class="card-body pt-0">
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered border-dark">
                                 <tbody>
                                     <tr class="bg-light-primary">
                                         <th class="min-w-400px fw-medium">
