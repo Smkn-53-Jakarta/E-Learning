@@ -201,7 +201,7 @@
                         <div class="table-responsive">
                             <table class="table table-bordered bg-light-primary">
                                 <tr class="text-center">
-                                    <th style="width: 2%;">No</th>
+                                    <th style="width: 0.1%;">No</th>
                                     <th class="min-w-200px" style="width: 50%;">Ekstrakulikuler</th>
                                     <th class="min-w-50px" style="width:10%;">Nilai</th>
                                 </tr>
