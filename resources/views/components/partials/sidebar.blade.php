@@ -336,11 +336,11 @@
                         </div>
                     </div>
                 @endcanany
-                {{-- MENGAJAR GURU --}}
-                @canany(['teacher-teaching-schedules.read'])
+                {{-- E-Raport GURU --}}
+                @canany(['teacher-raports.read'])
                     <div class="menu-item">
                         <a class="menu-link {{ Request::is('guru/e-raport*') ? 'active' : '' }}"
-                            href="{{ route('teachers-e-raports.index') }}">
+                            href="{{ route('teacher-raports.index') }}">
                             <span class="menu-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor" class="bi bi-filetype-pdf" viewBox="0 0 16 16">
