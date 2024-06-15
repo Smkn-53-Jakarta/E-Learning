@@ -6,6 +6,7 @@ use App\Http\Controllers\Teacher\AttendanceController;
 use App\Http\Controllers\Teacher\AttendanceRecapController;
 use App\Http\Controllers\Teacher\MaterialController;
 use App\Http\Controllers\Teacher\TeachingRecapController;
+use App\Http\Controllers\Teacher\RaportController;
 use App\Http\Controllers\Teacher\TeachingScheduleController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,4 +59,15 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
     //* Route Teaching Recaps
     Route::get('jadwal-mengajar/rekap-ajar', [TeachingRecapController::class, 'index'])->name('teacher-teaching-recaps.index');
     Route::get('jadwal-mengajar/{scheduleOfSubject}/rekap-ajar', [TeachingRecapController::class, 'show'])->name('teacher-teaching-recaps.show');
+
+    //* Route E-Raport
+    Route::get('e-raport', [RaportController::class, 'index'])->name('teacher-raports.index');
+    Route::resource('e-raport', RaportController::class)->only(['index', 'show'])->names([
+        'index' => 'teacher-raports.index',
+        'show' => 'teacher-raports.show'
+    ]);
+});
+
+Route::get('e-raport/pdf', function () {
+    return view('teachers.e-raports.generate');
 });
