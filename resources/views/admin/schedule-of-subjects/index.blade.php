@@ -64,9 +64,9 @@
                         <x-DataNotFound />
                     @endif
                 </div>
-            </div>
-            <div class="d-flex p-5 justify-content-end">
-                {!! $scheduleOfSubjects->appends($_GET)->links() !!}
+                <div class="d-flex p-5 justify-content-end">
+                    {!! $scheduleOfSubjects->appends($_GET)->links() !!}
+                </div>
             </div>
         </div>
 </x-AppLayout>

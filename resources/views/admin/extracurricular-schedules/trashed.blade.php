@@ -19,6 +19,12 @@
                                 <a href="{{ route('extracurricular-schedules.index') }}"
                                     class="text-muted text-hover-primary">Jadwal Ekstrakurikuler</a>
                             </li>
+                            <li class="breadcrumb-item">
+                                <span class="bullet bg-gray-400 w-5px h-2px"></span>
+                            </li>
+                            <li class="breadcrumb-item text-muted">
+                                <a href="{{ url()->current() }}" class="text-muted text-hover-primary">Sampah</a>
+                            </li>
                         </ul>
                     </div>
 
@@ -27,33 +33,15 @@
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <div id="kt_app_content_container" class="app-container container-xxl">
+                <div class="d-flex justify-content-between flex-column flex-lg-row w-100">
+                    <x-SearchInput placeholder="Cari Jadwal Ekstrakurikuler" />
+                </div>
                 <div class="mt-2">
                     @if (session('message'))
                         <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
                     @endif
                 </div>
-                <div class="card">
-                    <div class="card-header">
-                        <div class="d-flex justify-content-between flex-column flex-lg-row w-100">
-                            <div class="card-title">
-                                <x-SearchInput placeholder="Cari Jadwal Mata Pelajaran" />
-                            </div>
-                            <div class="card-toolbar">
-                                @if ($extracurricularSchedulesTrashed)
-                                    <a href="{{ route('extracurricular-schedules.trashed') }}"
-                                        class="btn btn-light-primary me-3">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                        Sampah
-                                    </a>
-                                @endif
-                                @can('extracurricular-schedules.create')
-                                    <x-AddButton :url="route('extracurricular-schedules.create')">Tambah Jadwal Ekstrakurikuler</x-AddButton>
-                                @endcan
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
+                <div class="row mt-1">
                     @if (count($extracurricularSchedules))
                         @foreach ($extracurricularSchedules as $extracurricularSchedule)
                             <div class="col-lg-4 mt-4">

@@ -101,4 +101,21 @@ class ExtracurricularScheduleController extends Controller
             'status' => 'success',
         ]);
     }
+
+    public function trashed(): View
+    {
+        $extracurricularSchedules = ExtracurricularSchedule::with('extracurricular', 'coach', 'members')->latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
+
+        return view('admin.extracurricular-schedules.trashed', compact('extracurricularSchedules'));
+    }
+
+    public function restore($id): RedirectResponse
+    {
+        ExtracurricularSchedule::withTrashed()->findOrFail($id)->restore();
+
+        return redirect(RoutingHelper::restoreToIndex())->with([
+            'message' => 'Jadwal ekstrakurikuler berhasil dipulihkan',
+            'status' => 'success',
+        ]);
+    }
 }
