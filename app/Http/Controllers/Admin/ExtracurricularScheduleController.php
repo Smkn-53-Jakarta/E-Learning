@@ -118,4 +118,14 @@ class ExtracurricularScheduleController extends Controller
             'status' => 'success',
         ]);
     }
+
+    public function forceDelete($id): RedirectResponse
+    {
+        ExtracurricularSchedule::withTrashed()->findOrFail($id)->forceDelete();
+
+        return redirect(RoutingHelper::forceDeleteToIndex())->with([
+            'message' => 'Jadwal ekstrakurikuler berhasil dihapus',
+            'status' => 'success',
+        ]);
+    }
 }
