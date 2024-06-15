@@ -11,6 +11,7 @@ use App\Models\ExtracurricularSchedule;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 
 class ExtracurricularScheduleController extends Controller
@@ -57,23 +58,47 @@ class ExtracurricularScheduleController extends Controller
         }
     }
 
-    public function show(ExtracurricularSchedule $extracurricularSchedule)
+    public function edit(ExtracurricularSchedule $extracurricularSchedule): View
     {
-        //
+        $extracurriculars = Extracurricular::latest()->get();
+        $students = Student::with('user', 'classroom')->latest()->get();
+        $coachs = User::role('coach')->get();
+
+        return view('admin.extracurricular-schedules.edit', compact('extracurriculars', 'students', 'coachs', 'extracurricularSchedule'));
     }
 
-    public function edit(ExtracurricularSchedule $extracurricularSchedule)
+    public function update(UpdateExtracurricularScheduleRequest $request, ExtracurricularSchedule $extracurricularSchedule): RedirectResponse
     {
-        //
+        $data = $request->validated();
+
+        try {
+            DB::beginTransaction();
+
+            $extracurricularSchedule->update($data);
+            $extracurricularSchedule->members()->sync($data['members']);
+
+            DB::commit();
+            return redirect(RoutingHelper::updateToIndexRoute())->with([
+                'message' => 'Jadwal ekstrakurikuler berhasil diubah',
+                'status' => 'success',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return redirect()->back()->withInput()->with([
+                'message' => trans('message.error'),
+                'status' => 'danger',
+            ]);
+        }
     }
 
-    public function update(UpdateExtracurricularScheduleRequest $request, ExtracurricularSchedule $extracurricularSchedule)
+    public function destroy(ExtracurricularSchedule $extracurricularSchedule): RedirectResponse
     {
-        //
-    }
+        $extracurricularSchedule->delete();
 
-    public function destroy(ExtracurricularSchedule $extracurricularSchedule)
-    {
-        //
+        return back()->with([
+            'message' => 'Jadwal ekstrakurikuler berhasil dihapus',
+            'status' => 'success',
+        ]);
     }
 }
