@@ -219,6 +219,26 @@ class PermissionSeeder extends Seeder
                 'guard_name' => 'web'
             ],
             [
+                'name' => 'extracurricular-schedules.read',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'extracurricular-schedules.create',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'extracurricular-schedules.update',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'extracurricular-schedules.delete',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'extracurricular-schedules.restore',
+                'guard_name' => 'web'
+            ],
+            [
                 'name' => 'attendances-teachers.read',
                 'guard_name' => 'web'
             ],

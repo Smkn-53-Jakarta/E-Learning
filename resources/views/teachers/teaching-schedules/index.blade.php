@@ -44,6 +44,9 @@
                     @endif
                 </div>
             </div>
+            <div class="d-flex p-5 justify-content-end">
+                {!! $teachingSchedules->appends($_GET)->links() !!}
+            </div>
         </div>
     </div>
 </x-AppLayout>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\ClassroomController;
 use App\Http\Controllers\Admin\ExtracurricularController;
+use App\Http\Controllers\Admin\ExtracurricularScheduleController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ScheduleOfSubjectController;
@@ -130,6 +131,18 @@ Route::prefix('admin')->middleware('auth', 'permissions')->group(function () {
         'edit' => 'schedule-of-subjects.edit',
         'update' => 'schedule-of-subjects.update',
         'destroy' => 'schedule-of-subjects.destroy',
+    ]);
+
+    Route::get('/jadwal-ekstrakurikuler/trashed', [ExtracurricularScheduleController::class, 'trashed'])->name('extracurricular-schedules.trashed');
+    Route::post('/jadwal-ekstrakurikuler/{extracurricularSchedule}/restore', [ExtracurricularScheduleController::class, 'restore'])->name('extracurricular-schedules.restore');
+    Route::post('/jadwal-ekstrakurikuler/{extracurricularSchedule}/force-delete', [ExtracurricularScheduleController::class, 'forceDelete'])->name('extracurricular-schedules.force-delete');
+    Route::resource('jadwal-ekstrakurikuler', ExtracurricularScheduleController::class)->except(['show'])->parameters(['jadwal-ekstrakurikuler' => 'extracurricularSchedule'])->names([
+        'index' => 'extracurricular-schedules.index',
+        'create' => 'extracurricular-schedules.create',
+        'store' => 'extracurricular-schedules.store',
+        'edit' => 'extracurricular-schedules.edit',
+        'update' => 'extracurricular-schedules.update',
+        'destroy' => 'extracurricular-schedules.destroy',
     ]);
 
     //* Route Attendances Teachers

@@ -5,7 +5,7 @@
                 <div class="d-flex align-items-center">
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                            Jadwal Mata Pelajaran
+                            Jadwal Ekstrakurikuler
                         </h1>
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <li class="breadcrumb-item text-muted">
@@ -16,8 +16,8 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('schedule-of-subjects.index') }}"
-                                    class="text-muted text-hover-primary">Jadwal Mata Pelajaran</a>
+                                <a href="{{ route('extracurricular-schedules.index') }}"
+                                    class="text-muted text-hover-primary">Jadwal Ekstrakurikuler</a>
                             </li>
                         </ul>
                     </div>
@@ -39,25 +39,25 @@
                                 <x-SearchInput placeholder="Cari Jadwal Mata Pelajaran" />
                             </div>
                             <div class="card-toolbar">
-                                @if ($scheduleOfSubjectsTrashed)
-                                    <a href="{{ route('schedule-of-subjects.trashed') }}"
+                                @if ($extracurricularSchedulesTrashed)
+                                    <a href="{{ route('extracurricular-schedules.trashed') }}"
                                         class="btn btn-light-primary me-3">
                                         <i class="fa-solid fa-trash-can"></i>
                                         Sampah
                                     </a>
                                 @endif
-                                @can('schedule-of-subjects.create')
-                                    <x-AddButton :url="route('schedule-of-subjects.create')">Tambah Mata Pelajaran</x-AddButton>
+                                @can('extracurricular-schedules.create')
+                                    <x-AddButton :url="route('extracurricular-schedules.create')">Tambah Jadwal Ekstrakurikuler</x-AddButton>
                                 @endcan
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    @if (count($scheduleOfSubjects))
-                        @foreach ($scheduleOfSubjects as $scheduleOfSubject)
+                    @if (count($extracurricularSchedules))
+                        @foreach ($extracurricularSchedules as $extracurricularSchedule)
                             <div class="col-lg-4 mt-4">
-                                <x-ScheduleOfSubjects.CardWithAction :scheduleOfSubject="$scheduleOfSubject" />
+                                <x-ExtracurricularSchedules.CardWithAction :extracurricularSchedule="$extracurricularSchedule" />
                             </div>
                         @endforeach
                     @else
@@ -66,7 +66,7 @@
                 </div>
             </div>
             <div class="d-flex p-5 justify-content-end">
-                {!! $scheduleOfSubjects->appends($_GET)->links() !!}
+                {!! $extracurricularSchedules->appends($_GET)->links() !!}
             </div>
         </div>
 </x-AppLayout>

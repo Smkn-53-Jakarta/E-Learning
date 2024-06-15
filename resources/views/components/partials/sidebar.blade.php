@@ -271,7 +271,18 @@
                     </div>
                 @endcan
 
-
+                {{-- ADMIN JADWAL EKSTRAKURIKULER --}}
+                @can('extracurricular-schedules.read')
+                    <div class="menu-item">
+                        <a class="menu-link  {{ Request::is('admin/jadwal-ekstrakurikuler*') ? 'active' : '' }}"
+                            href="{{ route('extracurricular-schedules.index') }}">
+                            <span class="menu-icon">
+                                <i class="bi bi-calendar-date" style="font-size: 19px;"></i>
+                            </span>
+                            <span class="menu-title">Jadwal Ekstrakurikuler</span>
+                        </a>
+                    </div>
+                @endcan
 
                 {{-- SIDE BAR GURU --}}
                 @can('teacher-dashboard.index')
