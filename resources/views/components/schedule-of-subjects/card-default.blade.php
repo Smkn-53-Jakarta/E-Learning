@@ -1,7 +1,7 @@
 <div class="card shadow-sm">
     <div class="card-header align-items-center flex-column justfiy-content-start fw-bold">
-        <h6 class="card-title text-uppercase pt-2">-</h6>
-        <p>-</p>
+        <h6 class="card-title text-uppercase pt-2">Web Programming</h6>
+        <p>Senin, 08.00 - 10.00 WIB</p>
     </div>
     <div class="card-body">
         <div class="text-center mb-3">
@@ -13,12 +13,12 @@
                 <tr>
                     <td class="p-1"><i class="bi bi-person fs-2"></i> Guru</td>
                     <td class="p-1">:</td>
-                    <td class="p-1">-</td>
+                    <td class="p-1">Hafidz Mumtaz M.Kom</td>
                 </tr>
                 <tr>
                     <td class="p-1"><i class="bi bi-signpost-split fs-2"></i> Kelas</td>
                     <td class="p-1">:</td>
-                    <td class="p-1">-</td>
+                    <td class="p-1">XII-TKJ</td>
                 </tr>
             </tbody>
         </table>
@@ -46,8 +46,8 @@
                 Masuk
             </a>
             {{-- @endif --}}
-            <a href="" class="btn btn-secondary btn-sm data-bs-toggle="tooltip" data-bs-placement="bottom"
-                title="Ruang Materi">
+            <a href="{{ route('student-materials.index') }}" class="btn btn-secondary btn-sm data-bs-toggle="tooltip"
+                data-bs-placement="bottom" title="Ruang Materi">
                 <svg class="currenColor" width="17" height="17" viewBox="0 0 24 24">
                     <path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="currentColor" />
                     <path
