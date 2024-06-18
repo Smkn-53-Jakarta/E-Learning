@@ -16,6 +16,7 @@ class RolePermissionSeeder extends Seeder
     {
         $admin = Role::where('name', 'Admin')->first();
         $teacher = Role::where('name', 'Teacher')->first();
+        $student = Role::where('name', 'Student')->first();
 
         $teacherPermissions = Permission::where(function ($query) {
             $query->where('name', 'like', 'teacher-dashboard.%')
@@ -28,11 +29,16 @@ class RolePermissionSeeder extends Seeder
                 ->orWhere('name', 'like', 'teacher-raports.%');
         })->pluck('id')->all();
 
+        $studentPermissions = Permission::where(function ($query) {
+            $query->where('name', 'like', 'student-dashboard.%');
+        })->pluck('id')->all();
+
         $allPermissions = Permission::pluck('id')->all();
 
-        $adminPermissions = array_diff($allPermissions, $teacherPermissions);
+        $adminPermissions = array_diff($allPermissions, $teacherPermissions, $studentPermissions);
 
         $admin->syncPermissions($adminPermissions);
         $teacher->syncPermissions($teacherPermissions);
+        $student->syncPermissions($studentPermissions);
     }
 }

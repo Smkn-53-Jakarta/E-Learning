@@ -322,6 +322,12 @@ class PermissionSeeder extends Seeder
                 'name' => 'teacher-raports.read',
                 'guard_name' => 'web'
             ],
+
+            //* Student Permissions 
+            [
+                'name' => 'student-dashboard.index',
+                'guard_name' => 'web'
+            ],
         ];
 
         Permission::insert($permissions);
