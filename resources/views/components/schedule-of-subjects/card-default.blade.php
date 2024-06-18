@@ -59,10 +59,6 @@
                 title="Ruang Tugas">
                 <i class="bi bi-archive"></i>
             </a>
-            <a href="" class="btn btn-secondary btn-sm data-bs-toggle="tooltip" data-bs-placement="bottom"
-                title="Rekap Absensi">
-                <i class="bi bi-journal-check"></i>
-            </a>
         </div>
     </div>
 </div>
