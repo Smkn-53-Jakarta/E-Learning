@@ -30,7 +30,8 @@ class RolePermissionSeeder extends Seeder
         })->pluck('id')->all();
 
         $studentPermissions = Permission::where(function ($query) {
-            $query->where('name', 'like', 'student-dashboard.%');
+            $query->where('name', 'like', 'student-dashboard.%')
+                ->orWhere('name', 'like', 'student-schedule-of-subjects.%');
         })->pluck('id')->all();
 
         $allPermissions = Permission::pluck('id')->all();

@@ -254,6 +254,7 @@ class PermissionSeeder extends Seeder
                 'name' => 'attendances-students-attendances.read',
                 'guard_name' => 'web'
             ],
+            //* Teacher permissions
             [
                 'name' => 'teacher-dashboard.index',
                 'guard_name' => 'web'
@@ -326,6 +327,10 @@ class PermissionSeeder extends Seeder
             //* Student Permissions 
             [
                 'name' => 'student-dashboard.index',
+                'guard_name' => 'web'
+            ],
+            [   
+                'name' => 'student-schedule-of-subjects.read',
                 'guard_name' => 'web'
             ],
         ];
