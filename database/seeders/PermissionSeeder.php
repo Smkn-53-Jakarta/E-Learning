@@ -333,6 +333,10 @@ class PermissionSeeder extends Seeder
                 'name' => 'student-schedule-of-subjects.read',
                 'guard_name' => 'web'
             ],
+            [   
+                'name' => 'student-materials.read',
+                'guard_name' => 'web'
+            ],
         ];
 
         Permission::insert($permissions);
