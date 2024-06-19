@@ -37,8 +37,8 @@
                         fill="currentColor" />
                 </svg>
             </a>
-            <a href="" class="btn btn-secondary btn-sm data-bs-toggle="tooltip" data-bs-placement="bottom"
-                title="Ruang Tugas">
+            <a href="{{ route('student-assignments.index', $scheduleOfSubject->id) }}"
+                class="btn btn-secondary btn-sm data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ruang Tugas">
                 <i class="bi bi-archive"></i>
             </a>
         </div>

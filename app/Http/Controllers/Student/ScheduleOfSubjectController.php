@@ -14,10 +14,4 @@ class ScheduleOfSubjectController extends Controller
 
         return view('students.schedule-of-subjects.index', compact('scheduleOfSubjects'));
     }
-
-
-    public function show(ScheduleOfSubject $scheduleOfSubject)
-    {
-        //
-    }
 }

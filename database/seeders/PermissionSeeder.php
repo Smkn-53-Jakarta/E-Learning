@@ -329,12 +329,16 @@ class PermissionSeeder extends Seeder
                 'name' => 'student-dashboard.index',
                 'guard_name' => 'web'
             ],
-            [   
+            [
                 'name' => 'student-schedule-of-subjects.read',
                 'guard_name' => 'web'
             ],
-            [   
+            [
                 'name' => 'student-materials.read',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'student-assignments.read',
                 'guard_name' => 'web'
             ],
         ];

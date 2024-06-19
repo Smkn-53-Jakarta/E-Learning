@@ -18,7 +18,7 @@ class AssignmentController extends Controller
     public function index(ScheduleOfSubject $scheduleOfSubject): View
     {
         $assignmentsTrashed = Assignment::onlyTrashed()->count();
-        $assignments = Assignment::latest()->filter(request(['search']))->paginate(10);
+        $assignments = Assignment::latest()->where('schedule_of_subject_id', $scheduleOfSubject->id)->filter(request(['search']))->paginate(10);
 
         return view('teachers.assignments.index', compact('scheduleOfSubject', 'assignmentsTrashed', 'assignments'));
     }
@@ -128,7 +128,7 @@ class AssignmentController extends Controller
 
     public function trashed(ScheduleOfSubject $scheduleOfSubject): View
     {
-        $assignments = Assignment::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
+        $assignments = Assignment::latest()->onlyTrashed()->where('schedule_of_subject_id', $scheduleOfSubject->id)->filter(request(['search']))->paginate(10);
 
         return view('teachers.assignments.trashed', compact('assignments', 'scheduleOfSubject'));
     }

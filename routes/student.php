@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Student\AssignmentController;
 use App\Http\Controllers\Student\MaterialController;
 use App\Http\Controllers\Student\ScheduleOfSubjectController;
 use Illuminate\Support\Facades\Route;
@@ -14,4 +15,7 @@ Route::prefix('murid')->middleware('auth', 'permissions')->group(function () {
 
     //* Ruang Materi
     Route::get('jadwal-mata-pelajaran/{scheduleOfSubject}/ruang-materi', [MaterialController::class, 'index'])->name('student-materials.index');
+
+    //* Ruang Tugas
+    Route::get('jadwal-mata-pelajaran/{scheduleOfSubject}/ruang-tugas', [AssignmentController::class, 'index'])->name('student-assignments.index');
 });
