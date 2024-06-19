@@ -46,7 +46,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <tbody>
-                                        <tr class="bg-light-primary">
+                                        <tr class="">
                                             <th class="min-w-400px fw-medium">
                                                 <div class="d-flex flex-column">
                                                     <div class="row align-items-center mb-2">
@@ -132,7 +132,7 @@
                         {{-- card content 1 --}}
                         <div class="card-body py-0">
                             <div class="table-responsive">
-                                <table class="table table-bordered border-dark bg-light-primary">
+                                <table class="table table-bordered border-dark">
                                     <tr class="text-center">
                                         <th class="align-middle" rowspan="2" style="width: 2%;">No</th>
                                         <th class="align-middle" rowspan="2">Nama Mata Pelajaran</th>
@@ -176,7 +176,7 @@
                         {{-- card content 2 --}}
                         <div class="card-body py-0">
                             <div class="table-responsive">
-                                <table class="table table-bordered border-dark bg-light-primary">
+                                <table class="table table-bordered border-dark">
                                     <tr class="text-center">
                                         <th style="width: 2%;">No</th>
                                         <th class="min-w-130px" style="width: 30%;">Sikap dan Kepribadian</th>
@@ -213,7 +213,7 @@
                         {{-- card content 3 --}}
                         <div class="card-body py-0">
                             <div class="table-responsive">
-                                <table class="table table-bordered border-dark bg-light-primary">
+                                <table class="table table-bordered border-dark">
                                     <tr class="text-center">
                                         <th style="width: 0.1%;">No</th>
                                         <th class="min-w-200px" style="width: 50%;">Ekstrakulikuler</th>
@@ -234,7 +234,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered border-dark">
                                     <tbody>
-                                        <tr class="bg-light-primary">
+                                        <tr class="">
                                             <th class="min-w-400px fw-medium">
                                                 <div class="d-flex flex-column">
                                                     <div class="row align-items-center mb-2">
@@ -256,7 +256,7 @@
                         <div class="card-body pb-0">
                             <div class="table-responsive">
                                 <table class="table">
-                                    <tr class="bg-light-primary">
+                                    <tr class="">
                                         <th class="min-w-500px fw-medium">
                                             <div class="d-flex flex-column justify-content-center align-items-center"
                                                 style="height: 200px">
