@@ -20,9 +20,14 @@
 
 <body>
     <div class="d-flex flex-column flex-column-fluid">
-        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
-            <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
-
+        <div class="d-flex flex-column flex-column-fluid">
+            <div id="kt_app_content_container" class="app-container container-xxl">
+                <div class="card-header d-flex justify-content-end">
+                    <div class="mt-5">
+                        <button class="btn btn-primary btn-active fw-bold"><i
+                                class="bi bi-download fs-2 mx-2"></i>Export</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
