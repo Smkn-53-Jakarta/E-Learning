@@ -9,7 +9,7 @@
                         </h1>
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('teacher-dashboard.index') }}"
+                                <a href="{{ route('student-dashboard.index') }}"
                                     class="text-muted text-hover-primary">{{ $preTitle ?? 'Dashboard' }}</a>
                             </li>
                         </ul>
