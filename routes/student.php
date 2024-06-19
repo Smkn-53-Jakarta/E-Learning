@@ -18,4 +18,5 @@ Route::prefix('murid')->middleware('auth', 'permissions')->group(function () {
 
     //* Ruang Tugas
     Route::get('jadwal-mata-pelajaran/{scheduleOfSubject}/ruang-tugas', [AssignmentController::class, 'index'])->name('student-assignments.index');
+    Route::get('jadwal-mata-pelajaran/{scheduleOfSubject}/ruang-tugas/{assignment}/download', [AssignmentController::class, 'download'])->name('student-assignments.show');
 });
