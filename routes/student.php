@@ -13,5 +13,5 @@ Route::prefix('murid')->middleware('auth', 'permissions')->group(function () {
     Route::get('jadwal-mata-pelajaran', [ScheduleOfSubjectController::class, 'index'])->name('student-schedule-of-subjects.index');
 
     //* Ruang Materi
-    Route::get('jadwal-mata-pelajaran/ruang-materi', [MaterialController::class, 'index' ])->name('student-materials.index');
+    Route::get('jadwal-mata-pelajaran/{scheduleOfSubject}/ruang-materi', [MaterialController::class, 'index'])->name('student-materials.index');
 });

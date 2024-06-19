@@ -5,7 +5,7 @@
                 <div class="d-flex align-items-center">
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                            Jadwal Mengajar
+                            Jadwal Pelajaran
                         </h1>
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <li class="breadcrumb-item text-muted">
@@ -16,7 +16,8 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="" class="text-muted text-hover-primary">Jadwal Mengajar</a>
+                                <a href="{{ url()->current() }}" class="text-muted text-hover-primary">Jadwal
+                                    Pelajaran</a>
                             </li>
                         </ul>
                     </div>
@@ -32,20 +33,20 @@
                     @endif
                 </div>
                 <div class="row">
-                    {{-- @if (count($teachingSchedules)) --}}
-                    {{-- @foreach ($teachingSchedules as $teachingSchedule) --}}
-                    <div class="col-lg-4 mt-4">
-                        <x-ScheduleOfSubjects.CardDefault />
-                    </div>
-                    {{-- @endforeach --}}
-                    {{-- @else
+                    @if (count($scheduleOfSubjects))
+                        @foreach ($scheduleOfSubjects as $scheduleOfSubject)
+                            <div class="col-lg-4 mt-4">
+                                <x-ScheduleOfSubjects.CardDefault :scheduleOfSubject="$scheduleOfSubject" />
+                            </div>
+                        @endforeach
+                    @else
                         <x-DataNotFound />
-                    @endif --}}
+                    @endif
                 </div>
             </div>
-            {{-- <div class="d-flex p-5 justify-content-end">
-                {!! $teachingSchedules->appends($_GET)->links() !!}
-            </div> --}}
+            <div class="d-flex p-5 justify-content-end">
+                {!! $scheduleOfSubjects->appends($_GET)->links() !!}
+            </div>
         </div>
     </div>
 </x-AppLayout>

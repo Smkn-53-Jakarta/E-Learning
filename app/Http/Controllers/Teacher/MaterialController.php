@@ -18,7 +18,7 @@ class MaterialController extends Controller
     public function index(ScheduleOfSubject $scheduleOfSubject): View
     {
         $materialsTrashed = Material::onlyTrashed()->count();
-        $materials = Material::latest()->filter(request(['search']))->paginate(10);
+        $materials = Material::latest()->where('schedule_of_subject_id', $scheduleOfSubject->id)->filter(request(['search']))->paginate(10);
 
         return view('teachers.materials.index', compact('scheduleOfSubject', 'materialsTrashed', 'materials'));
     }
@@ -116,7 +116,7 @@ class MaterialController extends Controller
 
     public function trashed(ScheduleOfSubject $scheduleOfSubject): View
     {
-        $materials = Material::latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
+        $materials = Material::latest()->onlyTrashed()->where('schedule_of_subject_id', $scheduleOfSubject->id)->filter(request(['search']))->paginate(10);
 
         return view('teachers.materials.trashed', compact('materials', 'scheduleOfSubject'));
     }
