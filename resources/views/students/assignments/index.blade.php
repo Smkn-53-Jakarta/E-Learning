@@ -9,16 +9,15 @@
                         </h1>
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('teacher-dashboard.index') }}"
+                                <a href="{{ route('student-dashboard.index') }}"
                                     class="text-muted text-hover-primary">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('teacher-teaching-schedules.index') }}"
-                                    class="text-muted text-hover-primary">Jadwal
-                                    Mengajar</a>
+                                <a href="{{ route('student-schedule-of-subjects.index') }}"
+                                    class="text-muted text-hover-primary">Jadwal Pelajaran</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
@@ -34,23 +33,13 @@
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <div id="kt_app_content_container" class="app-container container-xxl">
                 <div class="card card-flush">
-                    <div class="card-header mt-6">
-                        <div class="card-title">
-                            <div class="d-flex align-items-center position-relative my-1 me-5">
-                                <x-SearchInput placeholder="Cari Tugas" />
-                            </div>
-                        </div>
-                        <div class="card-toolbar">
-                            @if ($assignmentsTrashed)
-                                <a href="{{ route('teacher-assignments.trashed', $scheduleOfSubject->id) }}"
-                                    class="btn btn-light-primary me-3">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                    Sampah
-                                </a>
-                            @endif
-                            @can('teacher-assignments.create')
-                                <x-AddButton :url="route('teacher-assignments.create', $scheduleOfSubject->id)">Tambah Tugas</x-AddButton>
-                            @endcan
+                    <div class="card-header py-7">
+                        <div class="card-title pt-3 mb-0 gap-4 gap-lg-10 gap-xl-15 nav nav-tabs border-bottom-0">
+                            <a href="{{ url()->current() }}"
+                                class="fs-4 fw-bold pb-3 border-bottom border-3 border-primary">Data
+                                Tugas</a>
+                            <a href="{{ route('student-submissions.index', ['scheduleOfSubject' => $scheduleOfSubject->id]) }}"
+                                class="fs-4 fw-bold pb-3 text-muted">Data Nilai Tugas</a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -66,8 +55,6 @@
                                             <th class="min-w-50px">Pertemuan</th>
                                             <th class="min-w-250px">Tanggal Mulai</th>
                                             <th class="min-w-250px">Tanggal Selesai</th>
-                                            <th class="min-w-250px">Dibuat Pada</th>
-                                            <th class="min-w-250px">Diubah Pada</th>
                                             <th class="min-w-100px">Aksi</th>
                                         </tr>
                                     </thead>
@@ -90,8 +77,6 @@
                                                 </td>
                                                 <td>{{ $assignment->start_date }}</td>
                                                 <td>{{ $assignment->end_date }}</td>
-                                                <td>{{ $assignment->created_at->diffForHumans() }}</td>
-                                                <td>{{ $assignment->updated_at->diffForHumans() }}</td>
                                                 <td>
                                                     <a href="#"
                                                         class="btn btn-sm btn-icon btn-active-light-primary"
@@ -100,28 +85,16 @@
                                                     </a>
                                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
                                                         data-kt-menu="true">
-                                                        @can('teacher-assignments.update')
+                                                        @can('student-assignments.read')
                                                             <div class="menu-item px-3">
-                                                                <a href="{{ route('teacher-assignments.edit', ['scheduleOfSubject' => $scheduleOfSubject->id, 'assignment' => $assignment->id]) }}"
-                                                                    class="menu-link px-3">Ubah</a>
+                                                                <a href="{{ route('student-assignments.show', ['scheduleOfSubject' => $scheduleOfSubject->id, 'assignment' => $assignment->id]) }}"
+                                                                    class="menu-link px-3">Unduh</a>
                                                             </div>
                                                         @endcan
-                                                        @can('teacher-assignments.read')
+                                                        @can('student-submissions.create')
                                                             <div class="menu-item px-3">
-                                                                <a href="{{ route('teacher-assignments.show', ['scheduleOfSubject' => $scheduleOfSubject->id, 'assignment' => $assignment->id]) }}"
-                                                                    class="menu-link px-3">Detail</a>
-                                                            </div>
-                                                        @endcan
-                                                        @can('teacher-assignments.delete')
-                                                            <div class="menu-item px-3">
-                                                                <form
-                                                                    action="{{ route('teacher-assignments.destroy', ['scheduleOfSubject' => $scheduleOfSubject->id, 'assignment' => $assignment->id]) }}"
-                                                                    method="post" class="me-3">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <a href="#" class="menu-link px-3"
-                                                                        onclick="confirmPopup(this, 'Akan menghapus tugas ini')">Hapus</a>
-                                                                </form>
+                                                                <a href="{{ route('student-submissions.create', ['scheduleOfSubject' => $scheduleOfSubject->id, 'assignment' => $assignment->id]) }}"
+                                                                    class="menu-link px-3">Kerjakan</a>
                                                             </div>
                                                         @endcan
                                                     </div>

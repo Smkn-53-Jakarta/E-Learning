@@ -33,6 +33,8 @@ class RolePermissionSeeder extends Seeder
             $query->where('name', 'like', 'student-dashboard.%')
                 ->orWhere('name', 'like', 'student-schedule-of-subjects.%')
                 ->orWhere('name', 'like', 'student-materials.%')
+                ->orWhere('name', 'like', 'student-assignments.%')
+                ->orWhere('name', 'like', 'student-submissions.%')
                 ->orWhere('name', 'like', 'student-raports.%');
         })->pluck('id')->all();
 

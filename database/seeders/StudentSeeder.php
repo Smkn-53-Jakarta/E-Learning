@@ -2,12 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Classroom;
-use App\Models\SchoolYear;
-use App\Models\Status;
 use App\Models\Student;
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class StudentSeeder extends Seeder
