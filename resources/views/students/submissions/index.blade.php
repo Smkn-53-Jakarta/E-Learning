@@ -33,6 +33,11 @@
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <div id="kt_app_content_container" class="app-container container-xxl">
+                <div class="mt-2">
+                    @if (session('message'))
+                        <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
+                    @endif
+                </div>
                 <div class="card card-flush">
                     <div class="card-header py-7">
                         <div class="card-title pt-3 mb-0 gap-4 gap-lg-10 gap-xl-15 nav nav-tabs border-bottom-0">
@@ -55,6 +60,7 @@
                                             <th class="min-w-50px text-center">Link Tugas</th>
                                             <th class="min-w-200px">Komentar Guru</th>
                                             <th class="min-w-100px">Nilai</th>
+                                            <th class="min-w-100px">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody class="fw-semibold text-gray-600">
@@ -82,6 +88,22 @@
                                                 </td>
                                                 <td>{{ $submission->comment }}</td>
                                                 <td>{{ $submission->value }}</td>
+                                                <td>
+                                                    <a href="#"
+                                                        class="btn btn-sm btn-icon btn-active-light-primary"
+                                                        data-kt-menu-trigger="click" data-kt-menu-placement="top-end">
+                                                        <i class="bi bi-three-dots fs-3"></i>
+                                                    </a>
+                                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
+                                                        data-kt-menu="true">
+                                                        @can('student-submissions.update')
+                                                            <div class="menu-item px-3">
+                                                                <a href="{{ route('student-submissions.edit', ['scheduleOfSubject' => $scheduleOfSubject->id, 'assignment' => $submission->assignment->id, 'submission' => $submission->id]) }}"
+                                                                    class="menu-link px-3">Ubah</a>
+                                                            </div>
+                                                        @endcan
+                                                    </div>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

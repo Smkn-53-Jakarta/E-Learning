@@ -47,7 +47,7 @@ class SubmissionController extends Controller
             ]);
         } catch (\Throwable $th) {
             DB::rollBack();
-            dd($th->getMessage());
+
             return redirect()->back()->withInput()->with([
                 'message' => trans('message.error'),
                 'status' => 'danger',
@@ -55,18 +55,32 @@ class SubmissionController extends Controller
         }
     }
 
-    public function show(Submission $submission)
+    public function edit(ScheduleOfSubject $scheduleOfSubject, Assignment $assignment, Submission $submission): View
     {
-        //
+        return view('students.submissions.edit', compact('scheduleOfSubject', 'assignment', 'submission'));
     }
 
-    public function edit(Submission $submission)
+    public function update(UpdateSubmissionRequest $request, ScheduleOfSubject $scheduleOfSubject, Assignment $assignment, Submission $submission)
     {
-        //
-    }
+        $data = $request->validated();
 
-    public function update(UpdateSubmissionRequest $request, Submission $submission)
-    {
-        //
+        try {
+            DB::beginTransaction();
+
+            $submission->update($data);
+
+            DB::commit();
+            return redirect(RoutingHelper::updateToIndexRoute($scheduleOfSubject->id))->with([
+                'message' => 'Link drive berhasil diubah',
+                'status' => 'success',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return redirect()->back()->withInput()->with([
+                'message' => trans('message.error'),
+                'status' => 'danger',
+            ]);
+        }
     }
 }

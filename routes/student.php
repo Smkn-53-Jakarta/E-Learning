@@ -25,4 +25,6 @@ Route::prefix('murid')->middleware('auth', 'permissions')->group(function () {
     Route::get('jadwal-mata-pelajaran/{scheduleOfSubject}/ruang-penilaian', [SubmissionController::class, 'index'])->name('student-submissions.index');
     Route::get('jadwal-mata-pelajaran/{scheduleOfSubject}/ruang-tugas/{assignment}/ruang-penilaian/create', [SubmissionController::class, 'create'])->name('student-submissions.create');
     Route::post('jadwal-mata-pelajaran/{scheduleOfSubject}/ruang-tugas/{assignment}/ruang-penilaian', [SubmissionController::class, 'store'])->name('student-submissions.store');
+    Route::get('jadwal-mata-pelajaran/{scheduleOfSubject}/ruang-tugas/{assignment}/ruang-penilaian/{submission}/edit', [SubmissionController::class, 'edit'])->name('student-submissions.edit');
+    Route::put('jadwal-mata-pelajaran/{scheduleOfSubject}/ruang-tugas/{assignment}/ruang-penilaian/{submission}', [SubmissionController::class, 'update'])->name('student-submissions.update');
 });
