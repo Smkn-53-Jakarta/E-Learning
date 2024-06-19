@@ -351,6 +351,7 @@ class PermissionSeeder extends Seeder
             ],
             [
                 'name' => 'student-submissions.update',
+                'name' => 'student-raports.read',
                 'guard_name' => 'web'
             ],
         ];

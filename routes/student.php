@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Student\AssignmentController;
 use App\Http\Controllers\Student\MaterialController;
+use App\Http\Controllers\Student\RaportController;
 use App\Http\Controllers\Student\ScheduleOfSubjectController;
 use App\Http\Controllers\Student\SubmissionController;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +28,11 @@ Route::prefix('murid')->middleware('auth', 'permissions')->group(function () {
     Route::post('jadwal-mata-pelajaran/{scheduleOfSubject}/ruang-tugas/{assignment}/ruang-penilaian', [SubmissionController::class, 'store'])->name('student-submissions.store');
     Route::get('jadwal-mata-pelajaran/{scheduleOfSubject}/ruang-tugas/{assignment}/ruang-penilaian/{submission}/edit', [SubmissionController::class, 'edit'])->name('student-submissions.edit');
     Route::put('jadwal-mata-pelajaran/{scheduleOfSubject}/ruang-tugas/{assignment}/ruang-penilaian/{submission}', [SubmissionController::class, 'update'])->name('student-submissions.update');
+
+    //* E-Raport
+    Route::get('e-raport', [RaportController::class, 'index'])->name('student-raports.index');
+});
+
+Route::get('murid/e-raport/pdf', function () {
+    return view('students.e-raports.generate');
 });
