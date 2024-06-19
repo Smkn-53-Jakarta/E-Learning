@@ -35,9 +35,11 @@
                 <div class="card card-flush">
                     <div class="card-header py-7">
                         <div class="card-title pt-3 mb-0 gap-4 gap-lg-10 gap-xl-15 nav nav-tabs border-bottom-0">
-                            <a href="" class="fs-4 fw-bold pb-3 border-bottom border-3 border-primary">Data
+                            <a href="{{ url()->current() }}"
+                                class="fs-4 fw-bold pb-3 border-bottom border-3 border-primary">Data
                                 Tugas</a>
-                            <a href="" class="fs-4 fw-bold pb-3 text-muted">Data Nilai Tugas</a>
+                            <a href="{{ route('student-submissions.index', ['scheduleOfSubject' => $scheduleOfSubject->id]) }}"
+                                class="fs-4 fw-bold pb-3 text-muted">Data Nilai Tugas</a>
                         </div>
                     </div>
                     <div class="card-body">
@@ -89,9 +91,12 @@
                                                                     class="menu-link px-3">Unduh</a>
                                                             </div>
                                                         @endcan
-                                                        <div class="menu-item px-3">
-                                                            <a href="" class="menu-link px-3">Kerjakan</a>
-                                                        </div>
+                                                        @can('student-submissions.create')
+                                                            <div class="menu-item px-3">
+                                                                <a href="{{ route('student-submissions.create', ['scheduleOfSubject' => $scheduleOfSubject->id, 'assignment' => $assignment->id]) }}"
+                                                                    class="menu-link px-3">Kerjakan</a>
+                                                            </div>
+                                                        @endcan
                                                     </div>
                                                 </td>
                                             </tr>

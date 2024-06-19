@@ -341,6 +341,18 @@ class PermissionSeeder extends Seeder
                 'name' => 'student-assignments.read',
                 'guard_name' => 'web'
             ],
+            [
+                'name' => 'student-submissions.read',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'student-submissions.create',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'student-submissions.update',
+                'guard_name' => 'web'
+            ],
         ];
 
         Permission::insert($permissions);
