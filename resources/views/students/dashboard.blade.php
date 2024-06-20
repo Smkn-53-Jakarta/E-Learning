@@ -17,5 +17,20 @@
                 </div>
             </div>
         </div>
+
+        <div class="app-content flex-column-fluid" id="kt_app_content">
+            <div id="kt_app_content" class="app-content flex-column-fluid">
+                <div id="kt_app_content_container" class="app-container container-xxl">
+                    <div class="mt-2">
+                        @if (session('message'))
+                            <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <x-DashboardSchedule.CardWithAction />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </x-app-layout>
