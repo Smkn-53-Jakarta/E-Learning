@@ -24,6 +24,7 @@ class RolePermissionSeeder extends Seeder
                 ->orWhere('name', 'like', 'teacher-attendances.%')
                 ->orWhere('name', 'like', 'teacher-materials.%')
                 ->orWhere('name', 'like', 'teacher-assignments.%')
+                ->orWhere('name', 'like', 'teacher-submissions.%')
                 ->orWhere('name', 'like', 'teacher-attendances-recap.%')
                 ->orWhere('name', 'like', 'teacher-teaching-recaps.%')
                 ->orWhere('name', 'like', 'teacher-raports.%');

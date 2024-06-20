@@ -7,6 +7,7 @@ use App\Http\Controllers\Teacher\AttendanceRecapController;
 use App\Http\Controllers\Teacher\MaterialController;
 use App\Http\Controllers\Teacher\TeachingRecapController;
 use App\Http\Controllers\Teacher\RaportController;
+use App\Http\Controllers\Teacher\SubmissionController;
 use App\Http\Controllers\Teacher\TeachingScheduleController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +53,9 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
         'update' => 'teacher-assignments.update',
         'destroy' => 'teacher-assignments.destroy',
     ]);
+
+    //* Route Submissions
+    Route::post('jadwal-mengajar/{scheduleOfSubject}/ruang-tugas/{assignment}/penilaian', [SubmissionController::class, 'store'])->name('teacher-submissions.store');
 
     //* Route Attendances Recap
     Route::get('jadwal-mengajar/{scheduleOfSubject}/rekap-absensi', [AttendanceRecapController::class, 'index'])->name('teacher-attendances-recap.index');

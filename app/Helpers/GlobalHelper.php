@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Request;
 
 class GlobalHelper
@@ -110,5 +111,13 @@ class GlobalHelper
             : $textOnly;
 
         return $formatDescription;
+    }
+
+    public static function isLate($endDate, $dateSubmission)
+    {
+        $endDateTime = Carbon::parse($endDate);
+        $dateSubmissionTime = Carbon::parse($dateSubmission);
+
+        return $dateSubmissionTime->greaterThan($endDateTime);
     }
 }

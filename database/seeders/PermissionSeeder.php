@@ -312,6 +312,10 @@ class PermissionSeeder extends Seeder
                 'guard_name' => 'web'
             ],
             [
+                'name' => 'teacher-submissions.create',
+                'guard_name' => 'web'
+            ],
+            [
                 'name' => 'teacher-attendances-recap.read',
                 'guard_name' => 'web'
             ],

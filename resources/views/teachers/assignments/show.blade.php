@@ -12,7 +12,8 @@
                         </h1>
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <li class="breadcrumb-item text-muted">
-                                <a href="" class="text-muted text-hover-primary">Dashboard</a>
+                                <a href="{{ route('teacher-dashboard.index') }}"
+                                    class="text-muted text-hover-primary">Dashboard</a>
                             </li>
                             <li class="breadcrumb-item">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
@@ -33,7 +34,7 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="" class="text-muted text-hover-primary">Penilaian</a>
+                                <a href="{{ url()->current() }}" class="text-muted text-hover-primary">Penilaian</a>
                             </li>
                         </ul>
                     </div>
@@ -44,21 +45,17 @@
             <div id="kt_app_content_container" class="app-container container-xxl">
                 <div class="card card-flush mb-5">
                     <div class="card-body">
-                        <h6 class="text-gray-900 text-uppercase mb-5">Tugas Pertemuan Ke-3</h6>
+                        <h6 class="text-gray-900 text-uppercase mb-5">Tugas Pertemuan Ke-{{ $assignment->meeting }}</h6>
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr class="bg-light-primary">
                                         <th class="min-w-10px fw-medium">Judul</th>
-                                        <th class="min-w-300px fw-normal">Tugas Latihan Pertemuan Ke-3</th>
+                                        <th class="min-w-300px fw-normal">{{ $assignment->title }}</th>
                                     </tr>
                                     <tr>
                                         <th class="min-w-10px fw-medium">Deskripsi</th>
-                                        <th class="min-w-300px fw-normal">Silakan mengerjakan latihan ini (Latihan
-                                            Ketiga) di
-                                            Google Formulir dengan tautan https://bit.ly/43fdOMg. Tenggat hari Minggu,
-                                            31 Maret 2024, Pukul 23.59. Setelah selesai mengerjakan, unggah tautan
-                                            screenshot nilai di ruang tugas! Less</th>
+                                        <th class="min-w-300px fw-normal">{!! $assignment->description !!}</th>
                                     </tr>
                                     <tr>
                                         <th class="min-w-10px fw-medium">Waktu Mengerjakan</th>
@@ -66,11 +63,11 @@
                                             <div style="display: flex; flex-direction: column;">
                                                 <div style="display: flex;">
                                                     <span style="margin-right: 10px;">Mulai :</span>
-                                                    <span>2024-03-25 13:20:00</span>
+                                                    <span>{{ $assignment->start_date }}</span>
                                                 </div>
                                                 <div style="display: flex;">
                                                     <span style="margin-right: 10px;">Selesai :</span>
-                                                    <span>2024-03-25 13:20:00</span>
+                                                    <span>{{ $assignment->end_date }}</span>
                                                 </div>
                                             </div>
                                         </th>
@@ -80,58 +77,80 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-flush">
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
-                                <thead>
-                                    <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                                        <th class="text-center">No</th>
-                                        <th class="min-w-150px">NIS</th>
-                                        <th class="min-w-300px">NAMA</th>
-                                        <th class="min-w-200px">LINK TUGAS</th>
-                                        <th class="min-w-100px">NILAI</th>
-                                        <th class="min-w-300px">KOMENTAR</th>
-                                        <th class="min-w-200px">STATUS</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="fw-semibold text-gray-600">
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td>19200447</td>
-                                        <td>Achmad Fadli Muchtar</td>
-                                        <td><button class="btn btn-bg-info btn-sm text-white">Link Tugas
-                                                Siswa</button>
-                                        </td>
-                                        <td><input type="text" class="form-control form-control-sm "></td>
-                                        <td>
-                                            <textarea name="" id="" class="form-control form-control-sm"></textarea>
-                                        </td>
-                                        <td><button class="btn btn-bg-success btn-sm text-white">2024-06-17
-                                                12:35:05</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">2</td>
-                                        <td>19200448</td>
-                                        <td>Andi Permana Suhendar</td>
-                                        <td><button class="btn btn-bg-info btn-sm text-white">Link Tugas
-                                                Siswa</button>
-                                        </td>
-                                        <td><input type="text" class="form-control form-control-sm "></td>
-                                        <td>
-                                            <textarea name="" id="" class="form-control form-control-sm"></textarea>
-                                        </td>
-                                        <td><button class="btn btn-bg-success btn-sm text-white">2024-06-17
-                                                12:35:05</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                <form
+                    action="{{ route('teacher-submissions.store', ['scheduleOfSubject' => $scheduleOfSubject->id, 'assignment' => $assignment->id]) }}"
+                    method="post">
+                    @csrf
+                    <div class="card card-flush">
+                        <div class="card-header mt-6">
+                            <div class="card-title">
+                                @can('teacher-submissions.create')
+                                    <button class="btn btn-primary">Simpan</button>
+                                @endcan
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                                    <thead>
+                                        <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                            <th class="text-center">No</th>
+                                            <th class="min-w-150px">Nis</th>
+                                            <th class="min-w-300px">Nama</th>
+                                            <th class="min-w-200px">Link Tugas</th>
+                                            <th class="min-w-100px text-center">Nilai</th>
+                                            <th class="min-w-300px">Komentar</th>
+                                            <th class="min-w-200px">Tanggal Mengumpulkan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fw-semibold text-gray-600">
+                                        @foreach ($students as $student)
+                                            <tr>
+                                                <td class="text-center">{{ $loop->iteration }}</td>
+                                                <td>{{ $student->identification_number }}</td>
+                                                <td>{{ $student->user->name }}</td>
+                                                <td>
+                                                    @if (optional($student->submission)->link_drive)
+                                                        <a href="{{ optional($student->submission)->link_drive }}"
+                                                            target="_blank"
+                                                            class="btn btn-bg-info btn-sm text-white">Link
+                                                            Tugas
+                                                            Siswa</a>
+                                                    @endif
+                                                </td>
+                                                <input type="hidden"
+                                                    name="submissions[{{ $loop->iteration - 1 }}][student_id]"
+                                                    value="{{ $student->id }}">
+                                                <td><input type="number" class="form-control form-control-sm"
+                                                        name="submissions[{{ $loop->iteration - 1 }}][value]"
+                                                        value="{{ optional($student->submission)->value }}"></td>
+                                                <td>
+                                                    <textarea id="" class="form-control form-control-sm" name="submissions[{{ $loop->iteration - 1 }}][comment]">{{ optional($student->submission)->comment }}</textarea>
+                                                </td>
+                                                <td class="text-center">
+                                                    @if (optional($student->submission)->created_at)
+                                                        @if (GlobalHelper::isLate($assignment->end_date, $student->submission->created_at))
+                                                            <button
+                                                                class="btn btn-bg-danger btn-sm text-white">2024-06-17
+                                                                12:35:05</button>
+                                                        @else
+                                                            <button
+                                                                class="btn btn-bg-success btn-sm text-white">2024-06-17
+                                                                12:35:05</button>
+                                                        @endif
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div class="d-grid gap-2 d-md-block pt-5">
                     <a href="{{ route('teacher-assignments.index', $scheduleOfSubject->id) }}"
-                        class="btn btn-outline btn-active-primary"><i class="bi bi-arrow-left-circle"></i>Kembali</a>
+                        class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i>Kembali</a>
                 </div>
             </div>
         </div>

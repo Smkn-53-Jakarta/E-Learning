@@ -8,6 +8,7 @@ use App\Http\Requests\Assignment\StoreAssignmentRequest;
 use App\Http\Requests\Assignment\UpdateAssignmentRequest;
 use App\Models\Assignment;
 use App\Models\ScheduleOfSubject;
+use App\Models\Student;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
@@ -64,9 +65,11 @@ class AssignmentController extends Controller
         }
     }
 
-    public function show(ScheduleOfSubject $scheduleOfSubject): View
+    public function show(ScheduleOfSubject $scheduleOfSubject, Assignment $assignment): View
     {
-        return view('teachers.assignments.show', compact('scheduleOfSubject'));
+        $students = Student::with(['user', 'submission'])->latest()->where('classroom_id', $scheduleOfSubject->classroom_id)->paginate(10);
+
+        return view('teachers.assignments.show', compact('scheduleOfSubject', 'assignment', 'students'));
     }
 
     public function edit(ScheduleOfSubject $scheduleOfSubject, Assignment $assignment): View
@@ -108,7 +111,7 @@ class AssignmentController extends Controller
             if (isset($data['file'])) {
                 Storage::disk('public')->delete($data['file']);
             }
-            dd($th->getMessage());
+
             return redirect()->back()->withInput()->with([
                 'message' => trans('message.error'),
                 'status' => 'danger',

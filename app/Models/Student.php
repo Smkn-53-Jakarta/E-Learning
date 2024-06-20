@@ -41,6 +41,11 @@ class Student extends Model
         return $this->hasMany(StudentAttendance::class);
     }
 
+    public function submission(): HasOne
+    {
+        return $this->hasOne(Submission::class);
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, function ($query, $search) {
