@@ -16,7 +16,7 @@
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('extracurricular-schedules.index') }}"
+                                <a href="{{ route('student-extracurriculars-schedules.index') }}"
                                     class="text-muted text-hover-primary">Jadwal Ekstrakurikuler</a>
                             </li>
                         </ul>
@@ -38,35 +38,38 @@
                             <div class="card-title">
                                 <x-SearchInput placeholder="Cari Jadwal Ekstrakurikuler" />
                             </div>
-                            <div class="card-toolbar">
-                                @if ($extracurricularSchedulesTrashed)
-                                    <a href="{{ route('extracurricular-schedules.trashed') }}"
-                                        class="btn btn-light-primary me-3">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                        Sampah
-                                    </a>
-                                @endif
-                                @can('extracurricular-schedules.create')
-                                    <x-AddButton :url="route('extracurricular-schedules.create')">Tambah Jadwal Ekstrakurikuler</x-AddButton>
-                                @endcan
-                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    @if (count($extracurricularSchedules))
-                        @foreach ($extracurricularSchedules as $extracurricularSchedule)
-                            <div class="col-lg-4 mt-4">
-                                <x-ExtracurricularSchedules.CardWithAction :extracurricularSchedule="$extracurricularSchedule" />
-                            </div>
-                        @endforeach
-                    @else
-                        <x-DataNotFound />
-                    @endif
+                    {{-- @if (count($extracurricularSchedules))
+                        @foreach ($extracurricularSchedules as $extracurricularSchedule) --}}
+                    <div class="col-lg-4 mt-4">
+                        <x-ExtracurricularSchedules.CardStudent />
+                    </div>
+                    <div class="col-lg-4 mt-4">
+                        <x-ExtracurricularSchedules.CardStudent />
+                    </div>
+                    <div class="col-lg-4 mt-4">
+                        <x-ExtracurricularSchedules.CardStudent />
+                    </div>
+                    <div class="col-lg-4 mt-4">
+                        <x-ExtracurricularSchedules.CardStudent />
+                    </div>
+                    <div class="col-lg-4 mt-4">
+                        <x-ExtracurricularSchedules.CardStudent />
+                    </div>
+                    <div class="col-lg-4 mt-4">
+                        <x-ExtracurricularSchedules.CardStudent />
+                    </div>
+                    {{-- @endforeach
+                @else
+                    <x-DataNotFound />
+                    @endif --}}
                 </div>
-                <div class="d-flex p-5 justify-content-end">
+                {{-- <div class="d-flex p-5 justify-content-end">
                     {!! $extracurricularSchedules->appends($_GET)->links() !!}
-                </div>
+                </div> --}}
             </div>
         </div>
 </x-AppLayout>

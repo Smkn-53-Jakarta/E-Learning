@@ -38,13 +38,13 @@
         <div class="d-flex flex-column flex-column-fluid">
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <div id="kt_app_content_container" class="app-container container-xxl">
-                    <div class="card card-flush">
+                    <div class="card card-flush shadow-sm p-3 mb-5 bg-body rounded">
                         <div class="card-header justify-content-center mt-20">
                             <h1>LAPORAN HASIL BELAJAR SISWA</h1>
                         </div>
                         <div class="card-body py-0">
                             <div class="table-responsive">
-                                <table class="table table-bordered">
+                                <table class="table table-bordered border-dark">
                                     <tbody>
                                         <tr class="">
                                             <th class="min-w-400px fw-medium">

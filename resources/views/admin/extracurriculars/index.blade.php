@@ -46,7 +46,7 @@
                                 </a>
                             @endif
                             @can('extracurriculars.create')
-                                <x-AddButton :url="route('extracurriculars.create')">Tambah Mata Pelajaran</x-AddButton>
+                                <x-AddButton :url="route('extracurriculars.create')">Tambah Ekstrakurikuler</x-AddButton>
                             @endcan
                         </div>
                     </div>
