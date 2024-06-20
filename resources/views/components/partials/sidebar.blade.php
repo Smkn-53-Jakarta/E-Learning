@@ -424,6 +424,18 @@
                         </a>
                     </div>
                 @endcan
+                {{-- JADWAL EKSTRAKULIKULER MURID --}}
+                @canany(['student-extracurriculars-schedules.read'])
+                    <div class="menu-item">
+                        <a class="menu-link {{ Request::is('murid/ekstrakulikuler*') ? 'active' : '' }}"
+                            href="{{ route('student-extracurriculars-schedules.index') }}">
+                            <span class="menu-icon">
+                                <i class="bi bi-calendar-date" style="font-size: 19px;"></i>
+                            </span>
+                            <span class="menu-title">Jadwal Ekstrakurikuler</span>
+                        </a>
+                    </div>
+                @endcanany
                 {{-- E-RAPORT MURID --}}
                 @canany(['student-raports.read'])
                     <div class="menu-item">
@@ -436,26 +448,7 @@
                                         d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5zM1.6 11.85H0v3.999h.791v-1.342h.803q.43 0 .732-.173.305-.175.463-.474a1.4 1.4 0 0 0 .161-.677q0-.375-.158-.677a1.2 1.2 0 0 0-.46-.477q-.3-.18-.732-.179m.545 1.333a.8.8 0 0 1-.085.38.57.57 0 0 1-.238.241.8.8 0 0 1-.375.082H.788V12.48h.66q.327 0 .512.181.185.183.185.522m1.217-1.333v3.999h1.46q.602 0 .998-.237a1.45 1.45 0 0 0 .595-.689q.196-.45.196-1.084 0-.63-.196-1.075a1.43 1.43 0 0 0-.589-.68q-.396-.234-1.005-.234zm.791.645h.563q.371 0 .609.152a.9.9 0 0 1 .354.454q.118.302.118.753a2.3 2.3 0 0 1-.068.592 1.1 1.1 0 0 1-.196.422.8.8 0 0 1-.334.252 1.3 1.3 0 0 1-.483.082h-.563zm3.743 1.763v1.591h-.79V11.85h2.548v.653H7.896v1.117h1.606v.638z" />
                                 </svg>
                             </span>
-                            <span class="menu-title">E-Raport</span>
-                        </a>
-                    </div>
-                @endcanany
-                {{-- JADWAL EKSTRAKULIKULER MURID --}}
-                @canany(['student-extracurriculars-schedules.read'])
-                    <div class="menu-item">
-                        <a class="menu-link {{ Request::is('murid/ekstrakulikuler*') ? 'active' : '' }}"
-                            href="{{ route('student-extracurriculars-schedules.index') }}">
-                            <span class="svg-icon svg-icon-muted svg-icon-2hx"><svg width="19" height="19"
-                                    viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path opacity="0.3"
-                                        d="M21.3 11.9C21.3 17.1 17.1 21.3 12 21.3C6.8 21.3 2.70001 17.1 2.70001 11.9C2.70001 6.70002 6.9 2.5 12 2.5C17.2 2.6 21.3 6.80002 21.3 11.9Z"
-                                        fill="currentColor" />
-                                    <path
-                                        d="M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2ZM20 11.5C18.2 11.3 16.4 11.3 14.8 11.6C14.6 11 14.3 10.4 14.1 9.90002C15.6 9.10002 17.1 8.10002 18.3 6.90002C19.2 8.20002 19.9 9.8 20 11.5ZM16.7 5.59998C15.6 6.59998 14.4 7.49995 13.1 8.19995C12.4 6.79995 11.6 5.49995 10.7 4.19995C11.1 4.09995 11.5 4.09998 12 4.09998C13.8 3.99998 15.4 4.59998 16.7 5.59998ZM8.70001 4.69995C9.70001 6.09995 10.5 7.50002 11.3 8.90002C9.09999 9.70002 6.79999 10 4.29999 9.80005C4.89999 7.60005 6.60001 5.69995 8.70001 4.69995ZM4 12C4 11.9 4 11.9 4 11.8C4.5 11.8 5.10001 11.9 5.60001 11.9C7.90001 11.9 10.1 11.5 12.1 10.7C12.3 11.2 12.5 11.7 12.7 12.1C10.1 13 7.70001 14.6 5.70001 17C4.70001 15.6 4 13.9 4 12ZM7.20001 18.4C9.00001 16.3 11.1 14.8 13.4 14C14 15.8 14.4 17.6 14.7 19.5C13.8 19.8 12.9 20 11.9 20C10.2 20 8.60001 19.4 7.20001 18.4ZM16.6 18.5C16.3 16.8 15.9 15.2 15.4 13.5C16.8 13.3 18.3 13.3 19.8 13.5C19.4 15.6 18.3 17.3 16.6 18.5Z"
-                                        fill="currentColor" />
-                                </svg>
-                            </span>
-                            <span class="menu-title">Jadwal Ekstrakurikuler</span>
+                            <span class="menu-title">Raport</span>
                         </a>
                     </div>
                 @endcanany
