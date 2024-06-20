@@ -36,7 +36,7 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between flex-column flex-lg-row w-100">
                             <div class="card-title">
-                                <x-SearchInput placeholder="Cari Jadwal Mata Pelajaran" />
+                                <x-SearchInput placeholder="Cari Jadwal Ekstrakurikuler" />
                             </div>
                             <div class="card-toolbar">
                                 @if ($extracurricularSchedulesTrashed)
