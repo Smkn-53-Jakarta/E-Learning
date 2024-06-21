@@ -21,17 +21,11 @@
                             </li>
                         </ul>
                     </div>
-
                 </div>
             </div>
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <div id="kt_app_content_container" class="app-container container-xxl">
-                <div class="mt-2">
-                    @if (session('message'))
-                        <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
-                    @endif
-                </div>
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between flex-column flex-lg-row w-100">
@@ -42,34 +36,19 @@
                     </div>
                 </div>
                 <div class="row">
-                    {{-- @if (count($extracurricularSchedules))
-                        @foreach ($extracurricularSchedules as $extracurricularSchedule) --}}
-                    <div class="col-lg-4 mt-4">
-                        <x-ExtracurricularSchedules.CardStudent />
-                    </div>
-                    <div class="col-lg-4 mt-4">
-                        <x-ExtracurricularSchedules.CardStudent />
-                    </div>
-                    <div class="col-lg-4 mt-4">
-                        <x-ExtracurricularSchedules.CardStudent />
-                    </div>
-                    <div class="col-lg-4 mt-4">
-                        <x-ExtracurricularSchedules.CardStudent />
-                    </div>
-                    <div class="col-lg-4 mt-4">
-                        <x-ExtracurricularSchedules.CardStudent />
-                    </div>
-                    <div class="col-lg-4 mt-4">
-                        <x-ExtracurricularSchedules.CardStudent />
-                    </div>
-                    {{-- @endforeach
-                @else
-                    <x-DataNotFound />
-                    @endif --}}
+                    @if (count($extracurricularSchedules))
+                        @foreach ($extracurricularSchedules as $extracurricularSchedule)
+                            <div class="col-lg-4 mt-4">
+                                <x-ExtracurricularSchedules.CardStudent :extracurricularSchedule="$extracurricularSchedule" />
+                            </div>
+                        @endforeach
+                    @else
+                        <x-DataNotFound />
+                    @endif
                 </div>
-                {{-- <div class="d-flex p-5 justify-content-end">
+                <div class="d-flex p-5 justify-content-end">
                     {!! $extracurricularSchedules->appends($_GET)->links() !!}
-                </div> --}}
+                </div>
             </div>
         </div>
 </x-AppLayout>

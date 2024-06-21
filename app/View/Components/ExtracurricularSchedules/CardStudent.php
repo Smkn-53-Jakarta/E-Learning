@@ -8,12 +8,11 @@ use Illuminate\View\Component;
 
 class CardStudent extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public $extracurricularSchedule;
+
+    public function __construct($extracurricularSchedule)
     {
-        //
+        $this->extracurricularSchedule = $extracurricularSchedule;
     }
 
     /**
