@@ -31,36 +31,55 @@
                 @endif
                 <div class="card card-flush">
                     <div class="card-body">
-                        {{-- @if (count($materials)) --}}
-                        <div class="table-responsive fixed-actions-table">
-                            <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
-                                <thead>
-                                    <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                                        <th class="text-center">No</th>
-                                        <th class="min-w-250px">Nama Mata Pelajaran</th>
-                                        <th class="min-w-100px">Kelas</th>
-                                        <th class="min-w-100px">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="fw-semibold text-gray-600">
-                                    {{-- @foreach ($raports as $raport) --}}
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td>Web Program</td>
-                                        <td>XII-TKJ</td>
-                                        <td class="text-start">
-                                            <a href="{{ route('teacher-raports.show', 'nama-mapel') }}"
-                                                class="btn btn-light-primary btn-sm">Penilaian</a>
-                                        </td>
-                                    </tr>
-                                    {{-- @endforeach --}}
-                                </tbody>
-                            </table>
-                        </div>
-                        {{-- @else
+                        @if (count($teachingSchedules))
+                            <div class="table-responsive fixed-actions-table">
+                                <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                                    <thead>
+                                        <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                            <th class="text-center">No</th>
+                                            <th class="min-w-250px">Nama Mata Pelajaran</th>
+                                            <th class="min-w-100px">Kelas</th>
+                                            <th class="min-w-100px">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fw-semibold text-gray-600">
+                                        @php
+                                            $displayedCombinations = [];
+                                        @endphp
+
+                                        @foreach ($teachingSchedules as $teachingSchedule)
+                                            @php
+                                                $combination =
+                                                    $teachingSchedule->course->id .
+                                                    '-' .
+                                                    $teachingSchedule->classroom->id;
+                                            @endphp
+
+                                            @if (!in_array($combination, $displayedCombinations))
+                                                @php
+                                                    $displayedCombinations[] = $combination;
+                                                @endphp
+                                                <tr>
+                                                    <td class="text-center">{{ $loop->iteration }}</td>
+                                                    <td>{{ $teachingSchedule->course->name }}</td>
+                                                    <td>{{ $teachingSchedule->classroom->name }}</td>
+                                                    <td class="text-start">
+                                                        <a href="{{ route('teacher-raports.show', ['course' => $teachingSchedule->course_id, 'classroom' => $teachingSchedule->classroom->id]) }}"
+                                                            class="btn btn-light-primary btn-sm">Penilaian</a>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
                             <x-DataNotFound />
-                        @endif --}}
+                        @endif
                     </div>
+                </div>
+                <div class="d-flex p-5 justify-content-end">
+                    {!! $teachingSchedules->appends($_GET)->links() !!}
                 </div>
             </div>
         </div>

@@ -67,7 +67,9 @@ class AssignmentController extends Controller
 
     public function show(ScheduleOfSubject $scheduleOfSubject, Assignment $assignment): View
     {
-        $students = Student::with(['user', 'submission'])->latest()->where('classroom_id', $scheduleOfSubject->classroom_id)->paginate(10);
+        $students = Student::with(['user', 'submission' => function ($query) use ($assignment) {
+            $query->where('assignment_id', $assignment->id);
+        }])->latest()->where('classroom_id', $scheduleOfSubject->classroom_id)->paginate(10);
 
         return view('teachers.assignments.show', compact('scheduleOfSubject', 'assignment', 'students'));
     }
