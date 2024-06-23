@@ -376,7 +376,8 @@
                 @endcanany
 
                 {{-- Raport Wali Kelas --}}
-                @if (auth()->user()->teacher->homeroomClass)
+                @if (auth()->check() && auth()->user() && auth()->user()->teacher && auth()->user()->teacher->homeroomClass)
+                    {{ auth()->user()->teacher->homeroomClass }}
                     <div class="menu-item">
                         <a class="menu-link {{ Request::is('guru/raport*') ? 'active' : '' }}"
                             href="{{ route('teacher-homeroom-raports.index') }}">
