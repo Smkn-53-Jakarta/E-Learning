@@ -14,6 +14,7 @@ class StoreCourseRequest extends FormRequest
 
         return [
             'name' => ['required', 'string', 'max:64', Rule::unique($tableName, 'name')],
+            'kkm' => ['required', 'integer'],
         ];
     }
 
@@ -24,6 +25,8 @@ class StoreCourseRequest extends FormRequest
             'name.string' => 'Nama mata pelajaran wajib string',
             'name.max' => 'Nama mata pelajaran maksimal 64 karakter',
             'name.unique' => 'Nama mata pelajaran sudah tersedia',
+            'kkm.required' => 'Kkm wajib diisi',
+            'kkm.string' => 'Kkm wajib angka',
         ];
     }
 }

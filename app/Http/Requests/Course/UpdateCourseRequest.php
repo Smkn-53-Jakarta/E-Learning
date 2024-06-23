@@ -15,6 +15,7 @@ class UpdateCourseRequest extends FormRequest
 
         return [
             'name' => ['required', 'string', 'max:64', Rule::unique($tableName, 'name')->ignore($courseId)],
+            'kkm' => ['required', 'integer'],
         ];
     }
 
@@ -25,6 +26,8 @@ class UpdateCourseRequest extends FormRequest
             'name.string' => 'Nama mata pelajaran wajib string',
             'name.max' => 'Nama mata pelajaran maksimal 64 karakter',
             'name.unique' => 'Nama mata pelajaran sudah tersedia',
+            'kkm.required' => 'Kkm wajib diisi',
+            'kkm.string' => 'Kkm wajib angka',
         ];
     }
 }

@@ -49,6 +49,15 @@
                                     value="{{ old('name', $course->name) }}" maxlength="64" required />
                                 <x-Form.InputError name="name" />
                             </div>
+                            <div class="fv-row mb-10">
+                                <label class="fs-5 fw-bold form-label mb-2">
+                                    <span class="required">Kkm</span>
+                                </label>
+                                <input type="number" class="form-control mb-2 @error('kkm') is-invalid @enderror"
+                                    placeholder="Masukan kkm" name="kkm" value="{{ old('kkm', $course->kkm) }}"
+                                    required />
+                                <x-Form.InputError name="kkm" />
+                            </div>
                             <div class="d-flex gap-3">
                                 <a href="{{ RoutingHelper::editToIndexRoute() }}" class="btn btn-danger">
                                     Cancel

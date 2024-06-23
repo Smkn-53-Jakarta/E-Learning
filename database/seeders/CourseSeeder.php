@@ -18,18 +18,21 @@ class CourseSeeder extends Seeder
             [
                 'id' => Str::uuid(),
                 'name' => 'Matematika',
+                'kkm' => 75,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
                 'id' => Str::uuid(),
                 'name' => 'Bahasa Indonesia',
+                'kkm' => 75,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
                 'id' => Str::uuid(),
                 'name' => 'Bahasa Inggris',
+                'kkm' => 75,
                 'created_at' => now(),
                 'updated_at' => now()
             ],

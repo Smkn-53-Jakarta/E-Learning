@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name', 64)->unique();
+            $table->unsignedInteger('kkm')->default(75);
             $table->timestamps();
             $table->softDeletes();
         });

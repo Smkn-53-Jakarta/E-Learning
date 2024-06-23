@@ -48,6 +48,7 @@
                                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                             <th class="text-center">No</th>
                                             <th class="min-w-250px">Nama Mata Pelajaran</th>
+                                            <th class="min-w-250px">Kkm</th>
                                             <th class="min-w-200px">Dihapus Pada</th>
                                             <th class="min-w-100px">Aksi</th>
                                         </tr>
@@ -57,6 +58,7 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $course->name }}</td>
+                                                <td>{{ $course->kkm }}</td>
                                                 <td>{{ $course->deleted_at->diffForHumans() }}</td>
                                                 <td>
                                                     <a href="#"
