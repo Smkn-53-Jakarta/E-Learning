@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Teacher;
 
+use App\Helpers\SemesterHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Raport\StoreRaportRequest;
 use App\Models\Classroom;
@@ -9,6 +10,7 @@ use App\Models\Course;
 use App\Models\Raport;
 use App\Models\ScheduleOfSubject;
 use App\Models\Student;
+use App\Models\StudentAttendance;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 
@@ -19,11 +21,6 @@ class RaportController extends Controller
         $teachingSchedules = ScheduleOfSubject::with('classroom', 'teacher.user', 'course')->where('teacher_id', auth()->user()->teacher->id)->latest()->filter(request(['search']))->paginate(10);
 
         return view('teachers.e-raports.index', compact('teachingSchedules'));
-    }
-
-    public function create()
-    {
-        //
     }
 
     public function store(StoreRaportRequest $request, Course $course, Classroom $classroom)
@@ -77,5 +74,48 @@ class RaportController extends Controller
         });
 
         return view('teachers.e-raports.show', compact('course', 'classroom', 'students'));
+    }
+
+    public function homeroom(): View
+    {
+        $students = Student::with(['user'])->latest()->where('classroom_id', auth()->user()->teacher->homeroomClass->id)->paginate(50);
+
+        return view('teachers.e-raports.homeroom-teachers.index', compact('students'));
+    }
+
+    public function generateRaport(Student $student)
+    {
+        $scheduleOfSubjects = ScheduleOfSubject::where('classroom_id', $student->classroom_id)
+            ->select('course_id')
+            ->distinct()
+            ->get();
+
+        $courseIds = $scheduleOfSubjects->pluck('course_id');
+
+        $courses = Course::with(['raports' => function ($query) use ($student) {
+            $query->where('student_id', $student->id)->first();
+        }])->whereIn('id', $courseIds)->get();
+
+        $courses->each(function ($course) {
+            $course->raport = $course->raports->first();
+            unset($course->raports);
+        });
+
+        $totalAlpha = StudentAttendance::where('student_id', $student->id)
+            ->where('status', 'Alfa')
+            ->whereBetween('attendance_time', [SemesterHelper::getStartDate(), SemesterHelper::getEndDate()])
+            ->count();
+
+        $totalPermission = StudentAttendance::where('student_id', $student->id)
+            ->where('status', 'Izin')
+            ->whereBetween('attendance_time', [SemesterHelper::getStartDate(), SemesterHelper::getEndDate()])
+            ->count();
+
+        $totalSick = StudentAttendance::where('student_id', $student->id)
+            ->where('status', 'Sakit')
+            ->whereBetween('attendance_time', [SemesterHelper::getStartDate(), SemesterHelper::getEndDate()])
+            ->count();
+
+        return view('teachers.e-raports.homeroom-teachers.show', compact('courses', 'student', 'totalAlpha', 'totalPermission', 'totalSick'));
     }
 }

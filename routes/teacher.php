@@ -65,10 +65,12 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
     Route::get('jadwal-mengajar/{scheduleOfSubject}/rekap-ajar', [TeachingRecapController::class, 'show'])->name('teacher-teaching-recaps.show');
 
     //* Route E-Raport
-    Route::get('raport', [RaportController::class, 'index'])->name('teacher-raports.index');
-    Route::get('raport/mata-pelajaran/{course}/kelas/{classroom}', [RaportController::class, 'show'])->name('teacher-raports.show');
+    Route::get('penilaian', [RaportController::class, 'index'])->name('teacher-raports.index');
+    Route::get('penilaian/mata-pelajaran/{course}/kelas/{classroom}', [RaportController::class, 'show'])->name('teacher-raports.show');
 });
-Route::post('raport/mata-pelajaran/{course}/kelas/{classroom}', [RaportController::class, 'store'])->name('teacher-raports.store');
+Route::get('raport', [RaportController::class, 'homeRoom'])->name('teacher-homeroom-raports.index');
+Route::get('raport/murid/{student}', [RaportController::class, 'generateRaport'])->name('teacher-homeroom-raports.show');
+Route::post('penilaian/mata-pelajaran/{course}/kelas/{classroom}', [RaportController::class, 'store'])->name('teacher-raports.store');
 
 Route::get('e-raport/pdf', function () {
     return view('teachers.e-raports.generate');
