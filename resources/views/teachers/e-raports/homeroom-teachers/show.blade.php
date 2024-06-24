@@ -152,9 +152,11 @@
                                                 <th class="fw-normal">{{ $course->name }}</th>
                                                 <th class="text-center fw-normal">75</th>
                                                 <th class="text-center fw-normal">
-                                                    {{ optional($course->raport)->average_value }}</th>
+                                                    {{ round((optional($course->raport)->average_value + optional($course->raport)->uts + optional($course->raport)->uas) / 3) }}
+                                                </th>
                                                 <th class="text-center fw-normal">
-                                                    {{ optional($course->raport)->information }}</th>
+                                                    {{ optional($course->raport)->information ? optional($course->raport)->information : '-' }}
+                                                </th>
                                             </tr>
                                         @endforeach
                                     </tbody>

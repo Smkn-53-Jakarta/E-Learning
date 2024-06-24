@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('raports', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('course_id');
-            $table->foreign('course_id')->references('id')->on('students')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('course_id')->references('id')->on('courses')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('student_id');
             $table->foreign('student_id')->references('id')->on('students')->cascadeOnDelete()->cascadeOnUpdate();
             $table->unsignedBigInteger('average_value');
