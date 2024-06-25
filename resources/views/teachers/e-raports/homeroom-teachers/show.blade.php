@@ -150,7 +150,7 @@
                                             <tr>
                                                 <th class="fw-normal">{{ $loop->iteration }}.</th>
                                                 <th class="fw-normal">{{ $course->name }}</th>
-                                                <th class="text-center fw-normal">75</th>
+                                                <th class="text-center fw-normal">{{ $course->kkm }}</th>
                                                 <th class="text-center fw-normal">
                                                     {{ round((optional($course->raport)->average_value + optional($course->raport)->uts + optional($course->raport)->uas) / 3) }}
                                                 </th>

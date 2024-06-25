@@ -71,7 +71,3 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
     Route::get('raport/murid/{student}', [RaportController::class, 'generateRaport'])->name('teacher-homeroom-raports.show');
     Route::post('penilaian/mata-pelajaran/{course}/kelas/{classroom}', [RaportController::class, 'store'])->name('teacher-raports.store');
 });
-
-Route::get('e-raport/pdf', function () {
-    return view('teachers.e-raports.generate');
-});

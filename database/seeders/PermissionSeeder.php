@@ -373,6 +373,24 @@ class PermissionSeeder extends Seeder
                 'name' => 'student-extracurriculars-schedules.read',
                 'guard_name' => 'web'
             ],
+
+            //* Coach Permissions 
+            [
+                'name' => 'coach-dashboard.index',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'coach-extracurricular-schedules.read',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'coach-extracurricular-assesment.read',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'coach-extracurricular-assesment.create',
+                'guard_name' => 'web'
+            ],
         ];
 
         Permission::insert($permissions);

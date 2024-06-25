@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('raports', function (Blueprint $table) {
+        Schema::create('extracurricular_values', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('course_id');
-            $table->foreign('course_id')->references('id')->on('courses')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('extracurricular_id');
+            $table->foreign('extracurricular_id')->references('id')->on('extracurriculars')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('student_id');
             $table->foreign('student_id')->references('id')->on('students')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->unsignedBigInteger('average_value')->nullable();
-            $table->unsignedBigInteger('uts')->nullable();
-            $table->unsignedBigInteger('uas')->nullable();
-            $table->longText('information')->nullable();
+            $table->unsignedBigInteger('value');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('raports');
+        Schema::dropIfExists('extracurricular_values');
     }
 };

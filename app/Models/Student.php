@@ -56,6 +56,11 @@ class Student extends Model
         return $this->hasMany(Raport::class);
     }
 
+    public function extracurricularValues(): HasMany
+    {
+        return $this->hasMany(ExtracurricularValue::class);
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, function ($query, $search) {
