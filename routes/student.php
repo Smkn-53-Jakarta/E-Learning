@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Student\AssignmentController;
+use App\Http\Controllers\Student\AttendanceRecapController;
 use App\Http\Controllers\Student\ExtracurricularScheduleController;
 use App\Http\Controllers\Student\MaterialController;
 use App\Http\Controllers\Student\RaportController;
@@ -35,6 +36,9 @@ Route::prefix('murid')->middleware('auth', 'permissions')->group(function () {
 
     //* Jadwal Ekstrakulikular
     Route::get('jadwal-ekstrakulikuler', [ExtracurricularScheduleController::class, 'index'])->name('student-extracurriculars-schedules.index');
+
+    //* Rekap-Absensi
+    Route::get('rekap-absensi', [AttendanceRecapController::class, 'index'])->name('student-attendances-recaps.index');
 });
 
 Route::get('murid/e-raport/pdf', function () {

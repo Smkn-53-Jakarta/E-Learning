@@ -373,6 +373,10 @@ class PermissionSeeder extends Seeder
                 'name' => 'student-extracurriculars-schedules.read',
                 'guard_name' => 'web'
             ],
+            [
+                'name' => 'student-attendances-recaps.read',
+                'guard_name' => 'web'
+            ],
 
             //* Coach Permissions 
             [

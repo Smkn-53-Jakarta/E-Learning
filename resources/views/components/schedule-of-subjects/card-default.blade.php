@@ -24,7 +24,7 @@
             </tbody>
         </table>
         <div class="btn-group w-100">
-            <a href="" class="btn btn-primary  btn-sm text-white">
+            <a href="{{ route('student-attendances-recaps.index') }}" class="btn btn-primary  btn-sm text-white">
                 Masuk
             </a>
             <a href="{{ route('student-materials.index', $scheduleOfSubject->id) }}"
