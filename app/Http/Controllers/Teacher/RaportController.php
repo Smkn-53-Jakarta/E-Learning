@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Raport\StoreRaportRequest;
 use App\Models\Classroom;
 use App\Models\Course;
+use App\Models\Extracurricular;
 use App\Models\Raport;
 use App\Models\ScheduleOfSubject;
 use App\Models\Student;
@@ -116,6 +117,17 @@ class RaportController extends Controller
             ->whereBetween('attendance_time', [SemesterHelper::getStartDate(), SemesterHelper::getEndDate()])
             ->count();
 
-        return view('teachers.e-raports.homeroom-teachers.show', compact('courses', 'student', 'totalAlpha', 'totalPermission', 'totalSick'));
+        $extracurriculars = Extracurricular::with(['extracurricularValues' => function ($query) use ($student) {
+            $query->where('student_id', $student->id);
+        }])->latest()->whereHas('extracurricularSchedules.members', function ($query) use ($student) {
+            $query->where('student_id', $student->id);
+        })->get();
+
+        $extracurriculars->each(function ($course) {
+            $course->extracurricularValue = $course->extracurricularValues->first();
+            unset($course->extracurricularValues);
+        });
+
+        return view('teachers.e-raports.homeroom-teachers.show', compact('courses', 'student', 'totalAlpha', 'totalPermission', 'totalSick', 'extracurriculars'));
     }
 }

@@ -204,12 +204,15 @@
                                         <th class="min-w-50px">Nilai</th>
                                     </tr>
                                     <tbody>
-                                        <tr>
-                                            <th class="fw-normal">1.</th>
-                                            <th class="text-start fw-normal">Izin</th>
-                                            <th class="text-center fw-normal">
-                                                {{ $totalPermission ? $totalPermission : '-' }}</th>
-                                        </tr>
+                                        @foreach ($extracurriculars as $extracurricular)
+                                            <tr>
+                                                <th class="fw-normal">{{ $loop->iteration }}.</th>
+                                                <th class="text-start fw-normal">{{ $extracurricular->name }}</th>
+                                                <th class="text-center fw-normal">
+                                                    {{ optional($extracurricular->extracurricularValue)->value }}
+                                                </th>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

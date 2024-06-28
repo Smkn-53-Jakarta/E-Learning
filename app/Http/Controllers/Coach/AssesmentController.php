@@ -15,7 +15,7 @@ class AssesmentController extends Controller
 {
     public function index(): View
     {
-        $extracurriculars = Extracurricular::latest()->whereHas('extracurricularShcedules', function ($query) {
+        $extracurriculars = Extracurricular::latest()->whereHas('extracurricularSchedules', function ($query) {
             $query->where('user_id', auth()->user()->id);
         })->filter(request(['search']))->paginate(10);
 
