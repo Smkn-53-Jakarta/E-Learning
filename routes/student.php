@@ -38,9 +38,5 @@ Route::prefix('murid')->middleware('auth', 'permissions')->group(function () {
     Route::get('jadwal-ekstrakulikuler', [ExtracurricularScheduleController::class, 'index'])->name('student-extracurriculars-schedules.index');
 
     //* Rekap-Absensi
-    Route::get('rekap-absensi', [AttendanceRecapController::class, 'index'])->name('student-attendances-recaps.index');
-});
-
-Route::get('murid/e-raport/pdf', function () {
-    return view('students.e-raports.generate');
+    Route::get('jadwal-pelajaran/{scheduleOfSubject}/rekap-absensi', [AttendanceRecapController::class, 'index'])->name('student-attendances-recaps.index');
 });

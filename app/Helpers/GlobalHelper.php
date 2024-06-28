@@ -120,4 +120,13 @@ class GlobalHelper
 
         return $dateSubmissionTime->greaterThan($endDateTime);
     }
+
+    public static function limitText($text, $length = 13)
+    {
+        if (strlen($text) > $length) {
+            return substr($text, 0, $length) . '...';
+        }
+
+        return $text;
+    }
 }
