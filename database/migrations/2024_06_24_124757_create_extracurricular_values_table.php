@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('extracurricular_id')->references('id')->on('extracurriculars')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('student_id');
             $table->foreign('student_id')->references('id')->on('students')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->unsignedBigInteger('value');
+            $table->unsignedInteger('value');
             $table->timestamps();
         });
     }

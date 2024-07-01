@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreign('course_id')->references('id')->on('courses')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('student_id');
             $table->foreign('student_id')->references('id')->on('students')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->unsignedBigInteger('average_value')->nullable();
-            $table->unsignedBigInteger('uts')->nullable();
-            $table->unsignedBigInteger('uas')->nullable();
+            $table->unsignedInteger('average_value')->nullable();
+            $table->unsignedInteger('uts')->nullable();
+            $table->unsignedInteger('uas')->nullable();
             $table->longText('information')->nullable();
             $table->timestamps();
         });

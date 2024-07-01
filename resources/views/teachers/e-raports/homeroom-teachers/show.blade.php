@@ -29,7 +29,10 @@
             <div id="kt_app_content_container" class="app-container container-xxl">
                 <div class="card-header d-flex justify-content-end">
                     <div class="mb-5">
-                        <x-SaveButton><i class="bi bi-download fs-2 mx-2"></i>Export</x-SaveButton>
+                        <a class="btn btn-primary"
+                            href="{{ route('teacher-homeroom-raports.generate', $student->id) }}">
+                            <i class="bi bi-download fs-2 mx-2"></i>Export
+                        </a>
                     </div>
                 </div>
             </div>

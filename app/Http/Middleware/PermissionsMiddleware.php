@@ -53,7 +53,7 @@ class PermissionsMiddleware
             } else if ($temp_func == 'restore') {
                 $temp_permission = $temp_module[0] . '.restore';
             } else if ($temp_func == 'generate') {
-                $temp_permission = $temp_module[0] . '.generate';
+                $temp_permission = $temp_module[0] . '.export';
             }
 
             if ($authGuard->user()->can($permission)) {
