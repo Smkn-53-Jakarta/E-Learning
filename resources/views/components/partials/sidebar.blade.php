@@ -110,8 +110,8 @@
                     </div>
                 @endcanany
                 {{-- ADMIN MASTER --}}
-                @canany(['statuses.read', 'courses.read', 'teachers.read', 'students.read', 'classrooms.read',
-                    'school-years.read', 'extracurriculars.read'])
+                @canany(['statuses.read', 'courses.read', 'teachers.read', 'students.read', 'coachs.read',
+                    'classrooms.read', 'school-years.read', 'extracurriculars.read'])
                     <div class="menu-item">
                         <div data-kt-menu-trigger="click"
                             class="menu-item menu-accordion {{ Request::is('admin/status*', 'admin/mata-pelajaran*', 'admin/guru*', 'admin/murid*', 'admin/kelas*', 'admin/tahun-pelajaran*', 'admin/ekstrakurikuler*') ? 'show' : '' }}">
@@ -163,6 +163,17 @@
                                                 <span class="bullet bullet-dot"></span>
                                             </span>
                                             <span class="menu-title">Murid</span>
+                                        </a>
+                                    </div>
+                                @endcan
+                                @can('students.read')
+                                    <div class="menu-item">
+                                        <a class="menu-link {{ Request::is('admin/pelatih*') ? 'active' : '' }}"
+                                            href="{{ route('coachs.index') }}">
+                                            <span class="menu-bullet">
+                                                <span class="bullet bullet-dot"></span>
+                                            </span>
+                                            <span class="menu-title">Pelatih</span>
                                         </a>
                                     </div>
                                 @endcan

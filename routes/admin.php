@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CoachController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\StudentController;
@@ -79,6 +80,11 @@ Route::prefix('admin')->middleware('auth', 'permissions')->group(function () {
         'edit' => 'students.edit',
         'update' => 'students.update',
         'destroy' => 'students.destroy',
+    ]);
+
+    Route::resource('pelatih', CoachController::class)->only(['index','create'])->parameters(['pelatih' => 'coach'])->names([
+        'index' => 'coachs.index',
+        'create' => 'coachs.create'
     ]);
 
     //* Route Classrooms

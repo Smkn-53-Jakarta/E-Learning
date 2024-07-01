@@ -139,6 +139,14 @@ class PermissionSeeder extends Seeder
                 'guard_name' => 'web'
             ],
             [
+                'name' => 'coachs.read',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'coachs.create',
+                'guard_name' => 'web'
+            ],
+            [
                 'name' => 'classrooms.read',
                 'guard_name' => 'web'
             ],
