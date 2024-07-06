@@ -62,7 +62,7 @@ class AssesmentController extends Controller
             ]);
         } catch (\Throwable $th) {
             DB::rollBack();
-            dd($th->getMessage());
+
             return redirect()->back()->withInput()->with([
                 'message' => trans('message.error'),
                 'status' => 'danger',
