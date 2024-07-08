@@ -27,7 +27,11 @@
                         @endif
                     </div>
                     <div class="row">
-                        <x-DashboardSchedule.CardWithAction />
+                        @foreach ($scheduleOfSubjects as $scheduleOfSubject)
+                            <div class="col-lg-4">
+                                <x-DashboardSchedule.CardWithAction :scheduleOfSubject="$scheduleOfSubject" />
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

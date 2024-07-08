@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ScheduleOfSubject extends Model
@@ -28,6 +29,11 @@ class ScheduleOfSubject extends Model
     public function course(): BelongsTo
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function studentAttendances(): HasMany
+    {
+        return $this->hasMany(StudentAttendance::class);
     }
 
     public function scopeFilter($query, array $filters)
