@@ -40,7 +40,7 @@ class ScheduleOfSubject extends Model
     {
         $query->when($filters['search'] ?? false, function ($query, $search) {
             return $query->where(function ($query) use ($search) {
-                $query->where('year', 'like', '%' . $search . '%');
+                $query->where('day', 'like', '%' . $search . '%');
             });
         });
     }
