@@ -61,6 +61,6 @@ class ExportController extends Controller
 
         $pdf = Pdf::loadView('exports.raport', compact('courses', 'student', 'totalAlpha', 'totalPermission', 'totalSick', 'extracurriculars'))->setPaper('a4');
 
-        return $pdf->stream('Raport ' . $student->user->name . '.pdf');
+        return $pdf->download('Raport ' . $student->user->name . '.pdf');
     }
 }

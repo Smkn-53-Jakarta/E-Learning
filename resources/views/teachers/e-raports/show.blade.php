@@ -55,6 +55,7 @@
                                                 <th class="min-w-80px">Nilai Rata-rata Tugas</th>
                                                 <th class="min-w-80px">Nilai UTS</th>
                                                 <th class="min-w-80px">Nilai UAS</th>
+                                                <th class="min-w-80px">Nilai Akhir</th>
                                                 <th class="min-w-300px">Keterangan</th>
                                             </tr>
                                         </thead>
@@ -71,6 +72,11 @@
                                                             style="width: 80px"
                                                             name="raports[{{ $loop->iteration - 1 }}][average_value]"
                                                             value="{{ optional($student->raport)->average_value ? optional($student->raport)->average_value : $student->average_value }}">
+                                                        @php
+                                                            $averageValue = optional($student->raport)->average_value
+                                                                ? optional($student->raport)->average_value
+                                                                : $student->average_value;
+                                                        @endphp
                                                     </td>
                                                     <td><input type="number" class="form-control form-control-sm"
                                                             style="width: 80px"
@@ -80,8 +86,31 @@
                                                             style="width: 80px"
                                                             name="raports[{{ $loop->iteration - 1 }}][uas]"
                                                             value="{{ optional($student->raport)->uas }}"></td>
+                                                    @php
+                                                        $finalScore = round(
+                                                            ($averageValue +
+                                                                optional($student->raport)->uts +
+                                                                optional($student->raport)->uas) /
+                                                                3,
+                                                        );
+                                                    @endphp
+                                                    <td><input type="number" class="form-control form-control-sm"
+                                                            style="width: 80px" value="{{ $finalScore }}" readonly>
+                                                    </td>
+                                                    @php
+                                                        $information = '';
+                                                        if ($finalScore > 1 && $finalScore < 60) {
+                                                            $information = 'Perlu Bimbingan';
+                                                        } elseif ($finalScore > 60 && $finalScore < 70) {
+                                                            $information = 'Cukup';
+                                                        } elseif ($finalScore > 70 && $finalScore < 80) {
+                                                            $information = 'Baik';
+                                                        } elseif ($finalScore > 80) {
+                                                            $information = 'Sangat Baik';
+                                                        }
+                                                    @endphp
                                                     <td>
-                                                        <textarea name="raports[{{ $loop->iteration - 1 }}][information]" id="" class="form-control form-control-sm">{{ optional($student->raport)->information }}</textarea>
+                                                        <textarea name="raports[{{ $loop->iteration - 1 }}][information]" id="" class="form-control form-control-sm">{{ optional($student->raport)->information ? optional($student->raport)->information : $information }}</textarea>
                                                     </td>
                                                 </tr>
                                             @endforeach
