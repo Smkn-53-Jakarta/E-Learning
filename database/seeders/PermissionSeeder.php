@@ -347,6 +347,11 @@ class PermissionSeeder extends Seeder
                 'name' => 'teacher-homeroom-raports.export',
                 'guard_name' => 'web'
             ],
+            [
+                'name' => 'teacher-homeroom-raport-notes.create',
+                'guard_name' => 'web'
+            ],
+
 
             //* Student Permissions 
             [

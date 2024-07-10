@@ -72,4 +72,5 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
     Route::get('raport/murid/{student}', [RaportController::class, 'generateRaport'])->name('teacher-homeroom-raports.show');
     Route::get('raport/murid/{student}/export', [ExportController::class, 'exportRaport'])->name('teacher-homeroom-raports.generate');
     Route::post('penilaian/mata-pelajaran/{course}/kelas/{classroom}', [RaportController::class, 'store'])->name('teacher-raports.store');
+    Route::post('raport/murid/{student}/catatan-walikelas', [RaportController::class, 'raportNotes'])->name('teacher-homeroom-raport-notes.store');
 });

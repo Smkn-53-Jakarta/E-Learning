@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\SemesterHelper;
 use App\Models\Course;
 use App\Models\Extracurricular;
+use App\Models\RaportNote;
 use App\Models\ScheduleOfSubject;
 use App\Models\Student;
 use App\Models\StudentAttendance;
@@ -15,6 +16,8 @@ class ExportController extends Controller
 {
     public function exportRaport(Student $student)
     {
+        $startDate = SemesterHelper::getStartDate();
+        $endDate = SemesterHelper::getEndDate();
         $scheduleOfSubjects = ScheduleOfSubject::where('classroom_id', $student->classroom_id)
             ->select('course_id')
             ->distinct()
@@ -57,9 +60,13 @@ class ExportController extends Controller
             unset($course->extracurricularValues);
         });
 
+        $homeRoomNote = RaportNote::where('student_id', $student->id)
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->first();
+
         ini_set('max_execution_time', 6000);
 
-        $pdf = Pdf::loadView('exports.raport', compact('courses', 'student', 'totalAlpha', 'totalPermission', 'totalSick', 'extracurriculars'))->setPaper('a4');
+        $pdf = Pdf::loadView('exports.raport', compact('courses', 'student', 'totalAlpha', 'totalPermission', 'totalSick', 'extracurriculars', 'homeRoomNote'))->setPaper('a4');
 
         return $pdf->download('Raport ' . $student->user->name . '.pdf');
     }

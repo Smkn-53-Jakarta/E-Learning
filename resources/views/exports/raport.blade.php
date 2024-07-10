@@ -118,6 +118,12 @@
         .align-middle {
             vertical-align: middle;
         }
+
+        .note {
+            border: 1px solid #000;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
     </style>
 </head>
 <h1 class="text-center">LAPORAN HASIL BELAJAR SISWA</h1>
@@ -178,7 +184,7 @@
         <th class="align-middle text-center" colspan="2" style="text-align: center;">Nilai</th>
     </tr>
     <tr>
-        <th class="min-w-50px text-center" style="text-align: center;">Angka</th>
+        <th class="min-w-50px text-center" style="text-align: center;">Nilai Akhir</th>
         <th class="min-w-250px text-center" style="text-align: center;">Keterangan</th>
     </tr>
     <tbody>
@@ -207,18 +213,18 @@
         <tr>
             <td>1.</td>
             <td>Izin</td>
-            <td>
+            <td style="text-align: center">
                 {{ $totalPermission ? $totalPermission : '-' }}</td>
         </tr>
         <tr>
             <td>2.</td>
             <td>Sakit</td>
-            <td>{{ $totalSick ? $totalSick : '-' }}</td>
+            <td style="text-align: center">{{ $totalSick ? $totalSick : '-' }}</td>
         </tr>
         <tr>
             <td>3.</td>
             <td>Tanpa Keterangan</td>
-            <td>{{ $totalAlpha ? $totalAlpha : '-' }}
+            <td style="text-align: center">{{ $totalAlpha ? $totalAlpha : '-' }}
             </td>
         </tr>
     </tbody>
@@ -227,23 +233,29 @@
     <table class="table" style="margin-bottom: 1rem;">
         <tr>
             <th>No</th>
-            <th>Ekstrakurikuler</th>
-            <th>Nilai</th>
+            <th style="text-align: center; min-width: 385px;">Ekstrakurikuler</th>
+            <th class="min-w-250px" style="text-align: center;">Nilai</th>
         </tr>
         <tbody>
             @foreach ($extracurriculars as $extracurricular)
                 <tr>
                     <th>{{ $loop->iteration }}.</th>
                     <th>{{ $extracurricular->name }}</th>
-                    <th>
+                    <th style="text-align: center">
                         {{ optional($extracurricular->extracurricularValue)->value }}
                     </th>
                 </tr>
             @endforeach
         </tbody>
     </table>
-
 @endif
+<div>
+    <h3>Catatan Wali Kelas</h3>
+    <div class="note">
+        <p>{{ $homeRoomNote->notes }}</p>
+    </div>
+</div>
+
 <div class="container">
     <div class="left">
         <p>Mengetahui:</p>

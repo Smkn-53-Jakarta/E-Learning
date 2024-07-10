@@ -41,6 +41,9 @@
         <div class="d-flex flex-column flex-column-fluid">
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <div id="kt_app_content_container" class="app-container container-xxl">
+                    @if (session('message'))
+                        <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
+                    @endif
                     <div class="card card-flush shadow-sm p-3 mb-5 bg-body rounded">
                         <div class="card-header justify-content-center mt-20">
                             <h1>LAPORAN HASIL BELAJAR SISWA</h1>
@@ -145,7 +148,7 @@
                                         <th colspan="3">Nilai</th>
                                     </tr>
                                     <tr class="text-center">
-                                        <th>Angka</th>
+                                        <th>Nilai Akhir</th>
                                         <th>Keterangan</th>
                                     </tr>
                                     <tbody>
@@ -198,7 +201,7 @@
                             </div>
                         </div>
                         {{-- card content 3 --}}
-                        <div class="card-body py-0">
+                        <div class="card-body py-0 mb-5">
                             <div class="table-responsive">
                                 <table class="table table-bordered border-dark">
                                     <tr class="text-center">
@@ -220,6 +223,24 @@
                                 </table>
                             </div>
                         </div>
+                        <form action="{{ route('teacher-homeroom-raport-notes.store', $student->id) }}"
+                            method="POST">
+                            @csrf
+                            <div class="card-body pt-0">
+                                <div class="d-flex flex-column h-100">
+                                    <div class="row align-items-center mb-2 h-100">
+                                        <div class="col-12 h-100">
+                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                <h3>Catatan Wali Kelas :</h3>
+                                                <x-SaveButton>Simpan</x-SaveButton>
+                                            </div>
+                                            <textarea class="form-control h-100" style="resize: none;" name="notes">{{ $homeRoomNote->notes }}</textarea>
+                                            <x-Form.InputError name="notes" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                         {{-- card footer --}}
                         <div class="card-body pb-0">
                             <div class="table-responsive">
@@ -244,7 +265,8 @@
                                                 style="height: 200px">
                                                 <div class="row align-items-center mb-2 justify-content-center">
                                                     <div class="col-lg-14">
-                                                        <h5 class="mb-0 mr-2 fw-normal">Jakarta, 17 Januari 2024
+                                                        <h5 class="mb-0 mr-2 fw-normal">Jakarta,
+                                                            {{ \Carbon\Carbon::now()->isoFormat('D MMMM YYYY') }}
                                                         </h5>
                                                         <h5 class="col-6 mb-0 mr-2 fw-bold">Wali Kelas,</h5>
                                                     </div>

@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Teacher;
 
 use App\Helpers\SemesterHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Raport\StoreRaportNoteRequest;
 use App\Http\Requests\Raport\StoreRaportRequest;
 use App\Models\Classroom;
 use App\Models\Course;
 use App\Models\Extracurricular;
 use App\Models\Raport;
+use App\Models\RaportNote;
 use App\Models\ScheduleOfSubject;
 use App\Models\Student;
 use App\Models\StudentAttendance;
@@ -86,6 +88,8 @@ class RaportController extends Controller
 
     public function generateRaport(Student $student)
     {
+        $startDate = SemesterHelper::getStartDate();
+        $endDate = SemesterHelper::getEndDate();
         $scheduleOfSubjects = ScheduleOfSubject::where('classroom_id', $student->classroom_id)
             ->select('course_id')
             ->distinct()
@@ -128,6 +132,50 @@ class RaportController extends Controller
             unset($course->extracurricularValues);
         });
 
-        return view('teachers.e-raports.homeroom-teachers.show', compact('courses', 'student', 'totalAlpha', 'totalPermission', 'totalSick', 'extracurriculars'));
+        $homeRoomNote = RaportNote::where('student_id', $student->id)
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->first();
+
+        return view('teachers.e-raports.homeroom-teachers.show', compact('courses', 'student', 'totalAlpha', 'totalPermission', 'totalSick', 'extracurriculars', 'homeRoomNote'));
+    }
+
+    public function raportNotes(Student $student, StoreRaportNoteRequest $request)
+    {
+        $data = $request->validated();
+        $startDate = SemesterHelper::getStartDate();
+        $endDate = SemesterHelper::getEndDate();
+
+        try {
+            DB::beginTransaction();
+
+            $existingRaportNote = RaportNote::where('student_id', $student->id)
+                ->whereBetween('created_at', [$startDate, $endDate])
+                ->first();
+
+            if ($existingRaportNote) {
+                $existingRaportNote->update([
+                    'notes' => $data['notes'],
+                ]);
+            } else {
+                RaportNote::create([
+                    'student_id' => $student->id,
+                    'notes' => $data['notes'],
+                ]);
+            }
+
+            DB::commit();
+
+            return redirect()->back()->with([
+                'message' => 'Catatan wali kelas berhasil ditambahkan',
+                'status' => 'success',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return redirect()->back()->withInput()->with([
+                'message' => trans('message.error'),
+                'status' => 'danger',
+            ]);
+        }
     }
 }
