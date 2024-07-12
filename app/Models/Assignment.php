@@ -13,6 +13,11 @@ class Assignment extends Model
 
     protected $guarded = ['id'];
 
+    public function getDeadlineAttribute()
+    {
+        return $this->start_date . ' - ' . $this->end_date;
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, function ($query, $search) {
