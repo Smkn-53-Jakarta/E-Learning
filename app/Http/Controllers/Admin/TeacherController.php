@@ -50,6 +50,8 @@ class TeacherController extends Controller
                 'identification_number' => $data['identification_number']
             ]);
 
+            $user->assignRole('Teacher');
+
             DB::commit();
             return redirect(RoutingHelper::storeToIndexRoute())->with([
                 'message' => 'Guru berhasil ditambahkan',
