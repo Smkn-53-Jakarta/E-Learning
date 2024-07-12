@@ -32,13 +32,6 @@ class ClassroomSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ],
-            [
-                'id' => Str::uuid(),
-                'homeroom_teacher' => $teacherIds[2],
-                'name' => 'XII-TKJ',
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
         ];
 
         Classroom::insert($classrooms);
