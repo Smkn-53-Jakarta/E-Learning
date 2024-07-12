@@ -57,6 +57,8 @@ class StudentController extends Controller
                 'identification_number' => $data['identification_number']
             ]);
 
+            $user->assignRole('Student');
+
             DB::commit();
             return redirect(RoutingHelper::storeToIndexRoute())->with([
                 'message' => 'Murid berhasil ditambahkan',

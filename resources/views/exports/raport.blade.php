@@ -252,7 +252,7 @@
 <div>
     <h3>Catatan Wali Kelas</h3>
     <div class="note">
-        <p>{{ $homeRoomNote->notes }}</p>
+        <p>{{ optional($homeRoomNote)->notes }}</p>
     </div>
 </div>
 

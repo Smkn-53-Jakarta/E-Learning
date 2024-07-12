@@ -346,7 +346,7 @@
                         <div class="menu-sub menu-sub-accordion">
                             @can('teacher-teaching-schedules.read')
                                 <div class="menu-item">
-                                    <a class="menu-link {{ Request::is('guru/jadwal-mengajar*') ? 'active' : '' }}"
+                                    <a class="menu-link {{ Request::is('guru/jadwal-mengajar*') && !Request::is('guru/jadwal-mengajar/rekap-ajar*') && !Request::is('guru/jadwal-mengajar/*/rekap-ajar') ? 'active' : '' }}"
                                         href="{{ route('teacher-teaching-schedules.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>
@@ -357,7 +357,7 @@
                             @endcan
                             @can('teacher-teaching-recaps.read')
                                 <div class="menu-item">
-                                    <a class="menu-link {{ Request::is('guru/rekap-ajar*') ? 'active' : '' }}"
+                                    <a class="menu-link {{ Request::is('guru/jadwal-mengajar/rekap-ajar') || Request::is('guru/jadwal-mengajar/*/rekap-ajar') ? 'active' : '' }}"
                                         href="{{ route('teacher-teaching-recaps.index') }}">
                                         <span class="menu-bullet">
                                             <span class="bullet bullet-dot"></span>

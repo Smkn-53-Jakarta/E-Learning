@@ -234,7 +234,7 @@
                                                 <h3>Catatan Wali Kelas :</h3>
                                                 <x-SaveButton>Simpan</x-SaveButton>
                                             </div>
-                                            <textarea class="form-control h-100" style="resize: none;" name="notes">{{ $homeRoomNote->notes }}</textarea>
+                                            <textarea class="form-control h-100" style="resize: none;" name="notes">{{ optional($homeRoomNote)->notes }}</textarea>
                                             <x-Form.InputError name="notes" />
                                         </div>
                                     </div>
