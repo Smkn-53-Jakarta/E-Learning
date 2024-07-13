@@ -131,7 +131,27 @@
                                     style="font-size: 18px; margin-right: 5px; color: #b01f3a;"></i>
                                 Live Status
                             </h3>
-                            <button class="btn btn-danger btn-sm">Belum Absen!!!</button>
+                            @php
+                                $now = \Carbon\Carbon::now();
+                                $startTime = \Carbon\Carbon::parse($scheduleOfSubject->start_time);
+                                $endTime = \Carbon\Carbon::parse($scheduleOfSubject->end_time);
+                                $currentDay = $now->locale('id')->dayName;
+
+                                if ($endTime->lessThan($startTime)) {
+                                    $endTime->addDay();
+                                }
+                            @endphp
+                            @if ($currentDay !== $scheduleOfSubject->day)
+                                <button class="btn btn-warning btn-sm">Belum Mulai</button>
+                            @elseif ($now->lessThan($startTime))
+                                <button class="btn btn-warning btn-sm">Belum Mulai</button>
+                            @elseif($now->greaterThan($endTime))
+                                <button class="btn btn-warning btn-sm">Sudah Selesai</button>
+                            @elseif ($hasAttended)
+                                <button class="btn btn-success btn-sm">Sudah Absen</button>
+                            @else
+                                <button class="btn btn-danger btn-sm">Belum Absen!</button>
+                            @endif
                         </div>
                     </div>
                 </div>
