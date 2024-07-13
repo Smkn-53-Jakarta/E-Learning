@@ -5,6 +5,7 @@
     $now = Carbon::now();
     $startTime = Carbon::parse($scheduleOfSubject->start_time);
     $endTime = Carbon::parse($scheduleOfSubject->end_time);
+    $currentDay = $now->locale('id')->dayName;
 
     if ($endTime->lessThan($startTime)) {
         $endTime->addDay();
@@ -36,7 +37,12 @@
             </tbody>
         </table>
     </div>
-    @if ($now->lessThan($startTime))
+    @if ($currentDay !== $scheduleOfSubject->day)
+        <div class="card-footer d-flex align-items-center justify-content-center fw-bold bg-primary"
+            style="height: 40px;">
+            <h3 class="card-title text-center text-white">Belum Mulai</h3>
+        </div>
+    @elseif ($now->lessThan($startTime))
         <div class="card-footer d-flex align-items-center justify-content-center fw-bold bg-primary"
             style="height: 40px;">
             <h3 class="card-title text-center text-white">Belum Mulai</h3>
