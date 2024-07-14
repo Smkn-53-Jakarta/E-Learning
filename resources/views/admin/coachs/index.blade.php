@@ -38,82 +38,81 @@
                             </div>
                         </div>
                         <div class="card-toolbar">
-                            {{-- @if ($teachersTrashed)
-                                <a href="{{ route('teachers.trashed') }}" class="btn btn-light-primary me-3">
+                            @if ($coachsTrashed)
+                                <a href="{{ route('coachs.trashed') }}" class="btn btn-light-primary me-3">
                                     <i class="fa-solid fa-trash-can"></i>
                                     Sampah
                                 </a>
-                            @endif --}}
+                            @endif
                             @can('coachs.create')
                                 <x-AddButton :url="route('coachs.create')">Tambah Pelatih</x-AddButton>
                             @endcan
                         </div>
                     </div>
                     <div class="card-body">
-                        {{-- @if (count($teachers)) --}}
-                        <div class="table-responsive fixed-actions-table">
-                            <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
-                                <thead>
-                                    <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                                        <th class="text-center">No</th>
-                                        <th class="min-w-250px">Nama Pelatih</th>
-                                        <th class="min-w-200px">Koor. Ekskul</th>
-                                        <th class="min-w-200px">Email</th>
-                                        <th class="min-w-150px">NIP</th>
-                                        <th class="min-w-150px">Status</th>
-                                        <th class="min-w-200px">Dibuat</th>
-                                        <th class="min-w-200px">Diubah</th>
-                                        <th class="min-w-100px">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="fw-semibold text-gray-600">
-                                    {{-- @foreach ($teachers as $teacher) --}}
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>
-                                            <a href="#" class="btn btn-sm btn-icon btn-active-light-primary"
-                                                data-kt-menu-trigger="click" data-kt-menu-placement="top-end">
-                                                <i class="bi bi-three-dots fs-3"></i>
-                                            </a>
-                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
-                                                data-kt-menu="true">
-                                                {{-- @can('') --}}
-                                                <div class="menu-item px-3">
-                                                    <a href="" class="menu-link px-3">Ubah</a>
-                                                </div>
-                                                {{-- @endcan --}}
-                                                {{-- @can('') --}}
-                                                <div class="menu-item px-3">
-                                                    <form action="" method="post" class="me-3">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <a href="#" class="menu-link px-3"
-                                                            onclick="confirmPopup(this, 'Akan menghapus guru ini')">Hapus</a>
-                                                    </form>
-                                                </div>
-                                                {{-- @endcan --}}
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    {{-- @endforeach --}}
-                                </tbody>
-                            </table>
-                        </div>
-                        {{-- @else
+                        @if (count($coachs))
+                            <div class="table-responsive fixed-actions-table">
+                                <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
+                                    <thead>
+                                        <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                                            <th class="text-center">No</th>
+                                            <th class="min-w-250px">Nama Pelatih</th>
+                                            <th class="min-w-150px">Status</th>
+                                            <th class="min-w-200px">Email</th>
+                                            <th class="min-w-200px">Dibuat Pada</th>
+                                            <th class="min-w-200px">Diubah Pada</th>
+                                            <th class="min-w-100px">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fw-semibold text-gray-600">
+                                        @foreach ($coachs as $coach)
+                                            <tr>
+                                                <td class="text-center">{{ $loop->iteration }}</td>
+                                                <td>{{ $coach->name }}</td>
+                                                <td>{{ $coach->status->name }}</td>
+                                                <td>{{ $coach->email }}</td>
+                                                <td>{{ $coach->created_at->diffForHumans() }}</td>
+                                                <td>{{ $coach->updated_at->diffForHumans() }}</td>
+                                                <td>
+                                                    <a href="#"
+                                                        class="btn btn-sm btn-icon btn-active-light-primary"
+                                                        data-kt-menu-trigger="click" data-kt-menu-placement="top-end">
+                                                        <i class="bi bi-three-dots fs-3"></i>
+                                                    </a>
+                                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
+                                                        data-kt-menu="true">
+                                                        @can('coachs.update')
+                                                            <div class="menu-item px-3">
+                                                                <a href="{{ route('coachs.edit', $coach->id) }}"
+                                                                    class="menu-link px-3">Ubah</a>
+                                                            </div>
+                                                        @endcan
+                                                        @can('coachs.delete')
+                                                            <div class="menu-item px-3">
+                                                                <form action="{{ route('coachs.destroy', $coach->id) }}"
+                                                                    method="post" class="me-3">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <a href="#" class="menu-link px-3"
+                                                                        onclick="confirmPopup(this, 'Akan menghapus pelatih ini')">Hapus</a>
+                                                                </form>
+                                                            </div>
+                                                        @endcan
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @else
                             <x-DataNotFound />
-                        @endif --}}
+                        @endif
                     </div>
                 </div>
-                {{-- <div class="d-flex p-5 justify-content-end">
-                    {!! $teachers->appends($_GET)->links() !!}
-                </div> --}}
+                <div class="d-flex p-5 justify-content-end">
+                    {!! $coachs->appends($_GET)->links() !!}
+                </div>
             </div>
         </div>
     </div>

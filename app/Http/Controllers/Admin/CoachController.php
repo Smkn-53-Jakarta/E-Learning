@@ -2,70 +2,87 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\FileHelper;
+use App\Helpers\RoutingHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Coach\StoreCoachController;
+use App\Http\Requests\Coach\UpdateCoachController;
+use App\Models\Coach;
+use App\Models\Status;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 class CoachController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(): View
     {
-        return view('admin.coachs.index');
+        $coachsTrashed = User::role('coach')->onlyTrashed()->count();
+        $coachs = User::with('status')->latest()->role('coach')->filter(request(['search']))->paginate(10);
+
+        return view('admin.coachs.index', compact('coachsTrashed', 'coachs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view('admin.coachs.create');
+        $statuses = Status::latest()->get();
+
+        return view('admin.coachs.create', compact('statuses'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(StoreCoachController $request)
+    {
+        $data = Arr::except($request->validated(), ['profile_picture']);
+        $data['password'] = bcrypt($data['name']);
+
+        if ($request->hasFile('profile_picture')) {
+            $data['profile_picture'] = FileHelper::optimizeAndUploadPicture($request->file('profile_picture'), 'users/images');
+        }
+
+        try {
+            DB::beginTransaction();
+
+            $user = User::create($data);
+
+            $user->assignRole('Coach');
+
+            DB::commit();
+            return redirect(RoutingHelper::storeToIndexRoute())->with([
+                'message' => 'Pelatih berhasil ditambahkan',
+                'status' => 'success',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            if (isset($data['profile_picture'])) {
+                FileHelper::deleteImage('users/images', $data['profile_picture']);
+            }
+
+            return redirect()->back()->withInput()->with([
+                'message' => trans('message.error'),
+                'status' => 'danger',
+            ]);
+        }
+    }
+
+    public function edit(Coach $coach)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(UpdateCoachController $request, Coach $coach)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Coach $coach)
     {
         //
     }
 
     public function trashed(): View
     {
-        return view ('admin.coachs.trashed', compact('coachs'));
+        return view('admin.coachs.trashed', compact('coachs'));
     }
 }

@@ -147,6 +147,18 @@ class PermissionSeeder extends Seeder
                 'guard_name' => 'web'
             ],
             [
+                'name' => 'coachs.update',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'coachs.delete',
+                'guard_name' => 'web'
+            ],
+            [
+                'name' => 'coachs.restore',
+                'guard_name' => 'web'
+            ],
+            [
                 'name' => 'classrooms.read',
                 'guard_name' => 'web'
             ],

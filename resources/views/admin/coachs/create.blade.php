@@ -5,7 +5,7 @@
                 <div class="d-flex align-items-center">
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                            Tambah Guru
+                            Tambah Pelatih
                         </h1>
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <li class="breadcrumb-item text-muted">
@@ -34,7 +34,7 @@
                 @if (session('message'))
                     <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
                 @endif
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="{{ route('coachs.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="d-flex flex-column flex-lg-row align-items-start mb-10">
                         <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
@@ -66,19 +66,6 @@
                                         </div>
                                         <div class="fv-row mb-10">
                                             <label class="fs-5 fw-bold form-label mb-2">
-                                                <span class="required">Koor. Ekskul</span>
-                                            </label>
-                                            <select class="form-select" data-control="select2"
-                                                data-placeholder="Pilih Ekskul" data-hide-search="true" name="status_id"
-                                                required>
-                                                {{-- @foreach ($statuses as $status) --}}
-                                                <option></option>
-                                                {{-- @endforeach --}}
-                                            </select>
-                                            <x-Form.InputError name="status_id" />
-                                        </div>
-                                        <div class="fv-row mb-10">
-                                            <label class="fs-5 fw-bold form-label mb-2">
                                                 <span class="required">Email</span>
                                             </label>
                                             <input type="email" id="email"
@@ -89,24 +76,15 @@
                                         </div>
                                         <div class="fv-row mb-10">
                                             <label class="fs-5 fw-bold form-label mb-2">
-                                                <span class="required">NIP</span>
-                                            </label>
-                                            <input type="number" id="identification_number"
-                                                class="form-control mb-2 @error('identification_number') is-invalid @enderror"
-                                                placeholder="Masukan NIP pelatih" name="identification_number"
-                                                value="{{ old('identification_number') }}" required />
-                                            <x-Form.InputError name="identification_number" />
-                                        </div>
-                                        <div class="fv-row mb-10">
-                                            <label class="fs-5 fw-bold form-label mb-2">
                                                 <span class="required">Status</span>
                                             </label>
                                             <select class="form-select" data-control="select2"
                                                 data-placeholder="Pilih Status" data-hide-search="true" name="status_id"
                                                 required>
-                                                {{-- @foreach ($statuses as $status) --}}
-                                                <option></option>
-                                                {{-- @endforeach --}}
+                                                @foreach ($statuses as $status)
+                                                    <option value="{{ $status->id }}" @selected(old('status_id') == $status->id)>
+                                                        {{ $status->name }}</option>
+                                                @endforeach
                                             </select>
                                             <x-Form.InputError name="status_id" />
                                         </div>

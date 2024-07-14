@@ -82,9 +82,17 @@ Route::prefix('admin')->middleware('auth', 'permissions')->group(function () {
         'destroy' => 'students.destroy',
     ]);
 
-    Route::resource('pelatih', CoachController::class)->only(['index','create'])->parameters(['pelatih' => 'coach'])->names([
+    //* Route Coachs
+    Route::get('/pelatih/trashed', [CoachController::class, 'trashed'])->name('coachs.trashed');
+    Route::post('/pelatih/{student}/restore', [CoachController::class, 'restore'])->name('coachs.restore');
+    Route::post('/pelatih/{student}/force-delete', [CoachController::class, 'forceDelete'])->name('coachs.force-delete');
+    Route::resource('pelatih', CoachController::class)->except(['show'])->parameters(['pelatih' => 'coach'])->names([
         'index' => 'coachs.index',
-        'create' => 'coachs.create'
+        'create' => 'coachs.create',
+        'store' => 'coachs.store',
+        'edit' => 'coachs.edit',
+        'update' => 'coachs.update',
+        'destroy' => 'coachs.destroy',
     ]);
 
     //* Route Classrooms

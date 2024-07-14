@@ -114,7 +114,7 @@
                     'classrooms.read', 'school-years.read', 'extracurriculars.read'])
                     <div class="menu-item">
                         <div data-kt-menu-trigger="click"
-                            class="menu-item menu-accordion {{ Request::is('admin/status*', 'admin/mata-pelajaran*', 'admin/guru*', 'admin/murid*', 'admin/kelas*', 'admin/tahun-pelajaran*', 'admin/ekstrakurikuler*') ? 'show' : '' }}">
+                            class="menu-item menu-accordion {{ Request::is('admin/status*', 'admin/mata-pelajaran*', 'admin/guru*', 'admin/murid*', 'admin/pelatih*', 'admin/kelas*', 'admin/tahun-pelajaran*', 'admin/ekstrakurikuler*') ? 'show' : '' }}">
                             <span class="menu-link">
                                 <span class="menu-icon">
                                     <span class="svg-icon svg-icon-2">
@@ -166,7 +166,7 @@
                                         </a>
                                     </div>
                                 @endcan
-                                @can('students.read')
+                                @can('coachs.read')
                                     <div class="menu-item">
                                         <a class="menu-link {{ Request::is('admin/pelatih*') ? 'active' : '' }}"
                                             href="{{ route('coachs.index') }}">
