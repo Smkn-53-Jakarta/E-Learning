@@ -140,4 +140,19 @@ class CoachController extends Controller
             'status' => 'success',
         ]);
     }
+
+    public function forceDelete($id): RedirectResponse
+    {
+        $coach = User::withTrashed()->findOrFail($id);
+        $profilePicture = $coach->profile_picture;
+
+        $coach->forceDelete();
+
+        FileHelper::deleteImage('users/images', $profilePicture);
+
+        return redirect(RoutingHelper::forceDeleteToIndex())->with([
+            'message' => 'Pelatih berhasil dihapus',
+            'status' => 'success',
+        ]);
+    }
 }
