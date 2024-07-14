@@ -19,8 +19,8 @@ class CoachController extends Controller
 {
     public function index(): View
     {
-        $coachsTrashed = User::role('coach')->onlyTrashed()->count();
-        $coachs = User::with('status')->latest()->role('coach')->filter(request(['search']))->paginate(10);
+        $coachsTrashed = User::role('Coach')->onlyTrashed()->count();
+        $coachs = User::with('status')->role('Coach')->latest()->filter(request(['search']))->paginate(10);
 
         return view('admin.coachs.index', compact('coachsTrashed', 'coachs'));
     }
@@ -124,6 +124,20 @@ class CoachController extends Controller
 
     public function trashed(): View
     {
+        $coachs = User::with('status')->role('Coach')->latest()->onlyTrashed()->filter(request(['search']))->paginate(10);
+
         return view('admin.coachs.trashed', compact('coachs'));
+    }
+
+    public function restore($id): RedirectResponse
+    {
+        $coach = User::withTrashed()->findOrFail($id);
+
+        $coach->restore();
+
+        return redirect(RoutingHelper::restoreToIndex())->with([
+            'message' => 'Pelatih berhasil dipulihkan',
+            'status' => 'success',
+        ]);
     }
 }
