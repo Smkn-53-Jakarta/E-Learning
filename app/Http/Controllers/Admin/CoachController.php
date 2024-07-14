@@ -11,6 +11,7 @@ use App\Models\Coach;
 use App\Models\Status;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
@@ -24,14 +25,14 @@ class CoachController extends Controller
         return view('admin.coachs.index', compact('coachsTrashed', 'coachs'));
     }
 
-    public function create()
+    public function create(): View
     {
         $statuses = Status::latest()->get();
 
         return view('admin.coachs.create', compact('statuses'));
     }
 
-    public function store(StoreCoachController $request)
+    public function store(StoreCoachController $request): RedirectResponse
     {
         $data = Arr::except($request->validated(), ['profile_picture']);
         $data['password'] = bcrypt($data['name']);
@@ -66,17 +67,52 @@ class CoachController extends Controller
         }
     }
 
-    public function edit(Coach $coach)
+    public function edit(User $coach): View
     {
-        //
+        $statuses = Status::latest()->get();
+
+        return view('admin.coachs.edit', compact('statuses', 'coach'));
     }
 
-    public function update(UpdateCoachController $request, Coach $coach)
+    public function update(UpdateCoachController $request, User $coach)
     {
-        //
+        $data = Arr::except($request->validated(), ['profile_picture']);
+
+        if ($request->hasFile('profile_picture')) {
+            $data['profile_picture'] = FileHelper::optimizeAndUploadPicture($request->file('profile_picture'), 'users/images');
+            $oldImage = $coach->profile_picture;
+        }
+
+        try {
+            DB::beginTransaction();
+
+            $coach->update($data);
+
+            DB::commit();
+
+            if (isset($oldImage)) {
+                FileHelper::deleteImage('users/images', $oldImage);
+            }
+
+            return redirect(RoutingHelper::updateToIndexRoute())->with([
+                'message' => 'Pelatih berhasil diubah',
+                'status' => 'success',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            if (isset($data['profile_picture'])) {
+                FileHelper::deleteImage('users/images', $data['profile_picture']);
+            }
+
+            return redirect()->back()->withInput()->with([
+                'message' => trans('message.error'),
+                'status' => 'danger',
+            ]);
+        }
     }
 
-    public function destroy(Coach $coach)
+    public function destroy(User $coach)
     {
         //
     }
