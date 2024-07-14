@@ -51,11 +51,6 @@
                         <i class="bi bi-pen fs-4 text-info"></i>
                     </a>
                 @endcan
-                @can('schedule-of-subjects.read')
-                    <a href="" class="btn btn-secondary">
-                        <i class="bi bi-file-text fs-4 text-success"></i>
-                    </a>
-                @endcan
                 @can('schedule-of-subjects.delete')
                     <form class="btn btn-secondary"
                         action="{{ route('schedule-of-subjects.destroy', $scheduleOfSubject->id) }}" method="post"
