@@ -98,14 +98,6 @@
                                     </a>
                                 </div>
                             @endcan
-                            <div class="menu-item">
-                                <a class="menu-link" href="../../demo1/dist/pages/user-profile/projects.html">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Pengguna</span>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 @endcanany
@@ -221,37 +213,6 @@
                                         </a>
                                     </div>
                                 @endcan
-                            </div>
-                        </div>
-                    </div>
-                @endcanany
-                {{-- ADMIN REKAP ABSENSI --}}
-                @canany(['statuses.read', 'courses.read', 'teachers.read', 'students.read', 'classrooms.read',
-                    'school-years.read', 'extracurriculars.read'])
-                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                        <span class="menu-link">
-                            <span class="menu-icon">
-                                <i class="bi bi-clipboard-check" style="font-size: 20px;"></i>
-                            </span>
-                            <span class="menu-title">Rekap Absensi</span>
-                            <span class="menu-arrow"></span>
-                        </span>
-                        <div class="menu-sub menu-sub-accordion">
-                            <div class="menu-item">
-                                <a class="menu-link" href="{{ route('attendances-teachers.index') }}">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Rekap Guru</span>
-                                </a>
-                            </div>
-                            <div class="menu-item">
-                                <a class="menu-link" href="{{ route('attendances-students.index') }}">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Rekap Siswa</span>
-                                </a>
                             </div>
                         </div>
                     </div>
