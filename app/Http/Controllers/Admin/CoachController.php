@@ -112,9 +112,14 @@ class CoachController extends Controller
         }
     }
 
-    public function destroy(User $coach)
+    public function destroy(User $coach): RedirectResponse
     {
-        //
+        $coach->delete();
+
+        return back()->with([
+            'message' => 'Pelatih berhasil dihapus',
+            'status' => 'success',
+        ]);
     }
 
     public function trashed(): View
