@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('school_years', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('year', 64);
+            $table->string('school_year_id', 36)->primary();
+            $table->string('year', 15);
             $table->timestamps();
             $table->softDeletes();
         });

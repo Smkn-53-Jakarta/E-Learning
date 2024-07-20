@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('courses', function (Blueprint $table) {
-            $table->uuid('course_id')->primary();
-            $table->string('name', 64)->unique();
+            $table->string('course_id', 36)->primary();
+            $table->string('course_name', 64)->unique();
             $table->unsignedInteger('kkm')->default(75);
             $table->timestamps();
             $table->softDeletes();
