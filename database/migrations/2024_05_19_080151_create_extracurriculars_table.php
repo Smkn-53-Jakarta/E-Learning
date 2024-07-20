@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('extracurriculars', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('name', 64)->unique();
+            $table->string('extracurriculars_id', 36)->primary();
+            $table->string('extracurriculars_name', 64)->unique();
             $table->timestamps();
             $table->softDeletes();
         });

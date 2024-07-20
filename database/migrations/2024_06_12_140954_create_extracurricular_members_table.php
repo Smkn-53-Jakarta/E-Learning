@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('extracurricular_members', function (Blueprint $table) {
-            $table->string('extracurricular_schedule_id');
+            $table->string('extracurricular_schedule_id', 36);
             $table->foreign('extracurricular_schedule_id')->references('id')->on('extracurricular_schedules')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('student_id');
+            $table->string('student_id', 36);
             $table->foreign('student_id')->references('id')->on('students')->cascadeOnDelete()->cascadeOnUpdate();
             $table->primary(['extracurricular_schedule_id', 'student_id']);
             $table->timestamps();

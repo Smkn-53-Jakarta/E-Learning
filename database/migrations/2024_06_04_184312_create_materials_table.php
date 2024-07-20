@@ -14,12 +14,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('materials', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('schedule_of_subject_id');
+            $table->string('materials_id', 36 )->primary();
+            $table->string('schedule_of_subject_id', 36);
             $table->foreign('schedule_of_subject_id')->references('id')->on('schedule_of_subjects')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('title', 64);
-            $table->longText('description');
-            $table->string('file');
+            $table->string('material_title', 64);
+            $table->longText('material_description');
+            $table->string('material_file');
             $table->timestamps();
             $table->softDeletes();
         });
