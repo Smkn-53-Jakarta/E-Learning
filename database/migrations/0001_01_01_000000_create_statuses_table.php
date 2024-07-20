@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('statuses', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('name', 64)->unique();
+            $table->uuid('status_id')->primary();
+            $table->string('status_name', 24)->unique();
             $table->timestamps();
             $table->softDeletes();
         });

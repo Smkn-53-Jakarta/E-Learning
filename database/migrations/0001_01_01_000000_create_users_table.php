@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('status_id');
             $table->foreign('status_id')->references('id')->on('statuses')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('name', 64);
+            $table->string('user_name', 64);
             $table->string('email', 64)->unique();
             $table->string('profile_picture')->default('default.png');
             $table->timestamp('email_verified_at')->nullable();
