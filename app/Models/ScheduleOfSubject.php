@@ -36,6 +36,11 @@ class ScheduleOfSubject extends Model
         return $this->hasMany(StudentAttendance::class);
     }
 
+    public function teacherAttendances(): HasMany
+    {
+        return $this->hasMany(TeacherAttendance::class);
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, function ($query, $search) {

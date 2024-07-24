@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\ClassroomController;
 use App\Http\Controllers\Admin\ExtracurricularController;
 use App\Http\Controllers\Admin\ExtracurricularScheduleController;
+use App\Http\Controllers\Admin\MonitoringController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ScheduleOfSubjectController;
@@ -159,33 +160,5 @@ Route::prefix('admin')->middleware('auth', 'permissions')->group(function () {
         'destroy' => 'extracurricular-schedules.destroy',
     ]);
 
-    //* Route Attendances Teachers
-    Route::get('rekap-absensi/guru', function () {
-        return view('admin.attendances.teachers.index');
-    })->name('attendances-teachers.index');
-
-    //*Show Attendances Teachers
-    Route::get('rekap-absensi/guru/{teacher_id}', function () {
-        return view('admin.attendances.teachers.show');
-    })->name('attendances-teachers.show');
-
-    //*Attendances Teachers
-    Route::get('rekap-absensi/guru/{teacher_id}/kehadiran', function () {
-        return view('admin.attendances.teachers.attendances');
-    })->name('attendances-teachers-attendances.index');
-
-    //* Route Attendances Students
-    Route::get('rekap-absensi/kelas', function () {
-        return view('admin.attendances.students.index');
-    })->name('attendances-students.index');
-
-    //*Show Attendances Students
-    Route::get('rekap-absensi/kelas/mata-pelajaran', function () {
-        return view('admin.attendances.students.show');
-    })->name('attendances-students.show');
-
-    //*Attendances Students
-    Route::get('rekap-absensi/kelas/mata-pelajaran/{student_id}/kehadiran', function () {
-        return view('admin.attendances.students.attendances');
-    })->name('attendances-students-attendances.index');
+    Route::get('/monitoring', [MonitoringController::class, 'index'])->name('monitoring.index');
 });

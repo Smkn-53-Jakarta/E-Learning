@@ -259,19 +259,7 @@ class PermissionSeeder extends Seeder
                 'guard_name' => 'web'
             ],
             [
-                'name' => 'attendances-teachers.read',
-                'guard_name' => 'web'
-            ],
-            [
-                'name' => 'attendances-students.read',
-                'guard_name' => 'web'
-            ],
-            [
-                'name' => 'attendances-teachers-attendances.read',
-                'guard_name' => 'web'
-            ],
-            [
-                'name' => 'attendances-students-attendances.read',
+                'name' => 'monitoring.read',
                 'guard_name' => 'web'
             ],
             //* Teacher permissions
