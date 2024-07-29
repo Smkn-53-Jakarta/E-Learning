@@ -340,6 +340,10 @@ class PermissionSeeder extends Seeder
                 'guard_name' => 'web'
             ],
             [
+                'name' => 'teacher-attendances-recap.export',
+                'guard_name' => 'web'
+            ],
+            [
                 'name' => 'teacher-teaching-recaps.read',
                 'guard_name' => 'web'
             ],

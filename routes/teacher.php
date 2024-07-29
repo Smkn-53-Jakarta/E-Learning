@@ -60,6 +60,7 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
 
     //* Route Attendances Recap
     Route::get('jadwal-mengajar/{scheduleOfSubject}/rekap-absensi', [AttendanceRecapController::class, 'index'])->name('teacher-attendances-recap.index');
+    Route::get('jadwal-mengajar/{scheduleOfSubject}/rekap-absensi/export', [ExportController::class, 'exportStudentAttendances'])->name('teacher-attendances-recap.generate');
 
     //* Route Teaching Recaps
     Route::get('jadwal-mengajar/rekap-ajar', [TeachingRecapController::class, 'index'])->name('teacher-teaching-recaps.index');

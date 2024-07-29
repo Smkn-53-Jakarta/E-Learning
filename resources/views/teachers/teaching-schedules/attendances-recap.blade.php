@@ -60,9 +60,10 @@
                         </div>
                         <div class="card-toolbar">
                             <div class="d-grid gap-2 d-md-block">
-                                <a href="#" class="btn btn-light-primary me-3">Generate</a>
-                                <a href="#" class="btn btn-primary me-3"><i class="bi bi-filter"></i>Filter
-                                    Bulanan</a>
+                                @can('teacher-attendances-recap.export')
+                                    <a href="{{ route('teacher-attendances-recap.generate', $scheduleOfSubject->id) }}"
+                                        class="btn btn-light-primary me-3">Generate</a>
+                                @endcan
                             </div>
                         </div>
                     </div>
