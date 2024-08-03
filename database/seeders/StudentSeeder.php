@@ -24,21 +24,21 @@ class StudentSeeder extends Seeder
             'status_id' => $statusActive->id,
             'name' => 'Rahmat Fauzi Widianto',
             'email' => 'rahmat@gmail.com',
-            'password' => bcrypt('rahmat')
+            'password' => bcrypt('smkn53jakarta')
         ]);
 
         $student2 = User::create([
             'status_id' => $statusActive->id,
             'name' => 'Muhammad Ridwan',
             'email' => 'ridwan@gmail.com',
-            'password' => bcrypt('ridwan')
+            'password' => bcrypt('smkn53jakarta')
         ]);
 
         $student3 = User::create([
             'status_id' => $statusActive->id,
             'name' => 'Atikah Rahmawati',
             'email' => 'atikah@gmail.com',
-            'password' => bcrypt('atikah')
+            'password' => bcrypt('smkn53jakarta')
         ]);
 
         Student::create([

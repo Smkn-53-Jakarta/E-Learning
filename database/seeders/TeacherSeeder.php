@@ -21,21 +21,21 @@ class TeacherSeeder extends Seeder
             'status_id' => $statusActive->id,
             'name' => 'Herlambang Brawijaya',
             'email' => 'herlambang@gmail.com',
-            'password' => bcrypt('herlambang')
+            'password' => bcrypt('smkn53jakarta')
         ]);
 
         $teacher2 = User::create([
             'status_id' => $statusActive->id,
             'name' => 'Sriyadi',
             'email' => 'sriyadi@gmail.com',
-            'password' => bcrypt('sriyadi')
+            'password' => bcrypt('smkn53jakarta')
         ]);
 
         $teacher3 = User::create([
             'status_id' => $statusActive->id,
             'name' => 'Seziaji',
             'email' => 'aji@gmail.com',
-            'password' => bcrypt('aji')
+            'password' => bcrypt('smkn53jakarta')
         ]);
 
         Teacher::create([

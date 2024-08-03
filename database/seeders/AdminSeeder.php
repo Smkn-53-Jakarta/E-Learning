@@ -20,7 +20,7 @@ class AdminSeeder extends Seeder
             'status_id' => $statusActive->id,
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('admin')
+            'password' => bcrypt('smkn53jakarta')
         ]);
 
         $admin->assignRole('Admin');

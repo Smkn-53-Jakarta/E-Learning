@@ -20,7 +20,7 @@ class CoachSeeder extends Seeder
             'status_id' => $statusActive->id,
             'name' => 'Coach',
             'email' => 'coach@gmail.com',
-            'password' => bcrypt('coach')
+            'password' => bcrypt('smkn53jakarta')
         ]);
 
         $coach->assignRole('Coach');
