@@ -35,7 +35,7 @@ class TeacherController extends Controller
     public function store(StoreTeacherRequest $request): RedirectResponse
     {
         $data = Arr::except($request->validated(), ['profile_picture']);
-        $data['password'] = bcrypt($data['name']);
+        $data['password'] = bcrypt('smkn53jakarta');
 
         if ($request->hasFile('profile_picture')) {
             $data['profile_picture'] = FileHelper::optimizeAndUploadPicture($request->file('profile_picture'), 'users/images');
