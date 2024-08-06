@@ -62,7 +62,7 @@ class AuthenticatedSessionController extends Controller
         }
 
         return back()->with([
-            'message' => 'NIP, NIS atau Password Salah!',
+            'message' => 'NIP, NISN atau Password Salah!',
             'status' => 'danger',
         ]);
     }

@@ -33,9 +33,14 @@
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <div id="kt_app_content_container" class="app-container container-xxl">
-                @if (session('message'))
-                    <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
-                @endif
+                <div class="mt-2">
+                    @if (session('message'))
+                        <x-Alert :status="session('status')">{{ session('message') }}</x-Alert>
+                    @endif
+                    @error('schedule')
+                        <x-Alert status="danger">{{ $message }}</x-Alert>
+                    @enderror
+                </div>
                 <div class="card">
                     <form class="form card-body"
                         action="{{ route('schedule-of-subjects.update', $scheduleOfSubject->id) }}" method="post">

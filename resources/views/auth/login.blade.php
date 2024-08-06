@@ -17,7 +17,7 @@
                         </div>
                     @endif
                     <div class="wrap-input100 validate-input m-b-23">
-                        <span class="label-input100">NIP / NIS</span>
+                        <span class="label-input100">NIP / NISN</span>
                         <input class="input100" type="text" name="identifier" placeholder="Masukan NIP atau NIS"
                             required>
                         <span class="focus-input100" data-symbol="&#xf206;"></span>

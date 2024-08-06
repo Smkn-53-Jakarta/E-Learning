@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\ScheduleOfSubject;
 
+use App\Models\ScheduleOfSubject;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Validator;
 
 class StoreScheduleOfSubjectRequest extends FormRequest
 {
@@ -16,6 +18,28 @@ class StoreScheduleOfSubjectRequest extends FormRequest
             'start_time' => ['required', 'date_format:H:i'],
             'end_time' => ['required', 'date_format:H:i'],
         ];
+    }
+
+    protected function withValidator(Validator $validator)
+    {
+        $validator->after(function ($validator) {
+            $data = $this->all();
+
+            $hasOverlappingSchedule = ScheduleOfSubject::where('classroom_id', $data['classroom_id'])
+                ->where('day', $data['day'])
+                ->where(function ($query) use ($data) {
+                    $query->whereBetween('start_time', [$data['start_time'], $data['end_time']])
+                        ->orWhereBetween('end_time', [$data['start_time'], $data['end_time']])
+                        ->orWhere(function ($query) use ($data) {
+                            $query->where('start_time', '<', $data['start_time'])
+                                ->where('end_time', '>', $data['end_time']);
+                        });
+                })->exists();
+
+            if ($hasOverlappingSchedule) {
+                $validator->errors()->add('schedule', 'Kelas sudah memiliki jadwal pada waktu tersebut.');
+            }
+        });
     }
 
     public function messages(): array
