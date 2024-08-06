@@ -26,7 +26,7 @@ class ExportController extends Controller
         $courseIds = $scheduleOfSubjects->pluck('course_id');
 
         $courses = Course::with(['raports' => function ($query) use ($student) {
-            $query->where('student_id', $student->id)->first();
+            $query->where('student_id', $student->id);
         }])->whereIn('id', $courseIds)->get();
 
         $courses->each(function ($course) {
