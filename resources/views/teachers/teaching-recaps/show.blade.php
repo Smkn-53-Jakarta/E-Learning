@@ -38,17 +38,19 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive fixed-actions-table">
+                        <div class="table-responsive">
                             <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0">
                                 <thead>
                                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
                                         <th class="text-center">No</th>
-                                        <th class="min-w-100px text-start">Mata Pelajaran</th>
+                                        <th class="min-w-200px text-start">Mata Pelajaran</th>
                                         <th class="min-w-100px text-start">Kelas</th>
-                                        <th class="min-w-100px text-start">Tanggal</th>
+                                        <th class="min-w-50px text-center">Pertemuan</th>
+                                        <th class="min-w-150px text-start">Tanggal</th>
                                         <th class="min-w-100px text-start">Jam Mulai</th>
-                                        <th class="min-w-100px text-start">Jam Selesai</th>
-                                        <th class="min-w-100px text-center">Pertemuan</th>
+                                        <th class="min-w-150px text-start">Jam Selesai</th>
+                                        <th class="min-w-200px text-start">Guru Pengganti (BK)</th>
+                                        <th class="min-w-150px text-start">Ket. Absensi</th>
                                         <th class="min-w-100px text-start">Status</th>
                                     </tr>
                                 </thead>
@@ -60,6 +62,7 @@
                                                 {{ $teacherAttendance->scheduleOfSubject->course->name }}</td>
                                             <td class="text-start">
                                                 {{ $teacherAttendance->scheduleOfSubject->classroom->name }}</td>
+                                            <td class="text-center">{{ $loop->iteration }}</td>
                                             <td class="text-start">
                                                 {{ \Carbon\Carbon::parse($teacherAttendance->attendance_time)->format('Y-m-d') }}
                                             </td>
@@ -67,7 +70,8 @@
                                                 {{ $teacherAttendance->scheduleOfSubject->start_time }}</td>
                                             <td class="text-start">{{ $teacherAttendance->scheduleOfSubject->end_time }}
                                             </td>
-                                            <td class="text-center">{{ $loop->iteration }}</td>
+                                            <td>Ariyanti Octaviani</td>
+                                            <td>Sakit</td>
                                             <td>
                                                 @if ($teacherAttendance->status == 'Hadir')
                                                     <span

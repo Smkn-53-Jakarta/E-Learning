@@ -32,6 +32,164 @@
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <div id="kt_app_content_container" class="app-container container-xxl">
+                <div class="row w-100 mb-2">
+                    {{-- Content 1 --}}
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="py-5 px-5 d-flex rounded shadow-sm">
+                                <div class="d-flex align-items-top">
+                                    <i class="bi bi-book-half"
+                                        style="font-size: 28px; margin-right: 10px; color: #1fb082;"></i>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h3 class="mb-0">{{ $scheduleOfSubject->course->name }}</h3>
+                                    <p class="mb-0 light-mode dark-mode" style="color: #a7a7b8;">Mata
+                                        Pelajaran</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-2 w-100">
+                            <div class="py-5 px-5 d-flex rounded shadow-sm">
+                                <div class="d-flex align-items-top">
+                                    <i class="bi bi-signpost-split"
+                                        style="font-size: 28px; margin-right: 10px; color: #1fb082;"></i>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h3 class="mb-0">{{ $scheduleOfSubject->classroom->name }}</h3>
+                                    <p class="mb-0 light-mode dark-mode" style="color: #a7a7b8;">Kelas
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Content 2 --}}
+                    <div class="col-lg-3">
+                        <div class="card mt-2 mt-lg-0">
+                            <div class="py-5 px-5 d-flex rounded shadow-sm">
+                                <div class="d-flex align-items-top">
+                                    <i class="bi bi-person-circle"
+                                        style="font-size: 28px; margin-right: 10px; color: #1fb082;"></i>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h3 class="mb-0">
+                                        {{ GlobalHelper::limitText($scheduleOfSubject->teacher->user->name) }}</h3>
+                                    <p class="mb-0 light-mode dark-mode" style="color: #a7a7b8;">Guru
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-2">
+                            <div class="py-5 px-5 d-flex rounded shadow-sm">
+                                <div class="d-flex align-items-top">
+                                    <i class="bi bi-clock-fill"
+                                        style="font-size: 28px; margin-right: 10px; color: #1fb082;"></i>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h3 class="mb-0">{{ $scheduleOfSubject->start_time }}</h3>
+                                    <p class="mb-0 light-mode dark-mode" style="color: #a7a7b8;">Jam
+                                        Masuk</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Content 3 --}}
+                    <div class="col-lg-3">
+                        <div class="card mt-2 mt-lg-0">
+                            <div class="py-5 px-5 d-flex rounded shadow-sm">
+                                <div class="d-flex align-items-top">
+                                    <i class="bi bi-calendar-event"
+                                        style="font-size: 28px; margin-right: 10px; color: #1fb082; "></i>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h3 class="mb-0">{{ $scheduleOfSubject->day }}</h3>
+                                    <p class="mb-0 light-mode dark-mode" style="color: #a7a7b8;">Hari
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-2">
+                            <div class="py-5 px-5 d-flex rounded shadow-sm">
+                                <div class="d-flex align-items-top">
+                                    <i class="bi bi-clock"
+                                        style="font-size: 28px; margin-right: 10px; color: #1fb082; "></i>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h3 class="mb-0">{{ $scheduleOfSubject->end_time }}</h3>
+                                    <p class="mb-0 light-mode dark-mode" style="color: #a7a7b8;">Jam
+                                        Keluar</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Status  Teacher --}}
+                    <div class="col-lg-3">
+                        <div class="card card-flush py-6 rounded align-items-center border shadow-sm mt-2 mt-lg-0">
+                            <div class="card-body py-1">
+                                <div class="card-header">
+                                    <h3 class="card-title d-flex position-relative">
+                                        <i class="bi bi-record-circle"
+                                            style="font-size: 18px; margin-right: 5px; color: #b01f3a;"></i>
+                                        Absen Guru
+                                    </h3>
+                                </div>
+                                <select class="form-select form-select-sm form-select-solid status"
+                                    data-control="select2" data-hide-search="true">
+                                    <option value="Hadir">Hadir</option>
+                                    <option value="Izin">Izin</option>
+                                    <option value="Sakit">Sakit</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- Caption Attendance Teacher and Save --}}
+                <div class="row w-100 mb-8 my-0">
+                    {{-- Name Caption --}}
+                    <div class="col-lg-3 w-50">
+                        <div class="card card-flush rounded border shadow-sm mt-2 mt-lg-0">
+                            <div class="my-4 px-5 d-flex rounded">
+                                <div class="d-flex align-items-top">
+                                    <i class="bi bi-pen"
+                                        style="font-size: 28px; margin-right: 10px; color: #1fb082;"></i>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center" style="width: 100%">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-control-sm"
+                                            placeholder="Diisi jika tidak hadir oleh pengganti (Opsional)"
+                                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                                        <button class="btn btn-primary" type="button"
+                                            id="button-addon2">Simpan</button>
+                                    </div>
+                                    <p class="mt-1 light-mode dark-mode" style="color: #a7a7b8;">
+                                        Keterangan Absensi
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Noted --}}
+                    <div class="col-lg-3 w-50">
+                        <div class="card card-flush rounded border shadow-sm mt-2 mt-lg-0">
+                            <div class="my-4 px-5 d-flex rounded">
+                                <div class="d-flex align-items-top">
+                                    <i class="bi bi-people-fill"
+                                        style="font-size: 28px; margin-right: 10px; color: #1fb082;"></i>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center" style="width: 100%">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-control-sm"
+                                            placeholder="Diisi jika tidak hadir oleh pengganti (Wajib)"
+                                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                                        <button class="btn btn-primary" type="button"
+                                            id="button-addon2">Simpan</button>
+                                    </div>
+                                    <p class="mt-1 light-mode dark-mode" style="color: #a7a7b8;">Guru Pengganti (BK)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="d-flex gap-5 justify-content-center">
                     <button type="button" class="btn btn-success btn-sm rounded-pill">
                         Hadir <span class="badge text-bg-secondary rounded-circle">{{ $totalPresent }}</span>
