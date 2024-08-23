@@ -143,50 +143,43 @@
                     </div>
                 </div>
                 {{-- Caption Attendance Teacher and Save --}}
-                <div class="row w-100 mb-8 my-0">
-                    {{-- Name Caption --}}
-                    <div class="col-lg-3 w-50">
-                        <div class="card card-flush rounded border shadow-sm mt-2 mt-lg-0">
+                <div class="card me-md-5 mb-5 p-5">
+                    <div class="row">
+                        {{-- Name Caption --}}
+                        <div class="col-md-6">
                             <div class="my-4 px-5 d-flex rounded">
                                 <div class="d-flex align-items-top">
                                     <i class="bi bi-pen"
                                         style="font-size: 28px; margin-right: 10px; color: #1fb082;"></i>
                                 </div>
                                 <div class="d-flex flex-column justify-content-center" style="width: 100%">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control form-control-sm"
-                                            placeholder="Diisi jika tidak hadir oleh pengganti (Opsional)"
-                                            aria-label="Recipient's username" aria-describedby="button-addon2">
-                                        <button class="btn btn-primary" type="button"
-                                            id="button-addon2">Simpan</button>
-                                    </div>
+                                    <input type="text" class="form-control form-control-sm"
+                                        placeholder="Diisi jika tidak hadir oleh pengganti (Opsional)">
                                     <p class="mt-1 light-mode dark-mode" style="color: #a7a7b8;">
                                         Keterangan Absensi
                                     </p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {{-- Noted --}}
-                    <div class="col-lg-3 w-50">
-                        <div class="card card-flush rounded border shadow-sm mt-2 mt-lg-0">
+                        {{-- Noted --}}
+                        <div class="col-md-6">
                             <div class="my-4 px-5 d-flex rounded">
                                 <div class="d-flex align-items-top">
                                     <i class="bi bi-people-fill"
                                         style="font-size: 28px; margin-right: 10px; color: #1fb082;"></i>
                                 </div>
                                 <div class="d-flex flex-column justify-content-center" style="width: 100%">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control form-control-sm"
-                                            placeholder="Diisi jika tidak hadir oleh pengganti (Wajib)"
-                                            aria-label="Recipient's username" aria-describedby="button-addon2">
-                                        <button class="btn btn-primary" type="button"
-                                            id="button-addon2">Simpan</button>
-                                    </div>
+                                    <input type="text" class="form-control form-control-sm"
+                                        placeholder="Diisi jika tidak hadir oleh pengganti (Wajib)">
                                     <p class="mt-1 light-mode dark-mode" style="color: #a7a7b8;">Guru Pengganti (BK)
                                     </p>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-3 d-flex justify-content-end">
+                            <x-SaveButton>Simpan</x-SaveButton>
                         </div>
                     </div>
                 </div>
