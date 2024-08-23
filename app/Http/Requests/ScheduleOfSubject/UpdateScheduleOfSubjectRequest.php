@@ -24,9 +24,11 @@ class UpdateScheduleOfSubjectRequest extends FormRequest
     {
         $validator->after(function ($validator) {
             $data = $this->all();
+            $scheduleId = $this->route('scheduleOfSubject');
 
-            $hasOverlappingSchedule = ScheduleOfSubject::where('classroom_id', $data['classroom_id'])
+            $hasOverlappingClassSchedule = ScheduleOfSubject::where('classroom_id', $data['classroom_id'])
                 ->where('day', $data['day'])
+                ->where('id', '!=', $scheduleId)
                 ->where(function ($query) use ($data) {
                     $query->whereBetween('start_time', [$data['start_time'], $data['end_time']])
                         ->orWhereBetween('end_time', [$data['start_time'], $data['end_time']])
@@ -36,8 +38,24 @@ class UpdateScheduleOfSubjectRequest extends FormRequest
                         });
                 })->exists();
 
-            if ($hasOverlappingSchedule) {
+            $hasOverlappingTeacherSchedule = ScheduleOfSubject::where('teacher_id', $data['teacher_id'])
+                ->where('day', $data['day'])
+                ->where('id', '!=', $scheduleId)
+                ->where(function ($query) use ($data) {
+                    $query->whereBetween('start_time', [$data['start_time'], $data['end_time']])
+                        ->orWhereBetween('end_time', [$data['start_time'], $data['end_time']])
+                        ->orWhere(function ($query) use ($data) {
+                            $query->where('start_time', '<', $data['start_time'])
+                                ->where('end_time', '>', $data['end_time']);
+                        });
+                })->exists();
+
+            if ($hasOverlappingClassSchedule) {
                 $validator->errors()->add('schedule', 'Kelas sudah memiliki jadwal pada waktu tersebut.');
+            }
+
+            if ($hasOverlappingTeacherSchedule) {
+                $validator->errors()->add('schedule', 'Guru sudah memiliki jadwal pada waktu tersebut.');
             }
         });
     }

@@ -36,8 +36,23 @@ class StoreScheduleOfSubjectRequest extends FormRequest
                         });
                 })->exists();
 
+            $hasOverlappingTeacherSchedule = ScheduleOfSubject::where('teacher_id', $data['teacher_id'])
+                ->where('day', $data['day'])
+                ->where(function ($query) use ($data) {
+                    $query->whereBetween('start_time', [$data['start_time'], $data['end_time']])
+                        ->orWhereBetween('end_time', [$data['start_time'], $data['end_time']])
+                        ->orWhere(function ($query) use ($data) {
+                            $query->where('start_time', '<', $data['start_time'])
+                                ->where('end_time', '>', $data['end_time']);
+                        });
+                })->exists();
+
             if ($hasOverlappingSchedule) {
                 $validator->errors()->add('schedule', 'Kelas sudah memiliki jadwal pada waktu tersebut.');
+            }
+
+            if ($hasOverlappingTeacherSchedule) {
+                $validator->errors()->add('schedule', 'Guru sudah memiliki jadwal pada waktu tersebut.');
             }
         });
     }
