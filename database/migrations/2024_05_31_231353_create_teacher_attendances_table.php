@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreign('schedule_of_subject_id')->references('id')->on('schedule_of_subjects')->cascadeOnDelete()->cascadeOnUpdate();
             $table->dateTime('attendance_time');
             $table->enum('status', ['Hadir', 'Tidak Hadir']);
+            $table->string('information')->nullable();
+            $table->string('substitute_teacher', 64)->nullable();
             $table->timestamps();
         });
     }

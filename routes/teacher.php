@@ -20,6 +20,7 @@ Route::prefix('guru')->middleware('auth', 'permissions')->group(function () {
     //* Route Teaching Schedules 
     Route::get('/jadwal-mengajar', [TeachingScheduleController::class, 'index'])->name('teacher-teaching-schedules.index');
     Route::get('/jadwal-mengajar/{scheduleOfSubject}/kehadiran', [AttendanceController::class, 'index'])->name('teacher-attendances.index');
+    Route::post('/jadwal-mengajar/{scheduleOfSubject}/kehadiran', [AttendanceController::class, 'store'])->name('teacher-attendances.store');
     Route::put('/jadwal-mengajar/kehadiran/{studentId}', [StudentAttendanceController::class, 'changeStatus'])->name('teacher-attendances.update');
 
     //* Route Materials  

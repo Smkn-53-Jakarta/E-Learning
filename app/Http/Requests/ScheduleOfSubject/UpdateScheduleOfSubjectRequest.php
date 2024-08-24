@@ -24,7 +24,7 @@ class UpdateScheduleOfSubjectRequest extends FormRequest
     {
         $validator->after(function ($validator) {
             $data = $this->all();
-            $scheduleId = $this->route('scheduleOfSubject');
+            $scheduleId = $this->route('scheduleOfSubject')->id;
 
             $hasOverlappingClassSchedule = ScheduleOfSubject::where('classroom_id', $data['classroom_id'])
                 ->where('day', $data['day'])

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Teacher;
 
+use App\Helpers\RoutingHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TeacherAttendance\StoreTeacherAttendanceRequest;
 use App\Models\ScheduleOfSubject;
 use App\Models\Student;
 use App\Models\StudentAttendance;
 use App\Models\TeacherAttendance;
 use Carbon\Carbon;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 
 class AttendanceController extends Controller
@@ -43,9 +46,7 @@ class AttendanceController extends Controller
             ->whereDate('attendance_time', $now->format('Y-m-d'))
             ->exists();
 
-        $existingTeacherAttendances = TeacherAttendance::where('schedule_of_subject_id', $scheduleOfSubject->id)
-            ->whereDate('attendance_time', $now->format('Y-m-d'))
-            ->exists();
+        $teacherAttendance = TeacherAttendance::where('schedule_of_subject_id', $scheduleOfSubject->id)->whereDate('attendance_time', $now->format('Y-m-d'))->first();
 
         if (!$existingStudentAttendances) {
             foreach ($students as $student) {
@@ -56,15 +57,6 @@ class AttendanceController extends Controller
                     'status' => 'Hadir',
                 ]);
             }
-        }
-
-        if (!$existingTeacherAttendances) {
-            TeacherAttendance::create([
-                'teacher_id' => $scheduleOfSubject->teacher_id,
-                'schedule_of_subject_id' => $scheduleOfSubject->id,
-                'attendance_time' => $now,
-                'status' => 'Hadir',
-            ]);
         }
 
         $attendanceCounts = StudentAttendance::select('status', DB::raw('count(*) as total'))
@@ -78,6 +70,49 @@ class AttendanceController extends Controller
         $totalPermission = $attendanceCounts->get('Izin', 0);
         $totalSick = $attendanceCounts->get('Sakit', 0);
 
-        return view('teachers.teaching-schedules.attendances', compact('scheduleOfSubject', 'students', 'totalPresent', 'totalAbsent', 'totalPermission', 'totalSick'));
+        return view('teachers.teaching-schedules.attendances', compact('scheduleOfSubject', 'students', 'teacherAttendance', 'totalPresent', 'totalAbsent', 'totalPermission', 'totalSick'));
+    }
+
+    public function store(ScheduleOfSubject $scheduleOfSubject, StoreTeacherAttendanceRequest $request): RedirectResponse
+    {
+        $data = $request->validated();
+        $now = Carbon::now();
+
+        $existingTeacherAttendances = TeacherAttendance::where('schedule_of_subject_id', $scheduleOfSubject->id)
+            ->whereDate('attendance_time', $now->format('Y-m-d'))
+            ->first();;
+
+        try {
+            DB::beginTransaction();
+
+            if (!$existingTeacherAttendances) {
+                TeacherAttendance::create([
+                    'teacher_id' => $scheduleOfSubject->teacher_id,
+                    'schedule_of_subject_id' => $scheduleOfSubject->id,
+                    'attendance_time' => $now,
+                    'status' => $data['status'],
+                    'information' => $data['information'],
+                    'substitute_teacher' => $data['substitute_teacher'],
+                ]);
+            } else {
+                $existingTeacherAttendances->update([
+                    'status' => $data['status'],
+                    'information' => $data['information'],
+                    'substitute_teacher' => $data['substitute_teacher'],
+                ]);
+            }
+            DB::commit();
+            return redirect(RoutingHelper::storeToIndexRoute($scheduleOfSubject->id))->with([
+                'message' => 'Status kehadiran berhasil diubah',
+                'status' => 'success',
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return redirect()->back()->withInput()->with([
+                'message' => trans('message.error'),
+                'status' => 'danger',
+            ]);
+        }
     }
 }
