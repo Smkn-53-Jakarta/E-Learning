@@ -70,8 +70,8 @@
                                                 {{ $teacherAttendance->scheduleOfSubject->start_time }}</td>
                                             <td class="text-start">{{ $teacherAttendance->scheduleOfSubject->end_time }}
                                             </td>
-                                            <td>Ariyanti Octaviani</td>
-                                            <td>Sakit</td>
+                                            <td>{{ $teacherAttendance->substitute_teacher }}</td>
+                                            <td>{{ $teacherAttendance->information }}</td>
                                             <td>
                                                 @if ($teacherAttendance->status == 'Hadir')
                                                     <span
