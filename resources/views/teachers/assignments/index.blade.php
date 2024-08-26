@@ -33,107 +33,7 @@
         </div>
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <div id="kt_app_content_container" class="app-container container-xxl">
-                <div class="row w-100 mb-2">
-                    {{-- Content 1 --}}
-                    <div class="col-lg-3">
-                        <div class="card">
-                            <div class="py-5 px-5 d-flex rounded shadow-sm">
-                                <div class="d-flex align-items-top">
-                                    <i class="bi bi-book-half"
-                                        style="font-size: 28px; margin-right: 10px; color: #1fb082;"></i>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h3 class="mb-0">{{ $scheduleOfSubject->course->name }}</h3>
-                                    <p class="mb-0 light-mode dark-mode" style="color: #a7a7b8;">Mata
-                                        Pelajaran</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mt-2 w-100">
-                            <div class="py-5 px-5 d-flex rounded shadow-sm">
-                                <div class="d-flex align-items-top">
-                                    <i class="bi bi-signpost-split"
-                                        style="font-size: 28px; margin-right: 10px; color: #1fb082;"></i>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h3 class="mb-0">{{ $scheduleOfSubject->classroom->name }}</h3>
-                                    <p class="mb-0 light-mode dark-mode" style="color: #a7a7b8;">Kelas
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- Content 2 --}}
-                    <div class="col-lg-3">
-                        <div class="card mt-2 mt-lg-0">
-                            <div class="py-5 px-5 d-flex rounded shadow-sm">
-                                <div class="d-flex align-items-top">
-                                    <i class="bi bi-person-circle"
-                                        style="font-size: 28px; margin-right: 10px; color: #1fb082;"></i>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h3 class="mb-0">
-                                        {{ GlobalHelper::limitText($scheduleOfSubject->teacher->user->name) }}</h3>
-                                    <p class="mb-0 light-mode dark-mode" style="color: #a7a7b8;">Guru
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mt-2">
-                            <div class="py-5 px-5 d-flex rounded shadow-sm">
-                                <div class="d-flex align-items-top">
-                                    <i class="bi bi-clock-fill"
-                                        style="font-size: 28px; margin-right: 10px; color: #1fb082;"></i>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h3 class="mb-0">{{ $scheduleOfSubject->start_time }}</h3>
-                                    <p class="mb-0 light-mode dark-mode" style="color: #a7a7b8;">Jam
-                                        Masuk</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- Content 3 --}}
-                    <div class="col-lg-3">
-                        <div class="card mt-2 mt-lg-0">
-                            <div class="py-5 px-5 d-flex rounded shadow-sm">
-                                <div class="d-flex align-items-top">
-                                    <i class="bi bi-calendar-event"
-                                        style="font-size: 28px; margin-right: 10px; color: #1fb082; "></i>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h3 class="mb-0">{{ $scheduleOfSubject->day }}</h3>
-                                    <p class="mb-0 light-mode dark-mode" style="color: #a7a7b8;">Hari
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card mt-2">
-                            <div class="py-5 px-5 d-flex rounded shadow-sm">
-                                <div class="d-flex align-items-top">
-                                    <i class="bi bi-clock"
-                                        style="font-size: 28px; margin-right: 10px; color: #1fb082; "></i>
-                                </div>
-                                <div class="d-flex flex-column justify-content-center">
-                                    <h3 class="mb-0">{{ $scheduleOfSubject->end_time }}</h3>
-                                    <p class="mb-0 light-mode dark-mode" style="color: #a7a7b8;">Jam
-                                        Keluar</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- Content Live Status --}}
-                    <div class="col-lg-3">
-                        <div class="card card-flush py-5 rounded align-items-center border shadow-sm mt-2 mt-lg-0">
-                            <h3 class="mb-3 d-flex position-relative">
-                                <i class="bi bi-record-circle"
-                                    style="font-size: 18px; margin-right: 5px; color: #b01f3a;"></i>
-                                Live Status
-                            </h3>
-                            <button class="btn btn-success">Sudah Absen</button>
-                        </div>
-                    </div>
-                </div>
+                <x-ClassroomInformation :scheduleOfSubject="$scheduleOfSubject" />
                 <div class="card card-flush">
                     <div class="card-header mt-6">
                         <div class="card-title">
@@ -179,8 +79,7 @@
                                                 <td>{{ $assignment->title }}</td>
                                                 <td>{!! $assignment->description !!} </td>
                                                 <td>
-                                                    <a href="{{ asset("storage/$assignment->file") }}"
-                                                        target="_blank">
+                                                    <a href="{{ asset("storage/$assignment->file") }}" target="_blank">
                                                         <div class="symbol symbol-25px pointer">
                                                             <img src="{{ asset('assets/media/svg/files/pdf.svg') }}"
                                                                 alt="icon" />
