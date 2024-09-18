@@ -142,8 +142,8 @@
                                     <select class="form-select form-select-sm form-select-solid status"
                                         data-control="select2" data-hide-search="true" name="status" required>
                                         <option>Pilih Status</option>
-                                        <option value="Hadir" @selected(old('status', $teacherAttendance->status) == 'Hadir')>Hadir</option>
-                                        <option value="Tidak Hadir" @selected(old('status', $teacherAttendance->status) == 'Tidak Hadir')>Tidak Hadir</option>
+                                        <option value="Hadir" @selected(old('status', optional($teacherAttendance)->status) == 'Hadir')>Hadir</option>
+                                        <option value="Tidak Hadir" @selected(old('status', optional($teacherAttendance)->status) == 'Tidak Hadir')>Tidak Hadir</option>
                                     </select>
                                     <x-Form.InputError name="status" />
                                 </div>
@@ -165,7 +165,7 @@
                                         <input id="information" type="text" class="form-control form-control-sm"
                                             placeholder="Diisi jika tidak hadir oleh pengganti (Opsional)"
                                             name="information" maxlength="255"
-                                            value="{{ old('information', $teacherAttendance->information) }}">
+                                            value="{{ old('information', optional($teacherAttendance)->information) }}">
                                         <x-Form.InputError name="information" />
                                     </div>
                                 </div>
@@ -184,7 +184,7 @@
                                             class="form-control form-control-sm"
                                             placeholder="Diisi jika tidak hadir oleh pengganti (Wajib)"
                                             name="substitute_teacher" maxlength="64"
-                                            value="{{ old('substitute_teacher', $teacherAttendance->substitute_teacher) }}">
+                                            value="{{ old('substitute_teacher', optional($teacherAttendance)->substitute_teacher) }}">
                                         <x-Form.InputError name="substitute_teacher" />
                                     </div>
                                 </div>
